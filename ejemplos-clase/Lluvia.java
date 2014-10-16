@@ -17,8 +17,9 @@ paraguas sino un chubasquero, por precauci ́n
 public class Lluvia
 {
     public static void main( String args[] ){
-        
+    
         System.out.println( "***********************************************" );
+        
         /* PRIMER CASO */
         {
             boolean llovioAnteayer = true;
@@ -33,7 +34,7 @@ public class Lluvia
             /*
             boolean llevoElChubasquero = [una expresion que lo calcule];
             */
-
+            
             
             System.out.println( "anteayer - ayer - hoy: " + llovioAnteayer + " - " +
                                                             llovioAyer + " - " +
@@ -43,7 +44,7 @@ public class Lluvia
             System.out.println( "chubasquero:" + llevoElChubasquero );        
             */
         }
-                                                        
+                                                
         /* SEGUNDO CASO */
         {
             boolean llovioAnteayer = false;
@@ -56,7 +57,7 @@ public class Lluvia
                /*
             boolean llevoElChubasquero = [una expresion que lo calcule];
             */
-
+            
             
             System.out.println( "anteayer - ayer - hoy: " + llovioAnteayer + " - " +
                                                             llovioAyer + " - " +
@@ -66,8 +67,8 @@ public class Lluvia
             System.out.println( "chubasquero:" + llevoElChubasquero );        
             */
         }
-
-         /* TERCER CASO */
+    
+        /* TERCER CASO */
         {
             boolean llovioAnteayer = true;
             boolean llovioAyer = true;
@@ -79,7 +80,7 @@ public class Lluvia
                /*
             boolean llevoElChubasquero = [una expresion que lo calcule];
             */
-
+            
             
             System.out.println( "anteayer - ayer - hoy: " + llovioAnteayer + " - " +
                                                             llovioAyer + " - " +
@@ -89,8 +90,8 @@ public class Lluvia
             System.out.println( "chubasquero:" + llevoElChubasquero );        
             */
         }                                         
-        
-           /* CUARTO CASO */
+    
+        /* CUARTO CASO */
         {
             boolean llovioAnteayer = false;
             boolean llovioAyer = false;
@@ -102,7 +103,7 @@ public class Lluvia
               /*
             boolean llevoElChubasquero = [una expresion que lo calcule];
             */
-
+            
             
             System.out.println( "anteayer - ayer - hoy: " + llovioAnteayer + " - " +
                                                             llovioAyer + " - " +
@@ -112,8 +113,8 @@ public class Lluvia
             System.out.println( "chubasquero:" + llevoElChubasquero );        
             */
         }     
-        
-           /* QUINTO CASO */
+    
+        /* QUINTO CASO */
         {
             boolean llovioAnteayer = true;
             boolean llovioAyer = false;
@@ -125,7 +126,7 @@ public class Lluvia
               /*
             boolean llevoElChubasquero = [una expresion que lo calcule];
             */
-
+            
             
             System.out.println( "anteayer - ayer - hoy: " + llovioAnteayer + " - " +
                                                             llovioAyer + " - " +
@@ -135,6 +136,6 @@ public class Lluvia
             System.out.println( "chubasquero:" + llevoElChubasquero );        
             */
         }             
-        
+    
     }
 }
