@@ -14,10 +14,13 @@ public class LluviaConPreguntas
         Scanner in = new Scanner( System.in );
         
         System.out.println( "Voy a ayudarte a decidir si llevar o no paraguas" );
+        
         System.out.println( "¿Llovió anteayer?" );
         boolean llovioAnteayer = Boolean.parseBoolean(in.nextLine());
+        
         System.out.println( "¿Llovió ayer?" );
         boolean llovioAyer = Boolean.parseBoolean(in.nextLine());
+        
         System.out.println( "¿Está lloviendo hoy?" );        
         boolean llueveHoy = Boolean.parseBoolean(in.nextLine());
         
