@@ -1,6 +1,15 @@
 
 /**
- * Write a description of class Lluvia here.
+ * Antes de salir de casa, miro por la ventana para ver si esa lloviendo, y en ese
+ caso llevo el paraguas. Si llovi ́ el d ́ anterior, no miro por la ventana, y llevo el
+o
+ıa
+paraguas directamente. Si llueve dos d ́ seguidos, al d ́ siguiente no llevo el
+ıas
+ıa
+paraguas sino un chubasquero, por precauci ́n
+
+ * 
  * 
  * @author (your name) 
  * @version (a version number or a date)
