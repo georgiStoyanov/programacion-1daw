@@ -51,7 +51,7 @@ public class TablaDeMultiplicarStudentTester extends StudentTester {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String[] students = { "profesor" };
+		String[] students = Students.students();
 		StudentTester met = new TablaDeMultiplicarStudentTester(students);
 
 		Map<String, Result> ret = met.call();

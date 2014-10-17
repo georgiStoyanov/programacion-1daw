@@ -50,7 +50,7 @@ public class MediaStudentTester extends StudentTester{
 	
 	
 	public static void main(String[] args) throws Exception {
-		String[] students = { "profesor" };
+		String[] students = Students.students();
 		StudentTester met = new MediaStudentTester(students);
 		
 		Map<String, Result> ret = met.call();
