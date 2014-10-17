@@ -1,4 +1,6 @@
 import java.io.File;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
@@ -49,12 +51,20 @@ public class ExecutorTester implements Callable<Boolean>{
 		_expectedRegExp = expectedRegExp;
 		_directory = dir;
 	}
+	
+	public static String removeDiacriticalMarks(String string) {
+		return Normalizer.normalize(string, Form.NFD).replaceAll(
+				"\\p{InCombiningDiacriticalMarks}+", "");
+	}
+
 
 	@Override
 	public Boolean call() throws Exception {
 		
 		
 		log( "_cmd:" + Arrays.asList(_cmd) );
+		log( "_directory:" + _directory );
+		log( "input:" + _expectedRegExp.input() );
 		
 		Executor exec = new Executor( _directory, _cmd, _expectedRegExp.input() );
 		String output = exec.call(_millis );
@@ -73,6 +83,7 @@ public class ExecutorTester implements Callable<Boolean>{
 
 		for( int l = 0 ; l < _expectedRegExp.size() && ret ; l++ ){
 			String line = lines[lines.length - _expectedRegExp.size() + l];
+			line = removeDiacriticalMarks(line);
 			String regex = _expectedRegExp.get(l);
 			boolean matches = line.matches(regex);
 			log( line + " -- " + regex + ":" + matches );

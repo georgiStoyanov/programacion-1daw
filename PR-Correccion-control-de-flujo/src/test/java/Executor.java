@@ -82,6 +82,7 @@ public class Executor implements Callable<String> {
 		try {
 			ProcessBuilder procB = new ProcessBuilder(_cmd);
 			procB.directory( _directory );
+			procB.environment().put("LC_ALL", "C" );
 			
 			
 			log("_cmd:" + Arrays.asList(_cmd));

@@ -23,22 +23,23 @@ public class TablaDeMultiplicarStudentTester extends StudentTester {
 		for (int i = 0; i < ret.length; i++) {
 			if (i < 1 || i > 10) {
 				ret[i] = new String[] { 
-						"" + i, 
-						"fuera de rango" 
+						"" + i + "\n", 
+						" fuera rango " 
 				};
 			} 
 			else {
 				ret[i] = new String[] {
-						"" + i, " " + i + " x 1 = " + (i * 1),
-						" " + i + " x 2 = " + (i * 2),
-						" " + i + " x 3 = " + (i * 3),
-						" " + i + " x 4 = " + (i * 4),
-						" " + i + " x 5 = " + (i * 5),
-						" " + i + " x 6 = " + (i * 6),
-						" " + i + " x 7 = " + (i * 7),
-						" " + i + " x 8 = " + (i * 8),
-						" " + i + " x 9 = " + (i * 9),
-						" " + i + " x 10 = " + (i * 10) 
+						"" + i + "\n", 
+						" " + i + " x 1 = " + (i * 1) + " ",
+						" " + i + " x 2 = " + (i * 2) + " ",
+						" " + i + " x 3 = " + (i * 3) + " ",
+						" " + i + " x 4 = " + (i * 4) + " ",
+						" " + i + " x 5 = " + (i * 5) + " ",
+						" " + i + " x 6 = " + (i * 6) + " ",
+						" " + i + " x 7 = " + (i * 7) + " ",
+						" " + i + " x 8 = " + (i * 8) + " ",
+						" " + i + " x 9 = " + (i * 9) + " ",
+						" " + i + " x 10 = " + (i * 10) + " "
 				};
 			}
 

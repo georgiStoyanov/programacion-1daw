@@ -12,10 +12,6 @@ public class ClasificaTrianguloStudentTester extends StudentTester {
 		super(students);
 	}
 
-	public static String removeDiacriticalMarks(String string) {
-		return Normalizer.normalize(string, Form.NFD).replaceAll(
-				"\\p{InCombiningDiacriticalMarks}+", "");
-	}
 
 	@Override
 	protected String classNameToExecute() {
