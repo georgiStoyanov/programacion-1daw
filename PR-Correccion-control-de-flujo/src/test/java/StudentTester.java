@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 
+
+
 public abstract class StudentTester  implements Callable<Map<String,StudentTester.Result>>{
 
 	public static class Result{
@@ -78,7 +80,8 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 	}
 
 	protected boolean compile(String student) throws Exception {
-		ExecutorTester e = new ExecutorTester(studentDir(student), compileCommand(student),"","\\s*error\\s");
+		ExecutorTester.ExpectedRegExp ere = new ExecutorTester.ExpectedRegExp("", "\\s*error\\s");
+		ExecutorTester e = new ExecutorTester(studentDir(student), compileCommand(student),ere);
 		boolean notCompiled = e.call();
 		return !notCompiled;
 	}
@@ -86,14 +89,14 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 	public Result testStudent(String student) throws Exception {
 		int good = 0, bad = 0;
 	
-		String[][] testData = generateTestData();
+		ExecutorTester.ExpectedRegExp[] testData = generateTestData();
 		
 		if( !compile(student) ){
 			return new Result(0,testData.length);
 		}
 	
-		for( String[] data: testData ){
-			ExecutorTester et = new ExecutorTester(studentDir(student), executeCommand(student), data[0], data[1] );
+		for( ExecutorTester.ExpectedRegExp data: testData ){
+			ExecutorTester et = new ExecutorTester(studentDir(student), executeCommand(student), data );
 			if( et.call() ){
 				good += 1;
 			}
@@ -104,6 +107,6 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		return new Result(good,bad);
 	}
 
-	abstract protected String[][] generateTestData();
+	abstract protected ExecutorTester.ExpectedRegExp[] generateTestData();
 
 }

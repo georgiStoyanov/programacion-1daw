@@ -23,8 +23,8 @@ public class ClasificaTrianguloStudentTester extends StudentTester {
 	}
 
 	@Override
-	protected String[][] generateTestData() {
-		return new String[][]{
+	protected ExecutorTester.ExpectedRegExp[] generateTestData() {
+		String[][] strings =  new String[][]{
 				{ "1\n2\n3\n", "(?i).*escaleno.*" },
 
 				{ "1\n2\n1\n", "(?i).*isosceles.*" },
@@ -40,6 +40,7 @@ public class ClasificaTrianguloStudentTester extends StudentTester {
 				{ "20\n29\n21\n", "(?i).*rectangulo.*" },
 				{ "21\n29\n20\n", "(?i).*rectangulo.*" },
 		};
+		return ExecutorTester.ExpectedRegExp.fromStrings(strings);
 	}
 
 	public static void main(String[] args) throws Exception {

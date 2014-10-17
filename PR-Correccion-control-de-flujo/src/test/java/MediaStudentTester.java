@@ -17,7 +17,7 @@ public class MediaStudentTester extends StudentTester{
 	}
 	
 	@Override 
-	protected String[][] generateTestData() {
+	protected ExecutorTester.ExpectedRegExp[] generateTestData() {
 		double[][] inputs = {
 				{ 1, 2, 3, 4 },
 				{12345678,987654321,123456789},
@@ -27,15 +27,15 @@ public class MediaStudentTester extends StudentTester{
 				{1324,1234123,51234512,13523,45546634,75,4325452,23463456,134,125342,56345,756,4567}
 		};
 		
-		String[][] ret = new String[inputs.length][];
+		ExecutorTester.ExpectedRegExp[] ret = new ExecutorTester.ExpectedRegExp[inputs.length];
 		for( int i = 0 ; i < ret.length ; i++ ){
-			ret[i] = formatData( inputs[i]);
+			ret[i] = formatData( inputs[i] );
 		}
 		return ret;
 	}
 	
 	
-	private String[] formatData( double  ... input ){
+	private ExecutorTester.ExpectedRegExp formatData( double  ... input ){
 		double total = 0;
 		String sInput = "" + input.length + "\n";
 		for( double d: input ){
@@ -45,9 +45,7 @@ public class MediaStudentTester extends StudentTester{
 		
 		double media = total/input.length;
 		
-		return new String[]{
-				sInput, ".*" + String.valueOf(media) + ".*"
-		};
+		return new ExecutorTester.ExpectedRegExp( sInput, ".*" + String.valueOf(media) + ".*" );
 	}
 	
 	
