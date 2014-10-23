@@ -17,10 +17,15 @@ public class Executor implements Callable<String> {
 		System.out.println( "log:" + s );
 	}
 	
-	private String _cmd;
+	private String _cmd[];
 	private String _input;
 
 	public Executor(String cmd, String input) {
+		this( new String[]{cmd}, input );
+	}
+
+	
+	public Executor(String[] cmd, String input) {
 		_cmd = cmd;
 		_input = input;
 	}
