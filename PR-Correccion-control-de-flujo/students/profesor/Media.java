@@ -18,13 +18,11 @@ public class Media{
 	        int contador = Integer.parseInt( in.nextLine() );
 	        double suma = 0;
 
-	        while( contador > 0 ){
-	            System.out.println( "Valor "  + (contador+2) + ":" );
+	        
+	        for( int c = 0 ; c < contador ; c++ ){
+	            System.out.println( "Valor "  + (c+1) + ":" );
 	            numeroIntroducido = Double.parseDouble( in.nextLine() );
-
 	            suma = suma + numeroIntroducido;
-	            contador = contador - 1;
-
 	        }
 
 	        if( contador == 0 ){

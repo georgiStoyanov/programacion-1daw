@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
@@ -5,21 +6,20 @@ import java.util.concurrent.Callable;
 public class ExecutorTester implements Callable<Boolean>{
 
 	private String[] _cmd;
-	private String _validRegExpAtEnd;
+	private String[] _validRegExpAtEnd;
 	private String _input;
 	private long _millis = 2000;
+	private File _directory;
 	
 	private static void log(String s) {
-		System.err.println("ExecutorTester:" + s);
+		//System.err.println("ExecutorTester:" + s);
 	}	
 
-	public ExecutorTester( String cmd, String input, String validRegExpAtEnd ){
-		this( new String[]{cmd}, input, validRegExpAtEnd);
-	}
-	public ExecutorTester( String[] cmd, String input, String validRegExpAtEnd ){
+	public ExecutorTester( File dir, String[] cmd, String input, String ... validRegExpAtEnd ){
 		_cmd = cmd;
 		_validRegExpAtEnd = validRegExpAtEnd;
 		_input = input;
+		_directory = dir;
 	}
 
 	@Override
@@ -28,21 +28,38 @@ public class ExecutorTester implements Callable<Boolean>{
 		
 		log( "_cmd:" + Arrays.asList(_cmd) );
 		
-		Executor exec = new Executor(_cmd, _input );
+		Executor exec = new Executor( _directory, _cmd, _input );
 		String output = exec.call(_millis );
 		
 		log( "output:" + output );
 		
 		String[] lines = output.split( "\n" );
-		String lastLine = lines[lines.length-1];
+
+		if( lines.length < _validRegExpAtEnd.length ){
+			log( "No hay suficientes lineas");
+			return false;
+		}
+
 		
-		log( "lastLine:" + lastLine );
+		boolean ret = true;
+
+		for( int l = 0 ; l < _validRegExpAtEnd.length && ret ; l++ ){
+			String line = lines[lines.length - _validRegExpAtEnd.length + l];
+			String regex = _validRegExpAtEnd[l];
+			boolean matches = line.matches(regex);
+			log( line + " -- " + regex + ":" + matches );
+			ret = ret && matches;
+		}
 		
-		return lastLine.matches( _validRegExpAtEnd );
+		
+		
+		log( "ret:" + ret );
+		
+		return ret;
 	}
 	
 	public static void main(String[] args) throws Exception {
-		ExecutorTester t = new ExecutorTester("/usr/bin/bc", "4+9\nquit\n", "\\s*9\\s*" );
+		ExecutorTester t = new ExecutorTester(new File("."), new String[]{"/usr/bin/bc"}, "4+9\nquit\n", "\\s*9\\s*" );
 		
 		System.out.println( t.call() );
 	}

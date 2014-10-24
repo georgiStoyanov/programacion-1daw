@@ -1,5 +1,5 @@
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -15,26 +15,27 @@ import java.util.concurrent.TimeoutException;
 public class Executor implements Callable<String> {
 
 	private static void log(String s) {
-		System.err.println("Executor:" + s);
+		//System.err.println("Executor:" + s);
 	}
 
 	private String _cmd[];
 	private String _input;
+	private File _directory;
 
-	public Executor(String cmd, String input) {
-		this(new String[] { cmd }, input);
+	public Executor(File directory, String cmd, String input) {
+		this(directory, new String[] { cmd }, input);
 	}
 
-	public Executor(String[] cmd, String input) {
+	public Executor(File directory, String[] cmd, String input) {
 		_cmd = cmd;
 		_input = input;
+		_directory = directory;
 	}
 
 	private static class InputToOutput implements Runnable {
 		private InputStream _in;
 		private OutputStream _out;
 		private boolean _terminateASSAP = false;
-		private boolean _dolog;
 		private boolean _ended;
 
 		public InputToOutput(InputStream in, OutputStream out) {
@@ -76,15 +77,19 @@ public class Executor implements Callable<String> {
 		}
 	}
 
+		
 	public String call() throws IOException, InterruptedException {
 		try {
 			ProcessBuilder procB = new ProcessBuilder(_cmd);
-
+			procB.directory( _directory );
+			
+			
 			log("_cmd:" + Arrays.asList(_cmd));
 			log("_input:" + _input);
 
 			OutputStream fromProc = new ByteArrayOutputStream();
 
+			procB.redirectErrorStream(true);
 			Process proc = procB.start();
 			if (!_input.equals("")) {
 				proc.getOutputStream().write(_input.getBytes());
@@ -126,7 +131,7 @@ public class Executor implements Callable<String> {
 
 	public static void main(String[] args) throws IOException,
 			InterruptedException {
-		Executor e = new Executor("/usr/lib/jvm/java-7-openjdk-amd64/bin/javac", "");
+		Executor e = new Executor( new File("."), "/usr/lib/jvm/java-7-openjdk-amd64/bin/javac", "");
 		String s = e.call(50000);
 		System.out.println(s);
 		System.exit(0);
