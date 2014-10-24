@@ -12,7 +12,7 @@ public class ExecutorTester implements Callable<Boolean>{
 	private File _directory;
 	
 	private static void log(String s) {
-		//System.err.println("ExecutorTester:" + s);
+		System.err.println("ExecutorTester:" + s);
 	}	
 
 	public ExecutorTester( File dir, String[] cmd, String input, String ... validRegExpAtEnd ){
