@@ -20,6 +20,13 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		public int _bad;
 		public int _good;
 		private String _name;
+		private InputOutput[] _inputOutputs;
+
+		public InputOutput[] inputOutputs() {
+			return _inputOutputs;
+		}
+
+
 	
 		public Result( String name, int good, int bad ){
 			_name = name;
@@ -93,7 +100,7 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 				bad += 1;
 			}
 		}
-		return new Result(classNameToExecute(), good,bad);
+		return new Result(classNameToExecute(), good, bad);
 	}
 
 	abstract protected ExecutorTester.ExpectedRegExp[] generateTestData();
