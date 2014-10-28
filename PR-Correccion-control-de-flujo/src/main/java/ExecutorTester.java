@@ -64,9 +64,17 @@ public class ExecutorTester implements Callable<Boolean>{
 		
 		log( "_cmd:" + Arrays.asList(_cmd) );
 		log( "_directory:" + _directory );
-		log( "input:" + _expectedRegExp.input() );
+		log( "input:-->\n" + _expectedRegExp.input() );
+		log( "input:<--");
 		
-		Executor exec = new Executor( _directory, _cmd, _expectedRegExp.input() );
+		Executor exec = new Executor( _directory, _cmd, _expectedRegExp.input() ){
+		@Override
+			protected void adjustEnvironment(ProcessBuilder procB) {
+				super.adjustEnvironment(procB);
+				ExecutorTester.this.adjustEnvironment(procB);
+			}	
+		};
+		
 		String output = exec.call(_millis );
 		
 		log( "output:" + output );
@@ -97,6 +105,9 @@ public class ExecutorTester implements Callable<Boolean>{
 		return ret;
 	}
 	
+	protected void adjustEnvironment(ProcessBuilder procB) {
+	}
+
 	public static void main(String[] args) throws Exception {
 		ExpectedRegExp ere = new ExpectedRegExp("4+9\nquit\n", "\\s*13\\s*");
 		ExecutorTester t = new ExecutorTester(new File("."), new String[]{"/usr/bin/bc"},ere );

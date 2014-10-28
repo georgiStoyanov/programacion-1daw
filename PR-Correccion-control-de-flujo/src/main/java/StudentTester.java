@@ -19,15 +19,21 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 
 		public int _bad;
 		public int _good;
+		private String _name;
 	
-		public Result( int good, int bad ){
+		public Result( String name, int good, int bad ){
+			_name = name;
 			_good = good;
 			_bad = bad;
 		}
 		
 		@Override
 		public String toString() {
-			return "good:" + good() + "  bad:" + bad();
+			return name() + "  good:" + good() + "  bad:" + bad();
+		}
+		
+		public String name(){
+			return _name;
 		}
 	}
 
@@ -44,20 +50,6 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 				"/usr/bin/java",
 				"-cp", ".",
 				classNameToExecute()
-		};
-	}
-
-	protected String[] compileCommand(String student) {
-		/*
-		return new String[]{
-				"/usr/bin/javac",
-				"Media.java"
-		};
-		*/
-		return new String[]{
-			"/bin/sh",
-			"-c",
-			"/usr/bin/javac *.java"
 		};
 	}
 
@@ -80,10 +72,7 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 	}
 
 	protected boolean compile(String student) throws Exception {
-		ExecutorTester.ExpectedRegExp ere = new ExecutorTester.ExpectedRegExp("", "\\s*error\\s");
-		ExecutorTester e = new ExecutorTester(studentDir(student), compileCommand(student),ere);
-		boolean notCompiled = e.call();
-		return !notCompiled;
+		return new Compiler( studentDir(student) ).compile();
 	}
 
 	public Result testStudent(String student) throws Exception {
@@ -92,7 +81,7 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		ExecutorTester.ExpectedRegExp[] testData = generateTestData();
 		
 		if( !compile(student) ){
-			return new Result(0,testData.length);
+			return new Result( classNameToExecute(), 0,testData.length);
 		}
 	
 		for( ExecutorTester.ExpectedRegExp data: testData ){
@@ -104,7 +93,7 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 				bad += 1;
 			}
 		}
-		return new Result(good,bad);
+		return new Result(classNameToExecute(), good,bad);
 	}
 
 	abstract protected ExecutorTester.ExpectedRegExp[] generateTestData();

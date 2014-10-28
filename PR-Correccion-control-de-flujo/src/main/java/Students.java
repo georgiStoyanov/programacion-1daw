@@ -10,7 +10,7 @@ public class Students {
 			
 			@Override
 			public boolean accept(File dir, String name) {
-				return name.toLowerCase().contains("moli");
+				return name.toLowerCase().contains("");
 			}
 		};
 		return dir.list(filter);

@@ -82,11 +82,12 @@ public class Executor implements Callable<String> {
 		try {
 			ProcessBuilder procB = new ProcessBuilder(_cmd);
 			procB.directory( _directory );
-			procB.environment().put("LC_ALL", "C" );
+			adjustEnvironment(procB);
 			
 			
 			log("_cmd:" + Arrays.asList(_cmd));
-			log("_input:" + _input);
+			log("_input:-->\n" + _input);
+			log("_input:<--");
 
 			OutputStream fromProc = new ByteArrayOutputStream();
 
@@ -107,6 +108,10 @@ public class Executor implements Callable<String> {
 			t.printStackTrace();
 			return "***THROWABLE***";
 		}
+	}
+
+	protected void adjustEnvironment(ProcessBuilder procB) {
+		procB.environment().put("LC_ALL", "C" );
 	}
 
 	private final ExecutorService pool = Executors.newFixedThreadPool(10);
