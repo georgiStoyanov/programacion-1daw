@@ -30,23 +30,25 @@ public class Aulas
         String[][] aulas; 
         aulas = new String [numeroAulas][];
 
-        // BUCLE PARA RECORRER LAS AULAS
-        for( int aula = 1 ; aula <= numeroAulas ; aula += 1 ){
-            System.out.printf( "Cuantos alumnos en aula %d?:", aula );
+        // BUCLE PARA RECORRER LAS AULAS Y PREGUNTAR POR SUS DATOS
+        // cAula ES LA VARIABLE INDICE DEL ARRAY DE aulas
+        for( int cAula = 1 ; cAula <= numeroAulas ; cAula += 1 ){
+            System.out.printf( "Cuantos alumnos en aula %d?:", cAula );
             int numeroAlumnos = Integer.parseInt( in.nextLine() );
 
             // VARIABLE PARA ALMACENAR LOS ALUMNOS DEL AULA ACTUAL
             String[] alumnos = new String[numeroAlumnos];
 
             // BUCLE PARA RECORRER LOS ALUMNOS DEL AULA
-            for( int alumno = 1 ; alumno <= numeroAlumnos ; alumno += 1 ){
-                System.out.printf( "Alumno %d de aula %d?:", alumno, aula );
-                alumnos[alumno-1] = in.nextLine();
+            // cAlumno ES LA VARIABLE INDICE DEL ARRAY DE alumnos
+            for( int cAlumno = 1 ; cAlumno <= numeroAlumnos ; cAlumno += 1 ){
+                System.out.printf( "Alumno %d de aula %d?:", cAlumno, cAula );
+                alumnos[cAlumno-1] = in.nextLine();
             }
 
-            aulas[aula-1] = alumnos;
+            aulas[cAula-1] = alumnos;
         }
-        
+
         // BUCLE PARA HACER UN LISTADO DE LAS AULAS Y SUS ALUMNOS
         for ( int i = 0 ; i < aulas.length ; i ++ ){
             System . out . println ( " Aula " + i );
