@@ -25,9 +25,9 @@ public class ClasificaTrianguloStudentTester extends StudentTester {
 				{ "2\n4\n3\n", "(?i).*escaleno.*" },
 				{ "4\n3\n2\n", "(?i).*escaleno.*" },
 
-				{ "1\n2\n1\n", "(?i).*isosceles.*" },
-				{ "2\n1\n1\n", "(?i).*isosceles.*" },
-				{ "1\n1\n2\n", "(?i).*isosceles.*" },
+				{ "10\n15\n10\n", "(?i).*isosceles.*" },
+				{ "15\n10\n10\n", "(?i).*isosceles.*" },
+				{ "10\n10\n15\n", "(?i).*isosceles.*" },
 				
 				{ "1\n1\n1\n", "(?i).*equilatero.*" },
 				
