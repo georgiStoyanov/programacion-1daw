@@ -4,6 +4,8 @@ import java.util.Map;
 
 
 public class Grades {
+	
+
 
 	public static void main(String[] args) throws Exception {
 		String[] students = Students.students();
@@ -31,6 +33,12 @@ public class Grades {
 		}
 		
 		
+		dumpResults_CSV(results);
+		
+		System.exit(0);
+	}
+
+	private static void dumpResults(Map<String, Map<String, StudentTester.Result>> results) {
 		for( String student: results.keySet() ){
 			Map<String,StudentTester.Result> r = results.get(student );
 			System.out.print( student + "\t" );
@@ -39,7 +47,26 @@ public class Grades {
 			}
 			System.out.println();
 		}
-		
-		System.exit(0);
 	}
+	
+	private static void dumpResults_CSV(Map<String, Map<String, StudentTester.Result>> results) {
+		String[] classes = results.values().iterator().next().keySet().toArray( new String[0] );
+		
+		System.out.print( "student\t");
+		for( String c: classes ){
+			System.out.print( c + " good\t" + c + " bad\t");
+		}
+		System.out.println();
+		
+		for( String student: results.keySet() ){
+			Map<String,StudentTester.Result> r = results.get(student );
+			System.out.print( student + "\t" );
+			for(String c: classes ){
+				System.out.print( r.get(c).good() + "\t" + r.get(c).bad() + "\t" );
+			}
+			System.out.println();
+		}
+	}
+	
+	
 }
