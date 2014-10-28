@@ -18,5 +18,26 @@
  */
 public class ClasificaTriangulo{
 	public static void main( String[] args ){
+		
+		int a = 0,b = 0 ,c = 0;
+		
+		boolean equilatero = a == b && b == c;
+		
+		boolean isoscelesAB = a == b;
+		boolean isoscelesAC = a == c;
+		boolean isoscelesBC = b == c;
+		boolean isosceles = isoscelesAB ^ isoscelesAC ^ isoscelesBC;
+		
+		boolean rectanguloA = a*a == b*b + c*c;
+		boolean rectanguloB = b*b == a*a + c*c;
+		boolean rectanguloC = c*c == b*b + a*a;
+		boolean rectangulo = rectanguloA || rectanguloB || rectanguloC;
+		
+		boolean imposibleA = a < b - c || a < c - b;
+		boolean imposibleB = b < a - c || b < c - a;
+		boolean imposibleC = c < a - b || c < b - a;
+		boolean imposible = imposibleA || imposibleB || imposibleC;
+		
+		boolean escaleno = !imposible && !rectangulo && !isosceles && !equilatero;
 	}
 }
