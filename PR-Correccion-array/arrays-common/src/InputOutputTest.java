@@ -14,7 +14,7 @@ public class InputOutputTest {
 	private static final String DEFAULT_IN = "Sin entrada definida para el test";
 
 	@Rule
-	public Timeout globalTimeout = new Timeout(10 * 1000);
+	public Timeout globalTimeout = new Timeout(100 * 1000);
 
 	private PrintStream _outContent;
 	private ByteArrayOutputStream _outByteArray;
