@@ -21,6 +21,11 @@ public class TrianguloDePascalTest extends InputOutputTest {
 	public void test15() {
 		testN(15, 1, 14, 91, 364, 1001, 2002, 3003, 3432, 3003, 2002, 1001,	364, 91, 14, 1);
 	}
+	
+	@Test
+	public void testFallaTriangulo(){
+		assertTrue( "Falla adrede", false );
+	}
 
 	/**
 	 * 
