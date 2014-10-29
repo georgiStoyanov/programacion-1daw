@@ -1,0 +1,299 @@
+*********************************
+**** COMMAND:
+sh -c javac ClasificaTriangulo.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+4
+2
+3
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo escaleno
+**** EXPECTED:
+(?i).*escaleno.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+2
+4
+3
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo escaleno
+**** EXPECTED:
+(?i).*escaleno.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+4
+3
+2
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo escaleno
+**** EXPECTED:
+(?i).*escaleno.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+10
+15
+10
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo isosceles
+**** EXPECTED:
+(?i).*is.*sceles.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+15
+10
+10
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo isosceles
+**** EXPECTED:
+(?i).*is.*sceles.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+10
+10
+15
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo isosceles
+**** EXPECTED:
+(?i).*is.*sceles.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+1
+1
+1
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo equilatero
+**** EXPECTED:
+(?i).*equil.*tero.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+20
+21
+29
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo rectangulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+21
+20
+29
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo rectangulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+29
+21
+20
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo rectangulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+29
+20
+21
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo rectangulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+20
+29
+21
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo rectangulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+21
+29
+20
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo rectangulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+1
+1
+100
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo imposible
+**** EXPECTED:
+(?i).*imposible.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+100
+1
+1
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo imposible
+**** EXPECTED:
+(?i).*imposible.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
+**** INPUT:
+1
+100
+1
+**** OUTPUT:
+Este programa clasifica triangulos.
+Longitud del primer lado:
+Longitud del segundo lado:
+Longitud del tercer lado:
+Es un triangulo imposible
+**** EXPECTED:
+(?i).*imposible.*
+**** SUCCESSFUL:true
+*********************************
+

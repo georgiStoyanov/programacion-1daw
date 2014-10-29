@@ -6,7 +6,7 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = "Grades"
+mainClassName = "grades.Grades"
 
 task wrapper(type: Wrapper) {
     gradleVersion = '1.6'

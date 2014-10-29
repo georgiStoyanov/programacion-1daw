@@ -1,0 +1,75 @@
+*********************************
+**** COMMAND:
+sh -c javac Despertador.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+1
+1
+**** OUTPUT:
+Bienvenido al programa de despertadores
+Que dia de la semana es hoy? 
+Cuantos dias debo programar el despertador? 
+7:30 
+**** EXPECTED:
+(?i).*7:30.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+6
+1
+**** OUTPUT:
+Bienvenido al programa de despertadores
+Que dia de la semana es hoy? 
+Cuantos dias debo programar el despertador? 
+OFF 
+**** EXPECTED:
+(?i).*OFF.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+6
+7
+**** OUTPUT:
+Bienvenido al programa de despertadores
+Que dia de la semana es hoy? 
+Cuantos dias debo programar el despertador? 
+OFF 7:30 7:30 7:30 7:30 7:30 10:30 
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+4
+10
+**** OUTPUT:
+Bienvenido al programa de despertadores
+Que dia de la semana es hoy? 
+Cuantos dias debo programar el despertador? 
+7:30 10:30 OFF 7:30 7:30 7:30 7:30 7:30 10:30 OFF 
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
+**** SUCCESSFUL:true
+*********************************
+

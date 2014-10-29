@@ -1,0 +1,222 @@
+*********************************
+**** COMMAND:
+sh -c javac Media.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+4
+1.0
+2.0
+3.0
+4.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+Numero 2:
+Numero 3:
+Numero 4:
+2.5
+**** EXPECTED:
+.*2.5.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+3
+1.2345678E7
+9.87654321E8
+1.23456789E8
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+Numero 2:
+Numero 3:
+3.74485596E8
+**** EXPECTED:
+.*3.74485596E8.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+4
+5.2
+8.2
+95.0
+100.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+Numero 2:
+Numero 3:
+Numero 4:
+52.1
+**** EXPECTED:
+.*52.1.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+1
+-56.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+-56.0
+**** EXPECTED:
+.*-56.0.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+2
+-0.01
+0.01
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+Numero 2:
+0.0
+**** EXPECTED:
+.*0.0.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+2
+0.01
+0.01
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+Numero 2:
+0.01
+**** EXPECTED:
+.*0.01.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+1
+0.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+0.0
+**** EXPECTED:
+.*0.0.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+13
+1324.0
+1234123.0
+5.1234512E7
+13523.0
+4.5546634E7
+75.0
+4325452.0
+2.3463456E7
+134.0
+125342.0
+56345.0
+756.0
+4567.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+Numero 2:
+Numero 3:
+Numero 4:
+Numero 5:
+Numero 6:
+Numero 7:
+Numero 8:
+Numero 9:
+Numero 10:
+Numero 11:
+Numero 12:
+Numero 13:
+9692787.923076924
+**** EXPECTED:
+.*9692787.923076924.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Media 
+**** INPUT:
+17
+1324.0
+1234.0
+51212.0
+13523.0
+455.0
+75.0
+452.0
+234.0
+134.0
+142.0
+345.0
+756.0
+567.0
+342.0
+236.0
+623.0
+1243.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?:
+Numero 1:
+Numero 2:
+Numero 3:
+Numero 4:
+Numero 5:
+Numero 6:
+Numero 7:
+Numero 8:
+Numero 9:
+Numero 10:
+Numero 11:
+Numero 12:
+Numero 13:
+Numero 14:
+Numero 15:
+Numero 16:
+Numero 17:
+4288.058823529412
+**** EXPECTED:
+.*4288.058823529412.*
+**** SUCCESSFUL:true
+*********************************
+

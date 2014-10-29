@@ -1,0 +1,71 @@
+*********************************
+**** COMMAND:
+sh -c javac Despertador.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+1
+1
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |07:30|
+**** EXPECTED:
+(?i).*7:30.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+6
+1
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |OFF|
+**** EXPECTED:
+(?i).*OFF.*
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+6
+7
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |OFF|
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
+**** INPUT:
+4
+10
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |07:30|10:00|OFF|
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
+**** SUCCESSFUL:false
+*********************************
+
