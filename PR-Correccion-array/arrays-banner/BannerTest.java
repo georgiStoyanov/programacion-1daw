@@ -41,6 +41,14 @@ public class BannerTest extends InputOutputTest {
 	}
 	
 
+	@Test
+	public void testHolaAsdf() {
+		String[] params = { "hola", "asdf " };
+		String expected = " #    #   ####   ######  #    #        #    #   ####   #####   #     ";
+		testBanner(expected, params );
+	}
+	
+	
 	private void testBanner(String expected, String ... params ) {
 		String all = "";
 		for( String s : params ){
