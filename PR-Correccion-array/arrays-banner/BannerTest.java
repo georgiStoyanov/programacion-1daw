@@ -48,6 +48,7 @@ public class BannerTest extends InputOutputTest {
 		}
 		invocaMain("Banner", params );
 		String out = getOut();
+		System.err.println( out );
 		String[] lines = out.split("\n");
 		String lastLine = lines[lines.length - 1];
 		
