@@ -1,9 +1,8 @@
-package banner;
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import common.InputOutputTest;
 
 public class BannerTest extends InputOutputTest {
 

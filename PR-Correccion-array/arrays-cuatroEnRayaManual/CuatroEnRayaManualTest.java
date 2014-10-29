@@ -1,5 +1,3 @@
-package cuatroEnRaya;
-import java.lang.reflect.Method;
 
 import org.junit.Test;
 
