@@ -1,7 +1,8 @@
-
-import static org.junit.Assert.assertTrue;
+import junit.framework.Assert;
 
 import org.junit.Test;
+
+
 
 
 public class BannerTest extends InputOutputTest {
@@ -43,11 +44,15 @@ public class BannerTest extends InputOutputTest {
 	
 
 	private void testBanner(String expected, String ... params ) {
+		String all = "";
+		for( String s : params ){
+			all += s;
+		}
 		invocaMain("Banner", params );
 		String out = getOut();
 		String[] lines = out.split("\n");
 		String lastLine = lines[lines.length - 1];
-		assertTrue( "Se esperaba " + expected + ":" + lastLine, lastLine.matches(expected) );
+		Assert.assertTrue( "(" + all + ") Se esperaba " + expected + ":" + lastLine, lastLine.matches(expected) );
 	}
 	
 	

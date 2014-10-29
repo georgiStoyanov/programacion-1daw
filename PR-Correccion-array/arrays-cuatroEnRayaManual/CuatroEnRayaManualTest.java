@@ -6,7 +6,7 @@ public class CuatroEnRayaManualTest extends AbstractCuatroEnRayaTest {
 
     @Test
     public void testSaleConCero(){
-	testCuatroEnRaya( false, "empate", 0 );
+    	testCuatroEnRaya( false, "empate", 0 );
     }
 
     
