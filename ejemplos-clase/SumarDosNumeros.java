@@ -12,7 +12,27 @@ public class SumarDosNumeros {
 		System.out.printf( "La suma de %d y %d es %d", i1, i2, i1+i2 );
 	}
 
+	
+	
 	private static int leeNumero(String mensaje, Scanner in) {
+		boolean numeroCorrecto = false;
+		int ret = 0;
+		while( !numeroCorrecto ){
+			System.out.print( mensaje );
+			String s = in.nextLine();
+			try{
+				ret = Integer.parseInt(s);
+				numeroCorrecto = true;
+			}
+			catch(NumberFormatException e ){
+				System.out.printf( "|%s| no es un numero entero. ", s );
+			}
+		}
+		return ret;
+	}
+	
+	
+	private static int leeNumeroCorto(String mensaje, Scanner in) {
 		while( true ){
 			System.out.print( mensaje );
 			String s = in.nextLine();
@@ -24,4 +44,11 @@ public class SumarDosNumeros {
 			}
 		}
 	}
+	
+	
+	
+	
+	
+
+	
 }
