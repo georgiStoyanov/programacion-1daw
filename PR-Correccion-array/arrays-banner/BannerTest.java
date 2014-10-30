@@ -1,5 +1,5 @@
-import junit.framework.Assert;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 
@@ -62,7 +62,7 @@ public class BannerTest extends InputOutputTest {
 		
 		String expectedRegex = expected.replaceAll( "\\s+", "\\\\s+" );
 		
-		Assert.assertTrue( "(" + all + ") Se esperaba " + expected + ":" + lastLine, lastLine.matches(expectedRegex) );
+		assertTrue( "(" + all + ") Se esperaba " + expected + ":" + lastLine, lastLine.matches(expectedRegex) );
 	}
 	
 	
