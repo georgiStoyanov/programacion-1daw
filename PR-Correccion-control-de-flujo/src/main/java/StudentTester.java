@@ -47,20 +47,6 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		};
 	}
 
-	protected String[] compileCommand(String student) {
-		/*
-		return new String[]{
-				"/usr/bin/javac",
-				"Media.java"
-		};
-		*/
-		return new String[]{
-			"/bin/sh",
-			"-c",
-			"/usr/bin/javac *.java"
-		};
-	}
-
 	protected File studentDir(String student) {
 		return new File("./students/" + student);
 	}
@@ -80,10 +66,7 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 	}
 
 	protected boolean compile(String student) throws Exception {
-		ExecutorTester.ExpectedRegExp ere = new ExecutorTester.ExpectedRegExp("", "\\s*error\\s");
-		ExecutorTester e = new ExecutorTester(studentDir(student), compileCommand(student),ere);
-		boolean notCompiled = e.call();
-		return !notCompiled;
+		return new Compiler( studentDir(student) ).compile();
 	}
 
 	public Result testStudent(String student) throws Exception {
