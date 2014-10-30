@@ -1,5 +1,11 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 
 
 
@@ -14,19 +20,24 @@ public class Grades {
 			new ClasificaTrianguloStudentTester(students) 
 		};
 
+		final ExecutorService pool = Executors.newFixedThreadPool(1);
+
+		List<Future<Map<String,StudentTester.Result>>> listOfFutures = new ArrayList<Future<Map<String,StudentTester.Result>>>();
+		for( StudentTester t : testers ){
+			listOfFutures.add( pool.submit( t ) );
+		}
 		
 		Map<String,Map<String,StudentTester.Result>> results = new HashMap<String,Map<String,StudentTester.Result>>();
 		
-		
-		for( StudentTester t : testers ){
-			Map<String, StudentTester.Result> r = t.call();
+		for( Future<Map<String,StudentTester.Result>> f : listOfFutures ){
+			Map<String, StudentTester.Result> r = f.get();
 			
 			for( String student : r.keySet() ){
 				if( results.get(student) == null ){
 					results.put( student, new HashMap<String,StudentTester.Result>() );
 				}
 				
-				results.get( student ).put( t.classNameToExecute(), r.get(student) );
+				results.get( student ).put( r.get(student).name(), r.get(student) );
 			}
 		}
 		
