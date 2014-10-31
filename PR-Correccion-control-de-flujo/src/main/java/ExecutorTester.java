@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
 public class ExecutorTester implements Callable<Boolean>{
 
 	private String[] _cmd;
-	private long _millis = 2000;
+	private long _millis = 10000;
 	private File _directory;
 	private ExpectedRegExp _expectedRegExp;
 	

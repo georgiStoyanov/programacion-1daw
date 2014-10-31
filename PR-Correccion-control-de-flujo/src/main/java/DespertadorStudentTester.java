@@ -20,8 +20,10 @@ public class DespertadorStudentTester extends StudentTester {
 
 		
 		return ExecutorTester.ExpectedRegExp.fromStrings( new String[][]{
-				{ "1\n1\n", ".*7:30.*" },
-				{ "6\n1\n", ".*OFF.*" },
+				{ "1\n1\n", "(?i).*7:30.*" },
+				{ "6\n1\n", "(?i).*OFF.*" },
+				{ "6\n7\n", "(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*" },
+				{ "4\n10\n", "(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*" },
 		} );
 	}
 

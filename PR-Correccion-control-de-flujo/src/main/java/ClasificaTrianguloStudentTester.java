@@ -25,18 +25,18 @@ public class ClasificaTrianguloStudentTester extends StudentTester {
 				{ "2\n4\n3\n", "(?i).*escaleno.*" },
 				{ "4\n3\n2\n", "(?i).*escaleno.*" },
 
-				{ "10\n15\n10\n", "(?i).*isosceles.*" },
-				{ "15\n10\n10\n", "(?i).*isosceles.*" },
-				{ "10\n10\n15\n", "(?i).*isosceles.*" },
+				{ "10\n15\n10\n", "(?i).*is.*sceles.*" },
+				{ "15\n10\n10\n", "(?i).*is.*sceles.*" },
+				{ "10\n10\n15\n", "(?i).*is.*sceles.*" },
 				
-				{ "1\n1\n1\n", "(?i).*equilatero.*" },
+				{ "1\n1\n1\n", "(?i).*equil.*tero.*" },
 				
-				{ "20\n21\n29\n", "(?i).*rectangulo.*" },
-				{ "21\n20\n29\n", "(?i).*rectangulo.*" },
-				{ "29\n21\n20\n", "(?i).*rectangulo.*" },
-				{ "29\n20\n21\n", "(?i).*rectangulo.*" },
-				{ "20\n29\n21\n", "(?i).*rectangulo.*" },
-				{ "21\n29\n20\n", "(?i).*rectangulo.*" },
+				{ "20\n21\n29\n", "(?i).*rect.*ngulo.*" },
+				{ "21\n20\n29\n", "(?i).*rect.*ngulo.*" },
+				{ "29\n21\n20\n", "(?i).*rect.*ngulo.*" },
+				{ "29\n20\n21\n", "(?i).*rect.*ngulo.*" },
+				{ "20\n29\n21\n", "(?i).*rect.*ngulo.*" },
+				{ "21\n29\n20\n", "(?i).*rect.*ngulo.*" },
 				
 				{ "1\n1\n100\n", "(?i).*imposible.*" },
 				{ "100\n1\n1\n", "(?i).*imposible.*" },
