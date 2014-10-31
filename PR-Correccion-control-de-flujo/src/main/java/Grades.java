@@ -20,7 +20,7 @@ public class Grades {
 			new ClasificaTrianguloStudentTester(students) 
 		};
 
-		final ExecutorService pool = Executors.newFixedThreadPool(1);
+		ExecutorService pool = Executors.newFixedThreadPool(4);
 
 		List<Future<Map<String,StudentTester.Result>>> listOfFutures = new ArrayList<Future<Map<String,StudentTester.Result>>>();
 		for( StudentTester t : testers ){
