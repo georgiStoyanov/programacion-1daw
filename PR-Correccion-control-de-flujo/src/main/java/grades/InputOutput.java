@@ -1,3 +1,4 @@
+package grades;
 
 public class InputOutput {
 	public String input() {

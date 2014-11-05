@@ -1,3 +1,4 @@
+package grades;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,13 +86,13 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 	public Result testStudent(String student) throws Exception {
 		int good = 0, bad = 0;
 	
-		ExecutorTester.ExpectedRegExp[] testData = generateTestData();
+		ExecutorTester.TestDefinition[] testData = generateTestData();
 		
 		if( !compile(student) ){
 			return new Result( classNameToExecute(), 0,testData.length);
 		}
 	
-		for( ExecutorTester.ExpectedRegExp data: testData ){
+		for( ExecutorTester.TestDefinition data: testData ){
 			ExecutorTester et = new ExecutorTester(studentDir(student), executeCommand(student), data );
 			if( et.call() ){
 				good += 1;
@@ -103,6 +104,6 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		return new Result(classNameToExecute(), good, bad);
 	}
 
-	abstract protected ExecutorTester.ExpectedRegExp[] generateTestData();
+	abstract protected ExecutorTester.TestDefinition[] generateTestData();
 
 }

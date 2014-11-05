@@ -1,3 +1,4 @@
+package grades;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class ClasificaTrianguloStudentTester extends StudentTester {
 	}
 
 	@Override
-	protected ExecutorTester.ExpectedRegExp[] generateTestData() {
+	protected ExecutorTester.TestDefinition[] generateTestData() {
 		String[][] strings =  new String[][]{
 				{ "4\n2\n3\n", "(?i).*escaleno.*" },
 				{ "2\n4\n3\n", "(?i).*escaleno.*" },
@@ -42,7 +43,7 @@ public class ClasificaTrianguloStudentTester extends StudentTester {
 				{ "100\n1\n1\n", "(?i).*imposible.*" },
 				{ "1\n100\n1\n", "(?i).*imposible.*" },
 		};
-		return ExecutorTester.ExpectedRegExp.fromStrings(strings);
+		return ExecutorTester.TestDefinition.fromStrings(strings);
 	}
 
 	public static void main(String[] args) throws Exception {

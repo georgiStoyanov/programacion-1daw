@@ -1,3 +1,4 @@
+package grades;
 import java.util.Map;
 
 public class DespertadorStudentTester extends StudentTester {
@@ -16,10 +17,10 @@ public class DespertadorStudentTester extends StudentTester {
 	}
 
 	@Override
-	protected ExecutorTester.ExpectedRegExp[] generateTestData() {
+	protected ExecutorTester.TestDefinition[] generateTestData() {
 
 		
-		return ExecutorTester.ExpectedRegExp.fromStrings( new String[][]{
+		return ExecutorTester.TestDefinition.fromStrings( new String[][]{
 				{ "1\n1\n", "(?i).*7:30.*" },
 				{ "6\n1\n", "(?i).*OFF.*" },
 				{ "6\n7\n", "(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*" },

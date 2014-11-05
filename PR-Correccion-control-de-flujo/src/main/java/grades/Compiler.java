@@ -1,3 +1,4 @@
+package grades;
 import java.io.File;
 
 
@@ -5,7 +6,7 @@ public class Compiler extends ExecutorTester{
 
 	
 	public Compiler(File dir ) {
-		super(dir, new String[]{ "sh", "-c", "javac *.java" }, new ExecutorTester.ExpectedRegExp("", "\\s*error\\s") );
+		super(dir, new String[]{ "sh", "-c", "javac *.java" }, new ExecutorTester.TestDefinition("", "\\s*error\\s") );
 	}
 
 	protected void adjustEnvironment(ProcessBuilder procB) {

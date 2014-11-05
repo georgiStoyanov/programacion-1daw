@@ -1,3 +1,4 @@
+package grades;
 /**
   Se necesita calcular la media de un conjunto de números reales.
   El programa comenzará preguntando por la cantidad de números que forman parte de la media. 

@@ -1,3 +1,4 @@
+package grades;
 /**
   Entre semana suelo colocar el despertador a las 7:30.
   El sábado el despertador suena a las 10:30, para poder dedicar tiempo al estudio. Los domingos

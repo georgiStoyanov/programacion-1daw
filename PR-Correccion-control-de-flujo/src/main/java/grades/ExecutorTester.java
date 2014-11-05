@@ -1,3 +1,4 @@
+package grades;
 import java.io.File;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
@@ -10,17 +11,17 @@ public class ExecutorTester implements Callable<Boolean>{
 	private String[] _cmd;
 	private long _millis = 10000;
 	private File _directory;
-	private ExpectedRegExp _expectedRegExp;
+	private TestDefinition _expectedRegExp;
 	
 	private static void log(String s) {
 		System.err.println("ExecutorTester:" + s);
 	}
 	
-	public static class ExpectedRegExp{
+	public static class TestDefinition{
 		public String[] _validRegExpAtEnd;
 		public String _input;
 		
-		public ExpectedRegExp( String input, String ... validRegExpAtEnd ){
+		public TestDefinition( String input, String ... validRegExpAtEnd ){
 			_input = input;
 			_validRegExpAtEnd = validRegExpAtEnd;
 		}
@@ -34,19 +35,58 @@ public class ExecutorTester implements Callable<Boolean>{
 			return _input;
 		}
 		
-		public static ExpectedRegExp[] fromStrings( String[][] strings ){
-			ExpectedRegExp[] ret = new ExpectedRegExp[strings.length];
+		public static TestDefinition[] fromStrings( String[][] strings ){
+			TestDefinition[] ret = new TestDefinition[strings.length];
 			
 			for( int i = 0 ; i < ret.length ; i++ ){
 				String regex[] = new String[strings[i].length-1];
 				System.arraycopy(strings[i], 1, regex, 0, regex.length );
-				ret[i] = new ExpectedRegExp( strings[i][0], regex );
+				ret[i] = new TestDefinition( strings[i][0], regex );
 			}
 			return ret;
 		}
+		
+		public boolean testOutput(String[] lines) {
+			if( lines.length < size() ){
+				log( "No hay suficientes lineas");
+				return false;
+			}
+
+			
+			boolean ret = true;
+
+			for( int l = 0 ; l < size() && ret ; l++ ){
+				String line = lines[lines.length - size() + l];
+				line = removeDiacriticalMarks(line);
+				String regex = get(l);
+				boolean matches = line.matches(regex);
+				log( line + " -- " + regex + ":" + matches );
+				ret = ret && matches;
+			}
+			
+			
+			log( "ret:" + ret );
+			
+			return ret;
+		}
+		
 	}
 
-	public ExecutorTester( File dir, String[] cmd, ExpectedRegExp expectedRegExp ){
+	private static class Result{
+		private TestDefinition _input;
+		private String[] _output;
+
+		public Result( TestDefinition input, String[] output ){
+			_input = input;
+			_output = output;
+		}
+		
+		public boolean result(){
+			return _input.testOutput(_output);
+		}
+	}
+	
+	public ExecutorTester( File dir, String[] cmd, TestDefinition expectedRegExp ){
 		_cmd = cmd;
 		_expectedRegExp = expectedRegExp;
 		_directory = dir;
@@ -81,35 +121,15 @@ public class ExecutorTester implements Callable<Boolean>{
 		
 		String[] lines = output.split( "\n" );
 
-		if( lines.length < _expectedRegExp.size() ){
-			log( "No hay suficientes lineas");
-			return false;
-		}
-
-		
-		boolean ret = true;
-
-		for( int l = 0 ; l < _expectedRegExp.size() && ret ; l++ ){
-			String line = lines[lines.length - _expectedRegExp.size() + l];
-			line = removeDiacriticalMarks(line);
-			String regex = _expectedRegExp.get(l);
-			boolean matches = line.matches(regex);
-			log( line + " -- " + regex + ":" + matches );
-			ret = ret && matches;
-		}
-		
-		
-		
-		log( "ret:" + ret );
-		
-		return ret;
+		return _expectedRegExp.testOutput(lines);
 	}
+
 	
 	protected void adjustEnvironment(ProcessBuilder procB) {
 	}
 
 	public static void main(String[] args) throws Exception {
-		ExpectedRegExp ere = new ExpectedRegExp("4+9\nquit\n", "\\s*13\\s*");
+		TestDefinition ere = new TestDefinition("4+9\nquit\n", "\\s*13\\s*");
 		ExecutorTester t = new ExecutorTester(new File("."), new String[]{"/usr/bin/bc"},ere );
 		
 		System.out.println( t.call() );

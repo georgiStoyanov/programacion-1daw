@@ -1,3 +1,4 @@
+package grades;
 /**
  * Se desea clasificar cada triángulo según sus características. Por orden de
  * importancia, nos interesan los triángulos: - Equiláteros - Isósceles -

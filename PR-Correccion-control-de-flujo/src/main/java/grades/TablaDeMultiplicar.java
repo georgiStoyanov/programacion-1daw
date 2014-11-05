@@ -1,3 +1,4 @@
+package grades;
 /**
 
   Desarrolla un programa que imprima las tablas de multiplicar de los números del 1 al 10.

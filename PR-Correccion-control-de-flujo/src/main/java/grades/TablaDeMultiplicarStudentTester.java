@@ -1,3 +1,4 @@
+package grades;
 import java.util.Map;
 
 public class TablaDeMultiplicarStudentTester extends StudentTester {
@@ -16,7 +17,7 @@ public class TablaDeMultiplicarStudentTester extends StudentTester {
 	}
 
 	@Override
-	protected ExecutorTester.ExpectedRegExp[] generateTestData() {
+	protected ExecutorTester.TestDefinition[] generateTestData() {
 
 		String ret[][] = new String[12][];
 
@@ -48,7 +49,7 @@ public class TablaDeMultiplicarStudentTester extends StudentTester {
 			}
 		}
 
-		return ExecutorTester.ExpectedRegExp.fromStrings(ret);
+		return ExecutorTester.TestDefinition.fromStrings(ret);
 	}
 
 	public static void main(String[] args) throws Exception {
