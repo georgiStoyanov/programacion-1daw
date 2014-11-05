@@ -1,0 +1,63 @@
+*********************************
+**** INPUT:
+1
+1
+**** OUTPUT:
+Bienvenido al programador de despertadores
+?Que dia de la semana es hoy?
+?Cuantos d?as debo programar el despertador?
+- 7:30 -
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+6
+1
+**** OUTPUT:
+Bienvenido al programador de despertadores
+?Que dia de la semana es hoy?
+?Cuantos d?as debo programar el despertador?
+- OFF -
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+6
+7
+**** OUTPUT:
+Bienvenido al programador de despertadores
+?Que dia de la semana es hoy?
+?Cuantos d?as debo programar el despertador?
+- OFF -
+- 7:30 -
+- 7:30 -
+- 7:30 -
+- 7:30 -
+- 7:30 -
+- 10:00 -
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+4
+10
+**** OUTPUT:
+Bienvenido al programador de despertadores
+?Que dia de la semana es hoy?
+?Cuantos d?as debo programar el despertador?
+- 7:30 -
+- 10:00 -
+- OFF -
+- 7:30 -
+- 7:30 -
+- 7:30 -
+- 7:30 -
+- 7:30 -
+- 10:00 -
+- OFF -
+**** SUCCESSFUL:false
+*********************************
+

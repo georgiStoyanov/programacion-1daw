@@ -1,0 +1,36 @@
+*********************************
+**** INPUT:
+1
+1
+**** OUTPUT:
+Error: Could not find or load main class Despertador
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+6
+1
+**** OUTPUT:
+Error: Could not find or load main class Despertador
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+6
+7
+**** OUTPUT:
+Error: Could not find or load main class Despertador
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+4
+10
+**** OUTPUT:
+Error: Could not find or load main class Despertador
+**** SUCCESSFUL:false
+*********************************
+

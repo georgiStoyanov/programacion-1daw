@@ -1,0 +1,96 @@
+*********************************
+**** INPUT:
+0
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+1
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+2
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+3
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+4
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+5
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+6
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+7
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+8
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+9
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+10
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+11
+**** OUTPUT:
+Error: Could not find or load main class TablaDeMultiplicar
+**** SUCCESSFUL:false
+*********************************
+

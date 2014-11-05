@@ -1,0 +1,108 @@
+*********************************
+**** INPUT:
+4
+1.0
+2.0
+3.0
+4.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
+Introduzca el numero 1
+Introduzca el numero 2
+Introduzca el numero 3
+Introduzca el numero 4
+La Media es: 2.5
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+3
+1.2345678E7
+9.87654321E8
+1.23456789E8
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
+Introduzca el numero 1
+Introduzca el numero 2
+Introduzca el numero 3
+La Media es: 3.74485596E8
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+4
+5.2
+8.2
+95.0
+100.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
+Introduzca el numero 1
+Introduzca el numero 2
+Introduzca el numero 3
+Introduzca el numero 4
+La Media es: 52.1
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+1
+-56.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
+Introduzca el numero 1
+La Media es: -56.0
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+2
+-0.01
+0.01
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
+Introduzca el numero 1
+Introduzca el numero 2
+La Media es: 0.0
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+13
+1324.0
+1234123.0
+5.1234512E7
+13523.0
+4.5546634E7
+75.0
+4325452.0
+2.3463456E7
+134.0
+125342.0
+56345.0
+756.0
+4567.0
+**** OUTPUT:
+Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
+Introduzca el numero 1
+Introduzca el numero 2
+Introduzca el numero 3
+Introduzca el numero 4
+Introduzca el numero 5
+Introduzca el numero 6
+Introduzca el numero 7
+Introduzca el numero 8
+Introduzca el numero 9
+Introduzca el numero 10
+Introduzca el numero 11
+Introduzca el numero 12
+Introduzca el numero 13
+La Media es: 9692787.923076924
+**** SUCCESSFUL:true
+*********************************
+

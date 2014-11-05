@@ -14,7 +14,9 @@ public class Compiler extends ExecutorTester{
 	}
 	
 	public boolean compile() throws Exception{
-		return !call();
+		ExecutorTesterResult r = call();
+		// IF THERE IS "error", THEN IS NOT SUCCESSFUL
+		return !r.successfull();
 	}
 
 }

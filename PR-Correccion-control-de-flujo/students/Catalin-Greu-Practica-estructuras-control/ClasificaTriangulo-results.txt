@@ -1,0 +1,160 @@
+*********************************
+**** INPUT:
+4
+2
+3
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+2
+4
+3
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+4
+3
+2
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+10
+15
+10
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+15
+10
+10
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+10
+10
+15
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+1
+1
+1
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+20
+21
+29
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+21
+20
+29
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+29
+21
+20
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+29
+20
+21
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+20
+29
+21
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+21
+29
+20
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+1
+1
+100
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+100
+1
+1
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+1
+100
+1
+**** OUTPUT:
+Error: Could not find or load main class ClasificaTriangulo
+**** SUCCESSFUL:false
+*********************************
+

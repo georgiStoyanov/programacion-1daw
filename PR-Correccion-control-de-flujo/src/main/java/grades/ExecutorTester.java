@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 
-public class ExecutorTester implements Callable<Boolean>{
+public class ExecutorTester implements Callable<ExecutorTester.ExecutorTesterResult>{
 
 	private String[] _cmd;
 	private long _millis = 10000;
@@ -72,17 +72,30 @@ public class ExecutorTester implements Callable<Boolean>{
 		
 	}
 
-	private static class Result{
+	public static class ExecutorTesterResult{
 		private TestDefinition _input;
 		private String[] _output;
+		private Boolean _successfull;
 
-		public Result( TestDefinition input, String[] output ){
+		public ExecutorTesterResult( TestDefinition input, String[] output ){
 			_input = input;
 			_output = output;
 		}
 		
-		public boolean result(){
-			return _input.testOutput(_output);
+		public TestDefinition definition(){
+			return _input;
+		}
+		
+		public String[] output(){
+			return _output;
+		}
+		
+		public boolean successfull(){
+			if( _successfull != null ){
+				return _successfull;
+			}
+			_successfull = _input.testOutput(_output);
+			return _successfull;
 		}
 	}
 	
@@ -99,7 +112,7 @@ public class ExecutorTester implements Callable<Boolean>{
 
 
 	@Override
-	public Boolean call() throws Exception {
+	public ExecutorTesterResult call() throws Exception {
 		
 		
 		log( "_cmd:" + Arrays.asList(_cmd) );
@@ -121,7 +134,7 @@ public class ExecutorTester implements Callable<Boolean>{
 		
 		String[] lines = output.split( "\n" );
 
-		return _expectedRegExp.testOutput(lines);
+		return new ExecutorTesterResult( _expectedRegExp, lines );
 	}
 
 	

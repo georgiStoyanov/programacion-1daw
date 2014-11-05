@@ -1,0 +1,108 @@
+*********************************
+**** INPUT:
+4
+1.0
+2.0
+3.0
+4.0
+**** OUTPUT:
+Bienvenido al calculador de medias. ?Cuantos n?meros formaran parte de la media?
+N?mero 1:
+N?mero 2:
+N?mero 3:
+N?mero 4:
+La media es:2.5
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+3
+1.2345678E7
+9.87654321E8
+1.23456789E8
+**** OUTPUT:
+Bienvenido al calculador de medias. ?Cuantos n?meros formaran parte de la media?
+N?mero 1:
+N?mero 2:
+N?mero 3:
+La media es:3.74485596E8
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+4
+5.2
+8.2
+95.0
+100.0
+**** OUTPUT:
+Bienvenido al calculador de medias. ?Cuantos n?meros formaran parte de la media?
+N?mero 1:
+N?mero 2:
+N?mero 3:
+N?mero 4:
+La media es:52.1
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+1
+-56.0
+**** OUTPUT:
+Bienvenido al calculador de medias. ?Cuantos n?meros formaran parte de la media?
+N?mero 1:
+La media es:-56.0
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+2
+-0.01
+0.01
+**** OUTPUT:
+Bienvenido al calculador de medias. ?Cuantos n?meros formaran parte de la media?
+N?mero 1:
+N?mero 2:
+La media es:0.0
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+13
+1324.0
+1234123.0
+5.1234512E7
+13523.0
+4.5546634E7
+75.0
+4325452.0
+2.3463456E7
+134.0
+125342.0
+56345.0
+756.0
+4567.0
+**** OUTPUT:
+Bienvenido al calculador de medias. ?Cuantos n?meros formaran parte de la media?
+N?mero 1:
+N?mero 2:
+N?mero 3:
+N?mero 4:
+N?mero 5:
+N?mero 6:
+N?mero 7:
+N?mero 8:
+N?mero 9:
+N?mero 10:
+N?mero 11:
+N?mero 12:
+N?mero 13:
+La media es:9692787.923076924
+**** SUCCESSFUL:true
+*********************************
+

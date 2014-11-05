@@ -1,0 +1,44 @@
+*********************************
+**** INPUT:
+1
+1
+**** OUTPUT:
+Escribe el d?a de la semana
+Escribe n? d?as despu?s
+7:30 -
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+6
+1
+**** OUTPUT:
+Escribe el d?a de la semana
+Escribe n? d?as despu?s
+OFF -
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+6
+7
+**** OUTPUT:
+Escribe el d?a de la semana
+Escribe n? d?as despu?s
+OFF -7:30 -7:30 -7:30 -7:30 -7:30 -10:30 -
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+4
+10
+**** OUTPUT:
+Escribe el d?a de la semana
+Escribe n? d?as despu?s
+7:30 -10:30 -OFF -7:30 -7:30 -7:30 -7:30 -7:30 -10:30 -OFF -
+**** SUCCESSFUL:true
+*********************************
+

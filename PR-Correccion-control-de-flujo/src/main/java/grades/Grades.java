@@ -42,7 +42,7 @@ public class Grades {
 	private static Map<String, Map<String, StudentTester.Result>> collectResults(
 			StudentTester[] testers) throws InterruptedException,
 			ExecutionException {
-		final ExecutorService pool = Executors.newFixedThreadPool(1);
+		final ExecutorService pool = Executors.newFixedThreadPool(4);
 
 		List<Future<Map<String,StudentTester.Result>>> listOfFutures = new ArrayList<Future<Map<String,StudentTester.Result>>>();
 		for( StudentTester t : testers ){

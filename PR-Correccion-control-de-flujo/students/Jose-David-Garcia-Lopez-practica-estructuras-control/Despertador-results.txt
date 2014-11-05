@@ -1,0 +1,44 @@
+*********************************
+**** INPUT:
+1
+1
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |07:30|
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+6
+1
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |OFF|
+**** SUCCESSFUL:true
+*********************************
+
+*********************************
+**** INPUT:
+6
+7
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |OFF|
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** INPUT:
+4
+10
+**** OUTPUT:
+Que dia de la semana es hoy?  
+Dias que quiera que usted quiera programar el despertador? 
+Para las: |07:30|10:00|OFF|
+**** SUCCESSFUL:false
+*********************************
+

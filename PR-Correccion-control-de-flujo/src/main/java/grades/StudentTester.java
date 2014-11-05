@@ -1,8 +1,16 @@
 package grades;
+import grades.ExecutorTester.ExecutorTesterResult;
+
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+
 
 
 
@@ -21,18 +29,30 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		public int _bad;
 		public int _good;
 		private String _name;
-		private InputOutput[] _inputOutputs;
-
-		public InputOutput[] inputOutputs() {
-			return _inputOutputs;
-		}
+		private ExecutorTesterResult[] _results;
+		private String _student;
 
 
-	
-		public Result( String name, int good, int bad ){
+		public Result( String student, String name, int allBad ){
 			_name = name;
-			_good = good;
-			_bad = bad;
+			_student = student;
+			_good = 0;
+			_bad = allBad;
+		}
+		
+		public Result( String student, String name, ExecutorTesterResult[] results ){
+			_name = name;
+			_student = student;
+			_results = results;
+			
+			for( ExecutorTesterResult etr : _results ){
+				if( etr.successfull() ){
+					_good += 1;
+				}
+				else{
+					_bad += 1;
+				}
+			}
 		}
 		
 		@Override
@@ -42,6 +62,23 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		
 		public String name(){
 			return _name;
+		}
+		
+		public void dumpResults() throws IOException{
+			FileOutputStream fos = new FileOutputStream( new File( studentDir(_student), name() + "-results.txt") );
+			OutputStreamWriter osw = new OutputStreamWriter(fos);
+			for( ExecutorTesterResult etr: _results ){
+				osw.write( "*********************************\n");
+				osw.write( "**** INPUT:\n");
+				osw.write( etr.definition().input() );
+				osw.write( "**** OUTPUT:\n");
+				for( String s: etr.output() ){
+					osw.write( s + "\n" );
+				}
+				osw.write( "**** SUCCESSFUL:" + etr.successfull() + "\n" );
+				osw.write( "*********************************\n\n");
+			}
+			osw.close();
 		}
 	}
 
@@ -61,7 +98,7 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		};
 	}
 
-	protected File studentDir(String student) {
+	protected static File studentDir(String student) {
 		return new File("./students/" + student);
 	}
 
@@ -84,24 +121,22 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 	}
 
 	public Result testStudent(String student) throws Exception {
-		int good = 0, bad = 0;
 	
 		ExecutorTester.TestDefinition[] testData = generateTestData();
 		
 		if( !compile(student) ){
-			return new Result( classNameToExecute(), 0,testData.length);
+			return new Result( student, classNameToExecute(), testData.length);
 		}
 	
+		List<ExecutorTesterResult> etr = new ArrayList<ExecutorTesterResult>();
 		for( ExecutorTester.TestDefinition data: testData ){
 			ExecutorTester et = new ExecutorTester(studentDir(student), executeCommand(student), data );
-			if( et.call() ){
-				good += 1;
-			}
-			else{
-				bad += 1;
-			}
+			ExecutorTesterResult result = et.call();
+			etr.add( result );
 		}
-		return new Result(classNameToExecute(), good, bad);
+		Result result = new Result(student, classNameToExecute(), etr.toArray( new ExecutorTesterResult[0]) );
+		result.dumpResults();
+		return result;
 	}
 
 	abstract protected ExecutorTester.TestDefinition[] generateTestData();
