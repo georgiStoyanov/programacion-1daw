@@ -70,6 +70,10 @@ public class ExecutorTester implements Callable<ExecutorTester.ExecutorTesterRes
 			return ret;
 		}
 		
+		public String[] expected() {
+			return _validRegExpAtEnd.clone();
+		}
+		
 	}
 
 	public static class ExecutorTesterResult{

@@ -6,6 +6,8 @@
 Que dia de la semana es hoy?  
 Dias que quiera que usted quiera programar el despertador? 
 Para las: |07:30|
+**** EXPECTED:
+(?i).*7:30.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -17,6 +19,8 @@ Para las: |07:30|
 Que dia de la semana es hoy?  
 Dias que quiera que usted quiera programar el despertador? 
 Para las: |OFF|
+**** EXPECTED:
+(?i).*OFF.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -28,6 +32,8 @@ Para las: |OFF|
 Que dia de la semana es hoy?  
 Dias que quiera que usted quiera programar el despertador? 
 Para las: |OFF|
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -39,6 +45,8 @@ Para las: |OFF|
 Que dia de la semana es hoy?  
 Dias que quiera que usted quiera programar el despertador? 
 Para las: |07:30|10:00|OFF|
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
 **** SUCCESSFUL:false
 *********************************
 

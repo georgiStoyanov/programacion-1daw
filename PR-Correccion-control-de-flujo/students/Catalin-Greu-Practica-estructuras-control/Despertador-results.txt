@@ -4,6 +4,8 @@
 1
 **** OUTPUT:
 Error: Could not find or load main class Despertador
+**** EXPECTED:
+(?i).*7:30.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -13,6 +15,8 @@ Error: Could not find or load main class Despertador
 1
 **** OUTPUT:
 Error: Could not find or load main class Despertador
+**** EXPECTED:
+(?i).*OFF.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -22,6 +26,8 @@ Error: Could not find or load main class Despertador
 7
 **** OUTPUT:
 Error: Could not find or load main class Despertador
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -31,6 +37,8 @@ Error: Could not find or load main class Despertador
 10
 **** OUTPUT:
 Error: Could not find or load main class Despertador
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
 **** SUCCESSFUL:false
 *********************************
 

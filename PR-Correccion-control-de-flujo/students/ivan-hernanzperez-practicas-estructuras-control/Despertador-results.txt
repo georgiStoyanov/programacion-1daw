@@ -6,6 +6,8 @@
 ?Qu? d?a de la semana es hoy? : 
 ?Cuantos d?as debo programar el despertador? : 
  07:30
+**** EXPECTED:
+(?i).*7:30.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -17,6 +19,8 @@
 ?Qu? d?a de la semana es hoy? : 
 ?Cuantos d?as debo programar el despertador? : 
  OFF
+**** EXPECTED:
+(?i).*OFF.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -28,6 +32,8 @@
 ?Qu? d?a de la semana es hoy? : 
 ?Cuantos d?as debo programar el despertador? : 
  OFF 07:30 07:30 07:30 07:30 07:30 10:30
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -39,6 +45,8 @@
 ?Qu? d?a de la semana es hoy? : 
 ?Cuantos d?as debo programar el despertador? : 
  07:30 10:30 OFF 07:30 07:30 07:30 07:30 07:30 10:30 OFF
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
 **** SUCCESSFUL:true
 *********************************
 

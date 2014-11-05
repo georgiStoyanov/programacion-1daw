@@ -12,6 +12,8 @@ Introduzca el numero 2
 Introduzca el numero 3
 Introduzca el numero 4
 La Media es: 2.5
+**** EXPECTED:
+.*2.5.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -27,6 +29,8 @@ Introduzca el numero 1
 Introduzca el numero 2
 Introduzca el numero 3
 La Media es: 3.74485596E8
+**** EXPECTED:
+.*3.74485596E8.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -44,6 +48,8 @@ Introduzca el numero 2
 Introduzca el numero 3
 Introduzca el numero 4
 La Media es: 52.1
+**** EXPECTED:
+.*52.1.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -55,6 +61,8 @@ La Media es: 52.1
 Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
 Introduzca el numero 1
 La Media es: -56.0
+**** EXPECTED:
+.*-56.0.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -68,6 +76,8 @@ Bienvenido al calculador de medias. Cuantos numeros formaran parte de la media?
 Introduzca el numero 1
 Introduzca el numero 2
 La Media es: 0.0
+**** EXPECTED:
+.*0.0.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -103,6 +113,8 @@ Introduzca el numero 11
 Introduzca el numero 12
 Introduzca el numero 13
 La Media es: 9692787.923076924
+**** EXPECTED:
+.*9692787.923076924.*
 **** SUCCESSFUL:true
 *********************************
 

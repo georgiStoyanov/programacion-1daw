@@ -12,6 +12,8 @@ Numero 2:
 Numero 3: 
 Numero 4: 
 2.5
+**** EXPECTED:
+.*2.5.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -27,6 +29,8 @@ Numero 1:
 Numero 2: 
 Numero 3: 
 3.74485596E8
+**** EXPECTED:
+.*3.74485596E8.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -44,6 +48,8 @@ Numero 2:
 Numero 3: 
 Numero 4: 
 52.1
+**** EXPECTED:
+.*52.1.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -55,6 +61,8 @@ Numero 4:
 Bienvenido al calculador de medias. Cuantos numeros forman parte de la media? 
 Numero 1: 
 -56.0
+**** EXPECTED:
+.*-56.0.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -68,6 +76,8 @@ Bienvenido al calculador de medias. Cuantos numeros forman parte de la media?
 Numero 1: 
 Numero 2: 
 0.0
+**** EXPECTED:
+.*0.0.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -103,6 +113,8 @@ Numero 11:
 Numero 12: 
 Numero 13: 
 9692787.923076924
+**** EXPECTED:
+.*9692787.923076924.*
 **** SUCCESSFUL:true
 *********************************
 

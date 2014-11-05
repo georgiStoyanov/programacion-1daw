@@ -6,6 +6,8 @@
 Bienvenido al programador de despertadores
 Que dia de la semana es hoy?
 Cuantos dias debo programar el despertador?
+**** EXPECTED:
+(?i).*7:30.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -17,6 +19,8 @@ Cuantos dias debo programar el despertador?
 Bienvenido al programador de despertadores
 Que dia de la semana es hoy?
 Cuantos dias debo programar el despertador?
+**** EXPECTED:
+(?i).*OFF.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -29,6 +33,8 @@ Bienvenido al programador de despertadores
 Que dia de la semana es hoy?
 Cuantos dias debo programar el despertador?
 OFF 7:30 7:30 7:30 7:30 7:30 
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -41,6 +47,8 @@ Bienvenido al programador de despertadores
 Que dia de la semana es hoy?
 Cuantos dias debo programar el despertador?
 7:30 10:30 OFF 7:30 7:30 7:30 7:30 7:30 10:30 
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
 **** SUCCESSFUL:false
 *********************************
 

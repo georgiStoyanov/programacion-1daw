@@ -9,6 +9,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo Escaleno
+**** EXPECTED:
+(?i).*escaleno.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -23,6 +25,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo Escaleno
+**** EXPECTED:
+(?i).*escaleno.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -37,6 +41,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo Escaleno
+**** EXPECTED:
+(?i).*escaleno.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -51,6 +57,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo is?sceles
+**** EXPECTED:
+(?i).*is.*sceles.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -65,6 +73,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo is?sceles
+**** EXPECTED:
+(?i).*is.*sceles.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -79,6 +89,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo is?sceles
+**** EXPECTED:
+(?i).*is.*sceles.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -93,6 +105,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo equil?tero
+**** EXPECTED:
+(?i).*equil.*tero.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -107,6 +121,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo rect?ngulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -121,6 +137,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo rect?ngulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -135,6 +153,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo rect?ngulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -149,6 +169,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo rect?ngulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -163,6 +185,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo rect?ngulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -177,6 +201,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo rect?ngulo
+**** EXPECTED:
+(?i).*rect.*ngulo.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -191,6 +217,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo Imposible
+**** EXPECTED:
+(?i).*imposible.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -205,6 +233,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo Imposible
+**** EXPECTED:
+(?i).*imposible.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -219,6 +249,8 @@ Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercer lado:
 Es un tri?ngulo Imposible
+**** EXPECTED:
+(?i).*imposible.*
 **** SUCCESSFUL:true
 *********************************
 

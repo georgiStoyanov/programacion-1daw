@@ -7,6 +7,8 @@ Bienvenido al programador de despertadores
 ?Que dia de la semana es hoy?
 ?Cuantos d?as debo programar el despertador?
 - 7:30 -
+**** EXPECTED:
+(?i).*7:30.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -19,6 +21,8 @@ Bienvenido al programador de despertadores
 ?Que dia de la semana es hoy?
 ?Cuantos d?as debo programar el despertador?
 - OFF -
+**** EXPECTED:
+(?i).*OFF.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -37,6 +41,8 @@ Bienvenido al programador de despertadores
 - 7:30 -
 - 7:30 -
 - 10:00 -
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
 **** SUCCESSFUL:false
 *********************************
 
@@ -58,6 +64,8 @@ Bienvenido al programador de despertadores
 - 7:30 -
 - 10:00 -
 - OFF -
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
 **** SUCCESSFUL:false
 *********************************
 

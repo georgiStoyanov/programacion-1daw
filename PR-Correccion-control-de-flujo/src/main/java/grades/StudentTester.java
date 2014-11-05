@@ -75,6 +75,10 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 				for( String s: etr.output() ){
 					osw.write( s + "\n" );
 				}
+				osw.write( "**** EXPECTED:\n");
+				for( String s: etr.definition().expected() ){
+					osw.write( s + "\n" );
+				}
 				osw.write( "**** SUCCESSFUL:" + etr.successfull() + "\n" );
 				osw.write( "*********************************\n\n");
 			}

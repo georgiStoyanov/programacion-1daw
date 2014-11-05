@@ -6,6 +6,8 @@
 Escribe el d?a de la semana
 Escribe n? d?as despu?s
 7:30 -
+**** EXPECTED:
+(?i).*7:30.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -17,6 +19,8 @@ Escribe n? d?as despu?s
 Escribe el d?a de la semana
 Escribe n? d?as despu?s
 OFF -
+**** EXPECTED:
+(?i).*OFF.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -28,6 +32,8 @@ OFF -
 Escribe el d?a de la semana
 Escribe n? d?as despu?s
 OFF -7:30 -7:30 -7:30 -7:30 -7:30 -10:30 -
+**** EXPECTED:
+(?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
 **** SUCCESSFUL:true
 *********************************
 
@@ -39,6 +45,8 @@ OFF -7:30 -7:30 -7:30 -7:30 -7:30 -10:30 -
 Escribe el d?a de la semana
 Escribe n? d?as despu?s
 7:30 -10:30 -OFF -7:30 -7:30 -7:30 -7:30 -7:30 -10:30 -OFF -
+**** EXPECTED:
+(?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
 **** SUCCESSFUL:true
 *********************************
 
