@@ -18,7 +18,7 @@ public class TablaDeMultiplicar{
             else{
             
             for (int i=1; i<=10; i=i+1){
-                System.out.println(numero + "*" + i + "=" + numero*i);
+                System.out.println(numero + "x" + i + "=" + numero*i);
             }
          
       }
