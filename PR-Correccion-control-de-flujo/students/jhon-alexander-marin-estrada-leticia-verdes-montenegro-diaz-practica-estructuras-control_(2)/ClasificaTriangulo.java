@@ -80,7 +80,7 @@ public class ClasificaTriangulo
                 
             }else if( Isoceles ){
             
-                System.out.println("es un triangulo:  Isoceles ");
+                System.out.println("es un triangulo:  Isosceles ");
                 
             }else if( Rectangulo ){
             

@@ -75,10 +75,10 @@ Este programa clasifica triangulos.
 Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercero lado:
-es un triangulo:  Isoceles 
+es un triangulo:  Isosceles 
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -93,10 +93,10 @@ Este programa clasifica triangulos.
 Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercero lado:
-es un triangulo:  Isoceles 
+es un triangulo:  Isosceles 
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -111,10 +111,10 @@ Este programa clasifica triangulos.
 Longitud del primer lado:
 Longitud del segundo lado:
 Longitud del tercero lado:
-es un triangulo:  Isoceles 
+es un triangulo:  Isosceles 
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
