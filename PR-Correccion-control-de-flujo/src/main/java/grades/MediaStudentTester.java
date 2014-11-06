@@ -25,7 +25,10 @@ public class MediaStudentTester extends StudentTester{
 				{5.2, 8.2, 95, 100},
 				{-56},
 				{-0.01,0.01},
-				{1324,1234123,51234512,13523,45546634,75,4325452,23463456,134,125342,56345,756,4567}
+				{0.01,0.01},
+				{0},
+				{1324,1234123,51234512,13523,45546634,75,4325452,23463456,134,125342,56345,756,4567},
+				{1324,1234,51212,13523,455,75,452,234,134,142,345,756,567,342,236,623,1243}
 		};
 		
 		ExecutorTester.TestDefinition[] ret = new ExecutorTester.TestDefinition[inputs.length];
@@ -63,5 +66,4 @@ public class MediaStudentTester extends StudentTester{
 		System.exit(0);
 		
 	}
-	
 }

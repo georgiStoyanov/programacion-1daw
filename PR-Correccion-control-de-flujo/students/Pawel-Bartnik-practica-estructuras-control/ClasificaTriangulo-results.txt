@@ -1,4 +1,17 @@
 *********************************
+**** COMMAND:
+sh -c javac ClasificaTriangulo.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 4
 2
@@ -15,6 +28,8 @@ Es un triangulo: Escaleno
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 2
 4
@@ -31,6 +46,8 @@ Es un triangulo: Escaleno
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 4
 3
@@ -47,6 +64,8 @@ Es un triangulo: Escaleno
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 10
 15
@@ -63,6 +82,8 @@ Es un triangulo: Isosceles
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 15
 10
@@ -79,6 +100,8 @@ Es un triangulo: Isosceles
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 10
 10
@@ -95,6 +118,8 @@ Es un triangulo: Isosceles
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 1
@@ -111,6 +136,8 @@ Es un triangulo: Equilatero
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 20
 21
@@ -127,6 +154,8 @@ Es un triangulo: Rectangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 21
 20
@@ -143,6 +172,8 @@ Es un triangulo: Rectangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 29
 21
@@ -159,6 +190,8 @@ Es un triangulo: Rectangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 29
 20
@@ -175,6 +208,8 @@ Es un triangulo: Rectangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 20
 29
@@ -191,6 +226,8 @@ Es un triangulo: Rectangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 21
 29
@@ -207,6 +244,8 @@ Es un triangulo: Rectangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 1
@@ -223,6 +262,8 @@ Es un triangulo:Imposible
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 100
 1
@@ -239,6 +280,8 @@ Es un triangulo:Imposible
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 100

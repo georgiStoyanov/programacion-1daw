@@ -1,4 +1,17 @@
 *********************************
+**** COMMAND:
+sh -c javac TablaDeMultiplicar.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 0
 **** OUTPUT:
@@ -12,6 +25,8 @@ Fuera de rango
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 1
 **** OUTPUT:
@@ -43,6 +58,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 2
 **** OUTPUT:
@@ -74,6 +91,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 3
 **** OUTPUT:
@@ -105,6 +124,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 4
 **** OUTPUT:
@@ -136,6 +157,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 5
 **** OUTPUT:
@@ -167,6 +190,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 6
 **** OUTPUT:
@@ -198,6 +223,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 7
 **** OUTPUT:
@@ -229,6 +256,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 8
 **** OUTPUT:
@@ -260,6 +289,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 9
 **** OUTPUT:
@@ -291,6 +322,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 10
 **** OUTPUT:
@@ -322,6 +355,8 @@ Tabla de multiplicar para el numero:
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 11
 **** OUTPUT:

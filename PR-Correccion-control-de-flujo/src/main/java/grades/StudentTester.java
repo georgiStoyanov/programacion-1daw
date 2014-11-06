@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,26 +65,17 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 			return _name;
 		}
 		
-		public void dumpResults() throws IOException{
-			FileOutputStream fos = new FileOutputStream( new File( studentDir(_student), name() + "-results.txt") );
-			OutputStreamWriter osw = new OutputStreamWriter(fos);
+		public void dumpResults(Writer osw) throws IOException{
 			for( ExecutorTesterResult etr: _results ){
-				osw.write( "*********************************\n");
-				osw.write( "**** INPUT:\n");
-				osw.write( etr.definition().input() );
-				osw.write( "**** OUTPUT:\n");
-				for( String s: etr.output() ){
-					osw.write( s + "\n" );
-				}
-				osw.write( "**** EXPECTED:\n");
-				for( String s: etr.definition().expected() ){
-					osw.write( s + "\n" );
-				}
-				osw.write( "**** SUCCESSFUL:" + etr.successfull() + "\n" );
-				osw.write( "*********************************\n\n");
+				etr.dumpResult(osw);
+				notifyConsole(etr);
 			}
-			osw.close();
 		}
+
+		private void notifyConsole(ExecutorTesterResult etr) {
+			System.err.println( _student + ":" + _name + ": " + etr.successfull() );
+		}
+
 	}
 
 	private String[] _students;
@@ -120,15 +112,23 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 		return ret;
 	}
 
-	protected boolean compile(String student) throws Exception {
-		return new Compiler( studentDir(student) ).compile();
+	protected Compiler compile(String student) throws Exception {
+		return new Compiler( studentDir(student), classNameToExecute() + ".java" );
 	}
 
 	public Result testStudent(String student) throws Exception {
 	
 		ExecutorTester.TestDefinition[] testData = generateTestData();
+
+		FileOutputStream fos = new FileOutputStream( new File( studentDir(student), classNameToExecute() + "-results.txt") );
+		OutputStreamWriter osw = new OutputStreamWriter(fos);
+
 		
-		if( !compile(student) ){
+		Compiler c = compile(student);
+		if( !c.compile() ){
+			c.getCompileResult().dumpResult(osw);
+			osw.close();
+
 			return new Result( student, classNameToExecute(), testData.length);
 		}
 	
@@ -138,8 +138,14 @@ public abstract class StudentTester  implements Callable<Map<String,StudentTeste
 			ExecutorTesterResult result = et.call();
 			etr.add( result );
 		}
+
 		Result result = new Result(student, classNameToExecute(), etr.toArray( new ExecutorTesterResult[0]) );
-		result.dumpResults();
+
+		c.getCompileResult().dumpResult(osw);
+		result.dumpResults(osw);
+
+		osw.close();
+		
 		return result;
 	}
 

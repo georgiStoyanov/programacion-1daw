@@ -1,192 +1,299 @@
 *********************************
+**** COMMAND:
+sh -c javac ClasificaTriangulo.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 4
 2
 3
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un tri?ngulo: escaleno
 **** EXPECTED:
 (?i).*escaleno.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 2
 4
 3
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un tri?ngulo: escaleno
 **** EXPECTED:
 (?i).*escaleno.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 4
 3
 2
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un tri?ngulo: escaleno
 **** EXPECTED:
 (?i).*escaleno.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 10
 15
 10
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un tr?angulo: is?sceles
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 15
 10
 10
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un tr?angulo: is?sceles
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 10
 10
 15
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un tr?angulo: is?sceles
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 1
 1
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un tri?ngulo: equil?tero
 **** EXPECTED:
 (?i).*equil.*tero.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 20
 21
 29
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 21
 20
 29
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 29
 21
 20
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 29
 20
 21
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 20
 29
 21
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 21
 29
 20
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 1
 100
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo: imposible
 **** EXPECTED:
 (?i).*imposible.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 100
 1
 1
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo: imposible
 **** EXPECTED:
 (?i).*imposible.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 100
 1
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica triangulos
+longitud del primer lado: 
+longitud del segundo lado: 
+longitud del tercero lado: 
+Es un triangulo: imposible
 **** EXPECTED:
 (?i).*imposible.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 

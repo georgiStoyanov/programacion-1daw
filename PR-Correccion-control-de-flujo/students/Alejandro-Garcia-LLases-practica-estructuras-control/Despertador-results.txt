@@ -1,4 +1,17 @@
 *********************************
+**** COMMAND:
+sh -c javac Despertador.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 1
 1
@@ -13,6 +26,8 @@ cuantos dias debo de programar el despertador
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 6
 1
@@ -27,6 +42,8 @@ OFF
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 6
 7
@@ -41,6 +58,8 @@ OFF 7:30 7:30 7:30 7:30 7:30 10:30
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 4
 10

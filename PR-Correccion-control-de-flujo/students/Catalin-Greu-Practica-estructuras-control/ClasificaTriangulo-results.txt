@@ -1,4 +1,20 @@
 *********************************
+**** COMMAND:
+sh -c javac ClasificaTriangulo.java 
+**** INPUT:
+**** OUTPUT:
+ClasificaTriangulo.java:34: error: unmappable character for encoding UTF8
+		/* Hace el cuadrado de un lado y lo suma al cuadrado de otro. Si es igual al cuadrado del tercero, es rect�ngulo*/
+		                                                                                                          ^
+1 error
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 4
 2
@@ -11,6 +27,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 2
 4
@@ -23,6 +41,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 4
 3
@@ -35,6 +55,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 10
 15
@@ -47,6 +69,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 15
 10
@@ -59,6 +83,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 10
 10
@@ -71,6 +97,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 1
@@ -83,6 +111,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 20
 21
@@ -95,6 +125,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 21
 20
@@ -107,6 +139,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 29
 21
@@ -119,6 +153,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 29
 20
@@ -131,6 +167,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 20
 29
@@ -143,6 +181,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 21
 29
@@ -155,6 +195,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 1
@@ -167,6 +209,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 100
 1
@@ -179,6 +223,8 @@ Error: Could not find or load main class ClasificaTriangulo
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . ClasificaTriangulo 
 **** INPUT:
 1
 100

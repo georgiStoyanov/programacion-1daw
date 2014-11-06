@@ -1,5 +1,7 @@
 package grades;
 import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
 import java.util.Arrays;
@@ -11,10 +13,10 @@ public class ExecutorTester implements Callable<ExecutorTester.ExecutorTesterRes
 	private String[] _cmd;
 	private long _millis = 10000;
 	private File _directory;
-	private TestDefinition _expectedRegExp;
+	private TestDefinition _input;
 	
 	private static void log(String s) {
-		System.err.println("ExecutorTester:" + s);
+		//System.err.println("ExecutorTester:" + s);
 	}
 	
 	public static class TestDefinition{
@@ -76,13 +78,11 @@ public class ExecutorTester implements Callable<ExecutorTester.ExecutorTesterRes
 		
 	}
 
-	public static class ExecutorTesterResult{
-		private TestDefinition _input;
+	public class ExecutorTesterResult{
 		private String[] _output;
 		private Boolean _successfull;
 
-		public ExecutorTesterResult( TestDefinition input, String[] output ){
-			_input = input;
+		public ExecutorTesterResult( String[] output ){
 			_output = output;
 		}
 		
@@ -101,11 +101,33 @@ public class ExecutorTester implements Callable<ExecutorTester.ExecutorTesterRes
 			_successfull = _input.testOutput(_output);
 			return _successfull;
 		}
+
+		public void dumpResult(Writer osw) throws IOException {
+			osw.write( "*********************************\n");
+			osw.write( "**** COMMAND:\n" );
+			for( String s: _cmd ){
+				osw.write( s + " " );
+			}
+			osw.write("\n");
+			osw.write( "**** INPUT:\n");
+			osw.write( definition().input() );
+			osw.write( "**** OUTPUT:\n");
+			for( String s: output() ){
+				osw.write( s + "\n" );
+			}
+			osw.write( "**** EXPECTED:\n");
+			for( String s: definition().expected() ){
+				osw.write( s + "\n" );
+			}
+			osw.write( "**** SUCCESSFUL:" + successfull() + "\n" );
+			osw.write( "*********************************\n\n");
+			
+		}
 	}
 	
 	public ExecutorTester( File dir, String[] cmd, TestDefinition expectedRegExp ){
 		_cmd = cmd;
-		_expectedRegExp = expectedRegExp;
+		_input = expectedRegExp;
 		_directory = dir;
 	}
 	
@@ -121,10 +143,10 @@ public class ExecutorTester implements Callable<ExecutorTester.ExecutorTesterRes
 		
 		log( "_cmd:" + Arrays.asList(_cmd) );
 		log( "_directory:" + _directory );
-		log( "input:-->\n" + _expectedRegExp.input() );
+		log( "input:-->\n" + _input.input() );
 		log( "input:<--");
 		
-		Executor exec = new Executor( _directory, _cmd, _expectedRegExp.input() ){
+		Executor exec = new Executor( _directory, _cmd, _input.input() ){
 		@Override
 			protected void adjustEnvironment(ProcessBuilder procB) {
 				super.adjustEnvironment(procB);
@@ -138,7 +160,7 @@ public class ExecutorTester implements Callable<ExecutorTester.ExecutorTesterRes
 		
 		String[] lines = output.split( "\n" );
 
-		return new ExecutorTesterResult( _expectedRegExp, lines );
+		return new ExecutorTesterResult( lines );
 	}
 
 	

@@ -1,4 +1,17 @@
 *********************************
+**** COMMAND:
+sh -c javac Despertador.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 1
 1
@@ -12,6 +25,8 @@ Para las: |07:30|
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 6
 1
@@ -25,6 +40,8 @@ Para las: |OFF|
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 6
 7
@@ -38,6 +55,8 @@ Para las: |OFF|
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 4
 10

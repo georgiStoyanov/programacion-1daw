@@ -1,4 +1,17 @@
 *********************************
+**** COMMAND:
+sh -c javac Despertador.java 
+**** INPUT:
+**** OUTPUT:
+
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 1
 1
@@ -10,6 +23,8 @@ Error: Could not find or load main class Despertador
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 6
 1
@@ -21,6 +36,8 @@ Error: Could not find or load main class Despertador
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 6
 7
@@ -32,6 +49,8 @@ Error: Could not find or load main class Despertador
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . Despertador 
 **** INPUT:
 4
 10

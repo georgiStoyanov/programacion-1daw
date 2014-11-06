@@ -4,7 +4,7 @@ import java.util.Map;
 public class TablaDeMultiplicarStudentTester extends StudentTester {
 
 	private static void log(String s) {
-		System.err.println("TablaDeMultiplicarStudentTester:" + s);
+		//System.err.println("TablaDeMultiplicarStudentTester:" + s);
 	}
 
 	public TablaDeMultiplicarStudentTester(String... students) {

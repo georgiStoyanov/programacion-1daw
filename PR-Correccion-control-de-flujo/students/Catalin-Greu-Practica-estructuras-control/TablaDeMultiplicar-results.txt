@@ -1,4 +1,20 @@
 *********************************
+**** COMMAND:
+sh -c javac TablaDeMultiplicar.java 
+**** INPUT:
+**** OUTPUT:
+TablaDeMultiplicar.java:12: error: unmappable character for encoding UTF8
+		//Introduzco un n�mero por pantalla
+		                 ^
+1 error
+**** EXPECTED:
+\s*error\s
+**** SUCCESSFUL:false
+*********************************
+
+*********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 0
 **** OUTPUT:
@@ -9,6 +25,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 1
 **** OUTPUT:
@@ -28,6 +46,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 2
 **** OUTPUT:
@@ -47,6 +67,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 3
 **** OUTPUT:
@@ -66,6 +88,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 4
 **** OUTPUT:
@@ -85,6 +109,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 5
 **** OUTPUT:
@@ -104,6 +130,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 6
 **** OUTPUT:
@@ -123,6 +151,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 7
 **** OUTPUT:
@@ -142,6 +172,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 8
 **** OUTPUT:
@@ -161,6 +193,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 9
 **** OUTPUT:
@@ -180,6 +214,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 10
 **** OUTPUT:
@@ -199,6 +235,8 @@ Error: Could not find or load main class TablaDeMultiplicar
 *********************************
 
 *********************************
+**** COMMAND:
+/usr/bin/java -cp . TablaDeMultiplicar 
 **** INPUT:
 11
 **** OUTPUT:

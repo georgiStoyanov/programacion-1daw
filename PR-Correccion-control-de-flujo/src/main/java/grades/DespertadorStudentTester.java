@@ -4,7 +4,7 @@ import java.util.Map;
 public class DespertadorStudentTester extends StudentTester {
 
 	private static void log(String s) {
-		System.err.println("DespertadorStudentTester:" + s);
+		//System.err.println("DespertadorStudentTester:" + s);
 	}
 
 	public DespertadorStudentTester(String... students) {
