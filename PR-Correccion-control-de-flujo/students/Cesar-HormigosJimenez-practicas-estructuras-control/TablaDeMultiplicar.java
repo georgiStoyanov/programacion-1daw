@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package primerapractica;
 
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ import java.util.Scanner;
  *
  * @author Celia y Cesar
  */
-public class TablaMultiplicar {
+public class TablaDeMultiplicar {
 
     /**
      * @param args the command line arguments

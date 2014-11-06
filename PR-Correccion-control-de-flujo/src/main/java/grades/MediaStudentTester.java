@@ -5,7 +5,7 @@ import java.util.Map;
 public class MediaStudentTester extends StudentTester{
 
 	private static void log(String s) {
-		System.err.println("MediaStudentTester:" + s);
+		//System.err.println("MediaStudentTester:" + s);
 	}		
 	
 	public MediaStudentTester( String ... students ){

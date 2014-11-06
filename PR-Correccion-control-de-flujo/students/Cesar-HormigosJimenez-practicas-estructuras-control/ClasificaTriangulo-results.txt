@@ -3,9 +3,7 @@
 sh -c javac ClasificaTriangulo.java 
 **** INPUT:
 **** OUTPUT:
-javac: file not found: ClasificaTriangulo.java
-Usage: javac <options> <source files>
-use -help for a list of possible options
+
 **** EXPECTED:
 \s*error\s
 **** SUCCESSFUL:false
@@ -19,10 +17,14 @@ use -help for a list of possible options
 2
 3
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un tri?ngulo escaleno
 **** EXPECTED:
 (?i).*escaleno.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -33,10 +35,14 @@ Error: Could not find or load main class ClasificaTriangulo
 4
 3
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un tri?ngulo escaleno
 **** EXPECTED:
 (?i).*escaleno.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -47,10 +53,14 @@ Error: Could not find or load main class ClasificaTriangulo
 3
 2
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un tri?ngulo escaleno
 **** EXPECTED:
 (?i).*escaleno.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -61,10 +71,14 @@ Error: Could not find or load main class ClasificaTriangulo
 15
 10
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un tr?angulo is?sceles
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -75,10 +89,14 @@ Error: Could not find or load main class ClasificaTriangulo
 10
 10
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un tr?angulo is?sceles
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -89,10 +107,14 @@ Error: Could not find or load main class ClasificaTriangulo
 10
 15
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un tr?angulo is?sceles
 **** EXPECTED:
 (?i).*is.*sceles.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -103,10 +125,14 @@ Error: Could not find or load main class ClasificaTriangulo
 1
 1
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un tri?ngulo equil?tero
 **** EXPECTED:
 (?i).*equil.*tero.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -117,10 +143,14 @@ Error: Could not find or load main class ClasificaTriangulo
 21
 29
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -131,10 +161,14 @@ Error: Could not find or load main class ClasificaTriangulo
 20
 29
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -145,10 +179,14 @@ Error: Could not find or load main class ClasificaTriangulo
 21
 20
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -159,10 +197,14 @@ Error: Could not find or load main class ClasificaTriangulo
 20
 21
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -173,10 +215,14 @@ Error: Could not find or load main class ClasificaTriangulo
 29
 21
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -187,10 +233,14 @@ Error: Could not find or load main class ClasificaTriangulo
 29
 20
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo rect?ngulo
 **** EXPECTED:
 (?i).*rect.*ngulo.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -201,10 +251,14 @@ Error: Could not find or load main class ClasificaTriangulo
 1
 100
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo imposible
 **** EXPECTED:
 (?i).*imposible.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -215,10 +269,14 @@ Error: Could not find or load main class ClasificaTriangulo
 1
 1
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo imposible
 **** EXPECTED:
 (?i).*imposible.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -229,9 +287,13 @@ Error: Could not find or load main class ClasificaTriangulo
 100
 1
 **** OUTPUT:
-Error: Could not find or load main class ClasificaTriangulo
+Este programa clasifica tri?ngulos
+Longitud del primer lado: 
+Longitud del segundo lado: 
+Longitud del tercer lado: 
+Es un triangulo imposible
 **** EXPECTED:
 (?i).*imposible.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 

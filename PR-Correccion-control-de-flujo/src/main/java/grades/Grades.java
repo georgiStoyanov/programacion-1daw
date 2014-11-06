@@ -1,5 +1,6 @@
 package grades;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,7 +87,10 @@ public class Grades {
 		}
 		System.out.println();
 		
-		for( String student: results.keySet() ){
+		String[] students = results.keySet().toArray(new String[0]);
+		Arrays.sort(students);
+		
+		for( String student: students ){
 			Map<String,StudentTester.Result> r = results.get(student );
 			System.out.print( student.trim() + "\t" );
 			for(String c: classes ){

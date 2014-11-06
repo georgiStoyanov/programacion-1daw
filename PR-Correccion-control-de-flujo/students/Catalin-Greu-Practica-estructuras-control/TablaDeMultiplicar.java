@@ -9,7 +9,7 @@ public class TablaDeMultiplicar{
 		int num = 0;
 
 		Scanner in = new Scanner( System.in );
-		//Introduzco un número por pantalla
+		//Introduzco un numero por pantalla
 		System.out.println("Tabla de multiplicar para el numero: ");
 		num = Integer.parseInt(in.nextLine());	
 

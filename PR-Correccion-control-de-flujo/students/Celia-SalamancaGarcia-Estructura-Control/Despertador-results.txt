@@ -16,10 +16,13 @@ sh -c javac Despertador.java
 1
 1
 **** OUTPUT:
-Error: Could not find or load main class Despertador
+Programa de despertador
+Dime que dia de la semana es hoy
+Dias que voy a programar el despertador
+ 7:30 
 **** EXPECTED:
 (?i).*7:30.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -29,10 +32,13 @@ Error: Could not find or load main class Despertador
 6
 1
 **** OUTPUT:
-Error: Could not find or load main class Despertador
+Programa de despertador
+Dime que dia de la semana es hoy
+Dias que voy a programar el despertador
+ OFF 
 **** EXPECTED:
 (?i).*OFF.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -42,10 +48,13 @@ Error: Could not find or load main class Despertador
 6
 7
 **** OUTPUT:
-Error: Could not find or load main class Despertador
+Programa de despertador
+Dime que dia de la semana es hoy
+Dias que voy a programar el despertador
+ OFF  7:30  7:30  7:30  7:30  7:30  10:30 
 **** EXPECTED:
 (?i).*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -55,9 +64,12 @@ Error: Could not find or load main class Despertador
 4
 10
 **** OUTPUT:
-Error: Could not find or load main class Despertador
+Programa de despertador
+Dime que dia de la semana es hoy
+Dias que voy a programar el despertador
+ 7:30  10:30  OFF  7:30  7:30  7:30  7:30  7:30  10:30  OFF 
 **** EXPECTED:
 (?i).*7:30.*10:30.*OFF.*7:30.*7:30.*7:30.*7:30.*7:30.*10:30.*OFF.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 

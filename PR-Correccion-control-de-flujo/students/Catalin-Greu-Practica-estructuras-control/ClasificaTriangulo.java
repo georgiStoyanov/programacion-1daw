@@ -31,7 +31,7 @@ public class ClasificaTriangulo {
 		} else if ((lado1 == lado2) || (lado1 == lado3) || (lado2 == lado3)){  
 			System.out.println("Es un triangulo: isosceles. ");
 			
-		/* Hace el cuadrado de un lado y lo suma al cuadrado de otro. Si es igual al cuadrado del tercero, es rectángulo*/
+		/* Hace el cuadrado de un lado y lo suma al cuadrado de otro. Si es igual al cuadrado del tercero, es rectangulo*/
 		} else if 
 		((lado1 * lado1) + (lado2 * lado2) == (lado3 * lado3) ||
 		(lado1 * lado1) + (lado3 * lado3) == (lado2 * lado2)||

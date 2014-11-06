@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class TablaDeMultiplicar {
 
 	/**
-	 * @author Angela María Otálvaro Múnera
+	 * @author Angela Maria Otalvaro Munera
 	 * @param args
 	 */
 	public static void main(String[] args) {

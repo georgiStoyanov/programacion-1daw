@@ -19,10 +19,16 @@ sh -c javac Media.java
 3.0
 4.0
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+Dime el numero 2
+Dime el numero 3
+Dime el numero 4
+La media es 2.5
 **** EXPECTED:
 .*2.5.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -34,10 +40,15 @@ Error: Could not find or load main class Media
 9.87654321E8
 1.23456789E8
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+Dime el numero 2
+Dime el numero 3
+La media es 3.74485596E8
 **** EXPECTED:
 .*3.74485596E8.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -50,10 +61,16 @@ Error: Could not find or load main class Media
 95.0
 100.0
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+Dime el numero 2
+Dime el numero 3
+Dime el numero 4
+La media es 52.1
 **** EXPECTED:
 .*52.1.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -63,10 +80,13 @@ Error: Could not find or load main class Media
 1
 -56.0
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+La media es -56.0
 **** EXPECTED:
 .*-56.0.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -77,10 +97,14 @@ Error: Could not find or load main class Media
 -0.01
 0.01
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+Dime el numero 2
+La media es 0.0
 **** EXPECTED:
 .*0.0.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -91,10 +115,14 @@ Error: Could not find or load main class Media
 0.01
 0.01
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+Dime el numero 2
+La media es 0.01
 **** EXPECTED:
 .*0.01.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -104,10 +132,13 @@ Error: Could not find or load main class Media
 1
 0.0
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+La media es 0.0
 **** EXPECTED:
 .*0.0.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -129,10 +160,25 @@ Error: Could not find or load main class Media
 756.0
 4567.0
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+Dime el numero 2
+Dime el numero 3
+Dime el numero 4
+Dime el numero 5
+Dime el numero 6
+Dime el numero 7
+Dime el numero 8
+Dime el numero 9
+Dime el numero 10
+Dime el numero 11
+Dime el numero 12
+Dime el numero 13
+La media es 9692787.923076924
 **** EXPECTED:
 .*9692787.923076924.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
 *********************************
@@ -158,9 +204,28 @@ Error: Could not find or load main class Media
 623.0
 1243.0
 **** OUTPUT:
-Error: Could not find or load main class Media
+Programa de media
+Dime de cuantos numeros quieres calcular la media
+Dime el numero 1
+Dime el numero 2
+Dime el numero 3
+Dime el numero 4
+Dime el numero 5
+Dime el numero 6
+Dime el numero 7
+Dime el numero 8
+Dime el numero 9
+Dime el numero 10
+Dime el numero 11
+Dime el numero 12
+Dime el numero 13
+Dime el numero 14
+Dime el numero 15
+Dime el numero 16
+Dime el numero 17
+La media es 4288.058823529412
 **** EXPECTED:
 .*4288.058823529412.*
-**** SUCCESSFUL:false
+**** SUCCESSFUL:true
 *********************************
 
