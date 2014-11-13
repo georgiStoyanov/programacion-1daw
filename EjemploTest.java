@@ -16,4 +16,9 @@ public class EjemploTest {
 		assert( 1 < 0 );
 	}	
 
+	@Test
+	public void testGet(){
+		assert( Ejemplo.get() == 1 );
+	}
+
 }
