@@ -15,8 +15,7 @@ public class BannerTest extends InputOutputTest {
 	@Test
 	public void testHola() {
 		String[] params = { "hola " };
-		String expected = "\\s+#\\s+#\\s+####\\s+######\\s+#\\s+#\\s+";
-		
+		String expected = " #    #   ####   ######  #    # ";
 		testBanner(expected, params);
 	}
 	
@@ -34,8 +33,7 @@ public class BannerTest extends InputOutputTest {
 	@Test
 	public void testAsdf() {
 		String[] params = { "asdf " };
-		String expected = "\\s+#\\s+#\\s+####\\s+#####\\s+#\\s+";
-		
+		String expected = " #    #   ####   #####   #     ";
 		testBanner(expected, params );
 	}
 	
@@ -45,7 +43,10 @@ public class BannerTest extends InputOutputTest {
 		String out = getOut();
 		String[] lines = out.split("\n");
 		String lastLine = lines[lines.length - 1];
-		assertTrue( "Se esperaba " + expected + ":" + lastLine, lastLine.matches(expected) );
+		
+		String expectedRegex = expected.replaceAll( "\\s+", "\\\\s+" );
+		
+		assertTrue( "Se esperaba que la ultima linea fuera >" + expected + "<: " + lastLine, lastLine.matches(expectedRegex) );
 	}
 	
 	
