@@ -1,3 +1,6 @@
+package cuatroEnRaya;
+import java.lang.reflect.Method;
+
 import org.junit.Test;
 
 
@@ -7,8 +10,9 @@ public class CuatroEnRayaManualTest extends AbstractCuatroEnRayaTest {
     public void testSaleConCero(){
 	testCuatroEnRaya( false, "empate", 0 );
     }
+
     
     protected void invocaCuatroEnRaya() {
-	CuatroEnRayaManual.main(null);
+    	invocaMain( "CuatroEnRayaManual", new String[0] );
     }
 }

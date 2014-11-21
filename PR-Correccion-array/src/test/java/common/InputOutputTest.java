@@ -1,7 +1,9 @@
+package common;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Method;
 
 import org.junit.After;
 import org.junit.Before;
@@ -44,5 +46,16 @@ public class InputOutputTest {
 		_outContent.flush();
 		return _outByteArray.toString();
 	}
+
+	protected void invocaMain( String clase, String[] args ){
+    	try{
+	    	Class c = Class.forName(clase);
+	    	Method m = c.getMethod( "main", new Class[]{ String[].class } );
+	    	m.invoke(null, new Object[]{ args } );
+    	}
+    	catch( Exception e ){
+    		throw new IllegalStateException(e);
+    	}
+    }
 
 }

@@ -1,6 +1,9 @@
-import static org.junit.Assert.*;
+package banner;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import common.InputOutputTest;
 
 public class BannerTest extends InputOutputTest {
 
@@ -39,7 +42,7 @@ public class BannerTest extends InputOutputTest {
 	
 
 	private void testBanner(String expected, String ... params ) {
-		Banner.main( params );
+		invocaMain("Banner", params );
 		String out = getOut();
 		String[] lines = out.split("\n");
 		String lastLine = lines[lines.length - 1];
