@@ -1,9 +1,9 @@
-package banner;
-import static org.junit.Assert.assertTrue;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
-import common.InputOutputTest;
+
+
 
 public class BannerTest extends InputOutputTest {
 
@@ -42,6 +42,10 @@ public class BannerTest extends InputOutputTest {
 	
 
 	private void testBanner(String expected, String ... params ) {
+		String all = "";
+		for( String s : params ){
+			all += s;
+		}
 		invocaMain("Banner", params );
 		String out = getOut();
 		String[] lines = out.split("\n");
@@ -49,7 +53,7 @@ public class BannerTest extends InputOutputTest {
 		
 		String expectedRegex = expected.replaceAll( "\\s+", "\\\\s+" );
 		
-		assertTrue( "Se esperaba que la ultima linea fuera >" + expected + "<: " + lastLine, lastLine.matches(expectedRegex) );
+		Assert.assertTrue( "(" + all + ") Se esperaba " + expected + ":" + lastLine, lastLine.matches(expectedRegex) );
 	}
 	
 	

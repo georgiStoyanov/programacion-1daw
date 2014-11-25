@@ -1,4 +1,3 @@
-package common;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -15,7 +14,7 @@ public class InputOutputTest {
 	private static final String DEFAULT_IN = "Sin entrada definida para el test";
 
 	@Rule
-	public Timeout globalTimeout = new Timeout(10 * 1000);
+	public Timeout globalTimeout = new Timeout(100 * 1000);
 
 	private PrintStream _outContent;
 	private ByteArrayOutputStream _outByteArray;
@@ -47,6 +46,7 @@ public class InputOutputTest {
 		return _outByteArray.toString();
 	}
 
+	@SuppressWarnings({"unchecked","rawtypes"})
 	protected void invocaMain( String clase, String[] args ){
     	try{
 	    	Class c = Class.forName(clase);

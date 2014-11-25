@@ -1,20 +1,18 @@
-package trianguloDePascal;
+
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-
-import common.InputOutputTest;
 
 public class TrianguloDePascalTest extends InputOutputTest {
 
 	@Test
 	public void test1() {
-		testN(1, 1);
+		testN(2, 1, 1);
 	}
 
 	@Test
-	public void test3() {
-		testN(3, 1, 3, 3, 1);
+	public void test4() {
+		testN(4, 1, 3, 3, 1);
 	}
 
 	@Test
@@ -22,11 +20,6 @@ public class TrianguloDePascalTest extends InputOutputTest {
 		testN(15, 1, 14, 91, 364, 1001, 2002, 3003, 3432, 3003, 2002, 1001,	364, 91, 14, 1);
 	}
 	
-	@Test
-	public void testFallaTriangulo(){
-		assertTrue( "Falla adrede", false );
-	}
-
 	/**
 	 * 
 	 * @param row
@@ -46,6 +39,7 @@ public class TrianguloDePascalTest extends InputOutputTest {
 		String out = getOut();
 		String[] lines = out.split("\n");
 		String lastLine = lines[lines.length - 1];
-		assertTrue("La fila " + row + " debería ser " + humanReadable + ": " + out, lastLine.matches(regex));
+		assertTrue( "Deberia haber al menos " + (row-1) + " filas", lines.length >= row-1 );
+		assertTrue("La ultima fila " + row + " deberia ser " + humanReadable + ": " + out, lastLine.matches(regex));
 	}
 }
