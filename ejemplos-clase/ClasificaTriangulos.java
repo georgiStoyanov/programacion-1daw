@@ -24,10 +24,6 @@ public class ClasificaTriangulos
         boolean rectanguloC = c*c == (b*b + a*a);
         boolean rectangulo = rectanguloA || rectanguloB || rectanguloC;
         
-        boolean imposibleA = a >= b + c;
-        boolean imposible = ...;
-        
-        boolean escaleno = !imposible && !rectangulo && !isosceles && !equilatero;
         
         
         
