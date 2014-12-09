@@ -1,0 +1,72 @@
+repositories {
+    mavenCentral()
+}
+
+apply plugin: 'java'
+apply plugin: 'scala'
+apply plugin: 'application'
+
+mainClassName = "ExtraerResultadosDeXML"
+
+dependencies {
+
+    compile group: 'org.scala-lang', name: 'scala-library', version: '2.10.3'
+    testCompile 'junit:junit:4.10'
+}
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.6'
+}
+
+
+def studentsFromFiles(){
+    // [ 'profe', 'alumno' ]
+		def dir = new File("/home")
+		return dir.list()
+    	
+}
+
+def students = studentsFromFiles()
+
+def directorioDeStudent(s) {
+    return '/home/' + s + "/examen"
+}
+def studentsDir = students.collect{ s -> directorioDeStudent(s) }
+
+
+students.each{ s ->
+	sourceSets.create( s ){
+		java{
+			srcDirs = [ directorioDeStudent(s) ]
+		}
+	}
+}
+
+
+test {
+	testLogging.showStandardStreams = true
+}
+
+
+students.each{ student ->
+
+	task "pruebasDe$student"( type: Test ){
+           ignoreFailures = true
+           testReportDir = file( "$buildDir/reports/$student" )
+           testResultsDir = testReportDir
+	   description = "Pruebas de:" + student
+	   classpath += sourceSets.getByName(student).runtimeClasspath
+	}
+}
+
+def pruebas = students.collect{ s ->
+	tasks.getByName("pruebasDe$s")
+}
+
+task todasLasPruebas( dependsOn: pruebas ){
+
+}
+
+
+
