@@ -20,7 +20,15 @@ task wrapper(type: Wrapper) {
 }
 
 
-def students = [ 'profe', 'alumno' ]
+def studentsFromFiles(){
+    // [ 'profe', 'alumno' ]
+		def dir = new File("students")
+		return dir.list()
+    	
+}
+
+def students = studentsFromFiles()
+
 def directorioDeStudent(s) {
     return 'students/' + s
 }
