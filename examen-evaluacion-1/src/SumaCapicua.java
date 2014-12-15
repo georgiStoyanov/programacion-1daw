@@ -40,6 +40,11 @@ public class SumaCapicua {
 		}
 		return true;
 	}
+	
+	private static boolean esCapicua_sinbucle(int suma) {
+		String alReves = new StringBuilder(""+suma).reverse().toString();
+		return alReves.equals(suma);
+	}	
 
 	private static boolean esCapicua_dosVariables(int suma) {
 		String s = String.valueOf(suma);
