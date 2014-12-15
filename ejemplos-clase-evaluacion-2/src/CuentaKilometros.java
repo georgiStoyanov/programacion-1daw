@@ -30,7 +30,7 @@ public class CuentaKilometros {
 	}
 	
 	/**
-	 * Se tiene en cuenta que los kilomentros no son negativos, y los hectometros
+	 * Se tiene en cuenta que los kilometros no son negativos, y los hectometros
 	 * estan entre 0 y 9
 	 * @param kilometros
 	 * @param hectometros
@@ -50,7 +50,7 @@ public class CuentaKilometros {
 		System.out.printf(format + "\n", args);
 	}
 
-	public static void main(String[] args) {
+	public static void main_viejo(String[] args) {
 		CuentaKilometros ck = new CuentaKilometros(0,0);
 
 		printf("hay que empezar por 0,0:" + ck );
@@ -70,6 +70,13 @@ public class CuentaKilometros {
 
 		printf("hay que seguir con total 1,1:" + ck);
 		printf("hay que seguir con parcial 0,0:" + ck);
+	}
+	
+	public static void main(String[] args) {
+		CuentaKilometros ck1 = new CuentaKilometros();
+		CuentaKilometros ck2 = new CuentaKilometros(100,4);
+		
+		printf( "El primero tiene menos kilometros:%b", ck1.esMenorQue(ck2));
 	}
 
 	@Override
