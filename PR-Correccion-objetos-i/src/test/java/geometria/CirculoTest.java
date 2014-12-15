@@ -19,14 +19,22 @@ public class CirculoTest {
 	}
 
 	
-	private static double random(double distinto){
+	private static double random(double distinto,boolean positivo){
 		while( true ){
 			double ret = random();
+			if( positivo ){
+				ret = Math.abs(ret);
+			}
 			if( !equals(ret,distinto) ){
 				return ret;
 			}
 		}
 	}
+	
+	private static double random(double distinto){
+		return random(distinto,false);
+	}
+	
 	
 	private static Punto puntoRandom(){
 		return new Punto(random(),random());
@@ -64,6 +72,7 @@ public class CirculoTest {
 		Punto p = puntoRandom();
 		Circulo c = new Circulo(p,r);
 		Punto cambiado = puntoRandom(p);
+		c.setCentro(cambiado);
 		assertTrue( "El circulo se cambio a centro " + cambiado + ":" + c.getCentro(), equals( cambiado, c.getCentro() ) );
 	}
 	
@@ -81,7 +90,8 @@ public class CirculoTest {
 		double r = Math.abs(random());
 		Punto p = puntoRandom();
 		Circulo c = new Circulo(p,r);
-		double cambiado = random(r);
+		double cambiado = random(r,true);
+		c.setRadio(cambiado);
 		assertTrue( "El circulo se cambio a radio " + cambiado + ":" + c.getRadio(), equals( cambiado, c.getRadio() ) );
 	}
 	
@@ -97,7 +107,7 @@ public class CirculoTest {
 	public void conversionACadena(){
 		double x = random();
 		double y = random();
-		double r = random();
+		double r = Math.abs(random());
 		
 		
 		Circulo c = new Circulo( new Punto(x,y), r ); 
@@ -111,11 +121,11 @@ public class CirculoTest {
 	public void conversionACadenaTrasCambioDeRadio(){
 		double x = random();
 		double y = random();
-		double r = random();
+		double r = Math.abs(random());
 		
 		
 		Circulo c = new Circulo( new Punto(x,y), r );
-		double cambiado = random(r);
+		double cambiado = random(r,true);
 		c.setRadio(cambiado);
 		
 		String regex = expresion(x,y,cambiado);
@@ -156,7 +166,7 @@ public class CirculoTest {
 	public void areaTrasCambioDeRadio(){
 		double r = random();
 		Circulo c = new Circulo( puntoRandom(), r );
-		double cambiado = random(r);
+		double cambiado = random(r,true);
 		c.setRadio(cambiado);
 		double a = Math.PI*cambiado*cambiado;
 		double aAlumno = c.getArea();
