@@ -66,6 +66,81 @@ public class RelojTest {
 	}
 
 	@Test
+	void cambiadoAHoraMenorDeCero(){
+		  boolean exception = false;
+	      try {
+	    	  Reloj r = new Reloj();
+	    	  r.setHoras(-1);
+	      }
+	      catch (Exception e) {
+	          exception = true;
+	      }
+	      assertTrue("No deberia cambiarse un reloj con hora menor de 0", exception);
+	}
+
+	@Test
+	void cambiadoAHoraMayorDe23(){
+		  boolean exception = false;
+	      try {
+	    	  Reloj r = new Reloj();
+	    	  r.setHoras(24);
+	      }
+	      catch (Exception e) {
+	          exception = true;
+	      }
+	      assertTrue("No deberia cambiarse un reloj con hora mayor de 23", exception);
+	}
+
+	@Test
+	void cambiadoAMinutoMenorDeCero(){
+		  boolean exception = false;
+	      try {
+	    	  Reloj r = new Reloj();
+	    	  r.setMinutos(-1);
+	      }
+	      catch (Exception e) {
+	          exception = true;
+	      }
+	      assertTrue("No deberia cambiarse un reloj con minuto negativo", exception);
+	}
+
+	@Test
+	void cambiadoAMinutoMayorDe59(){
+		  boolean exception = false;
+	      try {
+	    	  new Reloj().setMinutos(60);
+	      }
+	      catch (Exception e) {
+	          exception = true;
+	      }
+	      assertTrue("No deberia cambiarse un reloj con minuto mayor de 59", exception);
+	}
+
+	@Test
+	void cambiadoASegundoMenorDeCero(){
+		  boolean exception = false;
+	      try {
+	    	  new Reloj().setSegundos(-1);
+	      }
+	      catch (Exception e) {
+	          exception = true;
+	      }
+	      assertTrue("No deberia cambiarse un reloj con segundo negativo", exception);
+	}
+
+	@Test
+	void cambiadoASegundoMayorDe59(){
+		  boolean exception = false;
+	      try {
+	    	  new Reloj().setSegundos(60);
+	      }
+	      catch (Exception e) {
+	          exception = true;
+	      }
+	      assertTrue("No deberia cambiarse un reloj con segundo mayor de 59", exception);
+	}
+
+	@Test
 	void creadoEnHoraMayorDe23(){
 		  boolean exception = false;
 	      try {
