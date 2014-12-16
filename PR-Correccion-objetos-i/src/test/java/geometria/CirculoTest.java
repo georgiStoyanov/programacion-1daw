@@ -125,6 +125,23 @@ public class CirculoTest {
             assertTrue("El circulo se cambio a radio " + cambiado + ":" + c.getRadio(), equals(cambiado, c.getRadio()));
         }
     }
+    
+    @Test
+    public void cambioDeRadioNegativo() {
+        for (int i : VECES) {
+            boolean exception = false;
+            double r = Math.abs(random());
+            Circulo c = createCirculo(createPunto(0, 0), r);
+            try {
+            	double cambiado = -random(r,true)-1;
+            	c.setRadio(cambiado);
+            }
+            catch (Exception e) {
+                exception = true;
+            }
+            assertTrue("No deberia cambiarse a radios negativos", exception);
+        }
+    }
 
     private String expresion(double x, double y, double r) {
         String regex = "(?i).*Centro.*:.*" +
