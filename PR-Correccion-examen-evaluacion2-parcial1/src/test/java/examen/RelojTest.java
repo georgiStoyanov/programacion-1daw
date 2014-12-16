@@ -204,27 +204,99 @@ public class RelojTest {
 
 	@Test
 	void segundosRotanConUnTick() {
-		Reloj r = new Reloj(0,0,59);
+		Reloj r = new Reloj(0, 0, 59);
 		r.tick();
-		assertTrue( "Los segundos deben rotar de 59 a 0 con tick", r.getSegundos() == 0 );
-		assertTrue( "Los minutos deben avanzar al rotar los segundos de 59 a 0 con tick", r.getMinutos() == 1 );
+		assertTrue("Los segundos deben rotar de 59 a 0 con tick",
+				r.getSegundos() == 0);
+		assertTrue(
+				"Los minutos deben avanzar al rotar los segundos de 59 a 0 con tick",
+				r.getMinutos() == 1);
 	}
 
 	@Test
 	void minutosRotanConUnTick() {
-		Reloj r = new Reloj(0,59,59);
+		Reloj r = new Reloj(0, 59, 59);
 		r.tick();
-		assertTrue( "Los minutos deben rotar de 59 a 0 con tick ", r.getMinutos() == 0 );
-		assertTrue( "Las horas deben avanzar al rotar los minutos de 59 a 0 con tick", r.getHoras() == 1 );
+		assertTrue("Los minutos deben rotar de 59 a 0 con tick ",
+				r.getMinutos() == 0);
+		assertTrue(
+				"Las horas deben avanzar al rotar los minutos de 59 a 0 con tick",
+				r.getHoras() == 1);
 	}
 
 	@Test
 	void horasRotanConUnTick() {
-		Reloj r = new Reloj(23,59,59);
+		Reloj r = new Reloj(23, 59, 59);
 		r.tick();
-		assertTrue( "Las horas deben rotar de 23 a 0 con tick", r.getHoras() == 0 );
+		assertTrue("Las horas deben rotar de 23 a 0 con tick",
+				r.getHoras() == 0);
+	}
+
+	@Test
+	void representacionComoCadenaEnCreacion() {
+		for (int h = 0; h < 24; h++) {
+			for (int m = 0; m < 60; m++) {
+				for (int s = 0; s < 60; s++) {
+					Reloj r = new Reloj(h, m, s);
+					assertTrue(
+							"Representacion de cadena incorrecta al crear un reloj con h:"
+									+ h + " m:" + m + " s:" + s,
+							cadena(h, m, s).equals(r.toString()));
+				}
+			}
+		}
 	}
 	
-	
+	@Test
+	void representacionComoCadenaConSet() {
+		for (int h = 0; h < 24; h++) {
+			for (int m = 0; m < 60; m++) {
+				for (int s = 0; s < 60; s++) {
+					Reloj r = new Reloj();
+					r.setHoras(h);
+					r.setMinutos(m);
+					r.setSegundos(s);
+					assertTrue(
+							"Representacion de cadena incorrecta al cambiar un reloj con h:"
+									+ h + " m:" + m + " s:" + s,
+							cadena(h, m, s).equals(r.toString()));
+				}
+			}
+		}
+	}
 
+	@Test
+	void representacionComoCadenaConTick() {
+		for (int h = 0; h < 24; h++) {
+			for (int m = 0; m < 60; m++) {
+				for (int s = 0; s < 60; s++) {
+					Reloj r = new Reloj();
+					r.tick(h,m,s);
+					assertTrue(
+							"Representacion de cadena incorrecta al avanzar  un reloj con tick h:"
+									+ h + " m:" + m + " s:" + s,
+							cadena(h, m, s).equals(r.toString()));
+				}
+			}
+		}
+	}
+
+	@Test
+	void representacionComoCadenaConTickSimple() {
+		for (int h = 0; h < 24; h++) {
+			for (int m = 0; m < 60; m++) {
+				for (int s = 0; s < 60; s++) {
+					Reloj r = new Reloj();
+					for( int t = 0 ; t < h*60*60 + m*60 + s ; t ++ ){
+						r.tick();
+					}
+					assertTrue(
+							"Representacion de cadena incorrecta al avanzar un reloj varias veces con tick h:"
+									+ h + " m:" + m + " s:" + s,
+							cadena(h, m, s).equals(r.toString()));
+				}
+			}
+		}
+	}
+	
 }
