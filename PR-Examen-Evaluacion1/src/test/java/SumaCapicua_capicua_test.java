@@ -17,7 +17,7 @@ public class SumaCapicua_capicua_test extends InputOutputTest{
 	invocaMain( "SumaCapicua", new String[0] );
 	String out = getLastLineOut();
 	
-	assertTrue( "34 y 33 no es capicua", out.matches("?(i).* no .*" ) );
+	assertTrue( "34 y 33 no es capicua:"  + out, out.matches("(?i).* no .*" ) );
 	
     }
 
@@ -29,7 +29,9 @@ public class SumaCapicua_capicua_test extends InputOutputTest{
 	invocaMain( "SumaCapicua", new String[0] );
 	String out = getLastLineOut();
 	
-	assertTrue( "3 y 1 si es capicua", out.matches("?(i).* si .*" ) );
+	boolean correcto = out.matches("(?i).* si .*" ) || ( out.matches("(?i).* capicua.*" ) && !out.matches("(?i).* no .*" ) );
+
+	assertTrue( "3 y 1 si es capicua:" + out, correcto );
 	
     }
     
@@ -40,8 +42,11 @@ public class SumaCapicua_capicua_test extends InputOutputTest{
 	setInputStream( "33\n33\n" );
 	invocaMain( "SumaCapicua", new String[0] );
 	String out = getLastLineOut();
+
+	boolean correcto = out.matches("(?i).* si .*" ) || ( out.matches("(?i).* capicua.*" ) && !out.matches("(?i).* no .*" ) );
+
 	
-	assertTrue( "33 y 33 si es capicua", out.matches("?(i).* si .*" ) );
+	assertTrue( "33 y 33 si es capicua:" + out, correcto );
 	
     }
 
@@ -52,8 +57,10 @@ public class SumaCapicua_capicua_test extends InputOutputTest{
 	setInputStream( "330\n13\n" );
 	invocaMain( "SumaCapicua", new String[0] );
 	String out = getLastLineOut();
+
+	boolean correcto = out.matches("(?i).* si .*" ) || ( out.matches("(?i).* capicua.*" ) && !out.matches("(?i).* no .*" ) );
 	
-	assertTrue( "330 y 13 si es capicua", out.matches("?(i).* si .*" ) );
+	assertTrue( "330 y 13 si es capicua:" + out, correcto );
 	
     }
 
@@ -64,7 +71,9 @@ public class SumaCapicua_capicua_test extends InputOutputTest{
 	invocaMain( "SumaCapicua", new String[0] );
 	String out = getLastLineOut();
 	
-	assertTrue( "3300 y 143 si es capicua", out.matches("?(i).* si .*" ) );
+	boolean correcto = out.matches("(?i).* si .*" ) || ( out.matches("(?i).* capicua.*" ) && !out.matches("(?i).* no .*" ) );
+	
+	assertTrue( "3300 y 143 si es capicua:" + out, correcto );
 	
     }
     

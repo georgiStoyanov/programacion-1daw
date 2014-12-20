@@ -22,7 +22,7 @@ task wrapper(type: Wrapper) {
 
 def studentsFromFiles(){
     // [ 'profe', 'alumno' ]
-		def dir = new File("/home")
+		def dir = new File("students")
 		return dir.list()
     	
 }
@@ -30,7 +30,7 @@ def studentsFromFiles(){
 def students = studentsFromFiles()
 
 def directorioDeStudent(s) {
-    return '/home/' + s + "/examen"
+    return 'students/' + s + "/examen"
 }
 def studentsDir = students.collect{ s -> directorioDeStudent(s) }
 
@@ -55,6 +55,7 @@ students.each{ student ->
            ignoreFailures = true
            testReportDir = file( "$buildDir/reports/$student" )
            testResultsDir = testReportDir
+           testLogging.showStandardStreams = true
 	   description = "Pruebas de:" + student
 	   classpath += sourceSets.getByName(student).runtimeClasspath
 	}

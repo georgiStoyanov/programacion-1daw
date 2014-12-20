@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,10 +21,13 @@ public class EstadisticaDeTexto_normal_test extends InputOutputTest{
 	invocaMain("EstadisticaDeTexto", new String[0] );
 	
 	String[] lines = getLinesOut(3);
-	assertTrue( "Deberia haber al menos 3 lineas", lines.length >= 3 );
-	assertTrue( "Deberia haber 12 palabras", lines[0].matches( ".* 12 .*") );
-	assertTrue( "La mas larga es de 9", lines[1].matches( ".* 9 .*") );
-	assertTrue( "La mas corta es de 2", lines[2].matches( ".* 2 .*") );
+
+	System.err.println( Arrays.asList(lines ) );
+
+	assertTrue( "Deberia haber al menos 3 lineas:" + lines.length, lines.length >= 3 );
+	assertTrue( "Deberia haber 12 palabras:" + lines[0], lines[0].matches( ".* 12.*") );
+	assertTrue( "La mas larga es de 9:" + lines[1], lines[1].matches( ".* 9.*") );
+	assertTrue( "La mas corta es de 2:" + lines[2], lines[2].matches( ".* 2.*") );
     }
 
     
@@ -34,10 +39,13 @@ public class EstadisticaDeTexto_normal_test extends InputOutputTest{
 	invocaMain("EstadisticaDeTexto", new String[0] );
 	
 	String[] lines = getLinesOut(3);
-	assertTrue( "Deberia haber al menos 3 lineas", lines.length >= 3 );
-	assertTrue( "Deberia haber 9 palabras", lines[0].matches( ".* 9 .*") );
-	assertTrue( "La mas larga es de 8", lines[1].matches( ".* 8 .*") );
-	assertTrue( "La mas corta es de 2", lines[2].matches( ".* 2 .*") );
+
+	System.err.println( Arrays.asList(lines ) );
+	
+	assertTrue( "Deberia haber al menos 3 lineas:" + lines.length, lines.length >= 3 );
+	assertTrue( "Deberia haber 9 palabras:" + lines[0], lines[0].matches( ".* 9.*") );
+	assertTrue( "La mas larga es de 8:" + lines[1], lines[1].matches( ".* 8.*") );
+	assertTrue( "La mas corta es de 2:" + lines[2], lines[2].matches( ".* 2.*") );
     }
     
 }

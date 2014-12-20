@@ -25,7 +25,7 @@ public class Rectangulo{
 		return 0;
 	}
 
-	public void setAcho( double ancho ){
+	public void setAncho( double ancho ){
 	}
 
 	public Punto[] getEsquinas(){
