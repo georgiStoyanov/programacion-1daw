@@ -1,6 +1,8 @@
 package geometria;
 
 import static org.junit.Assert.*;
+import geometria.mock.ICirculo;
+import geometria.mock.IPunto;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -15,7 +17,7 @@ public class CirculoTest {
 	return Math.abs(d1 - d2) < 0.00001;
     }
 
-    private static boolean equals(Punto d1, Punto d2) {
+    private static boolean equals(IPunto d1, IPunto d2) {
 	return equals(d1.getX(), d2.getX()) && equals(d1.getY(), d2.getY());
     }
 
@@ -39,13 +41,13 @@ public class CirculoTest {
 	return random(distinto, false);
     }
 
-    private static Punto puntoRandom() {
-	return new Punto(random(), random());
+    private static IPunto puntoRandom() {
+	return IPunto.createPunto(random(), random());
     }
 
-    private static Punto puntoRandom(Punto distinto) {
+    private static IPunto puntoRandom(IPunto distinto) {
 	while (true) {
-	    Punto ret = puntoRandom();
+	    IPunto ret = puntoRandom();
 	    if (!equals(ret.getX(), distinto.getX())) {
 		return ret;
 	    }
@@ -58,23 +60,23 @@ public class CirculoTest {
     @Test(expected = Exception.class)
     public void noDeberiaHaberRadiosNegativos() {
 	double r = -Math.abs(random());
-	new Circulo(new Punto(0, 0), r);
+	ICirculo.createCirculo(IPunto.createPunto(0, 0), r);
     }
 
     @Test
     public void creacionDeCirculoCentro() {
 	double r = Math.abs(random());
-	Punto p = puntoRandom();
-	Circulo c = new Circulo(p, r);
+	IPunto p = puntoRandom();
+	ICirculo c = ICirculo.createCirculo(p, r);
 	assertTrue("El circulo se creo con el centro en " + p + ":" + c.getCentro(), equals(p, c.getCentro()));
     }
 
     @Test
     public void cambioDeCentro() {
 	double r = Math.abs(random());
-	Punto p = puntoRandom();
-	Circulo c = new Circulo(p, r);
-	Punto cambiado = puntoRandom(p);
+	IPunto p = puntoRandom();
+	ICirculo c = ICirculo.createCirculo(p, r);
+	IPunto cambiado = puntoRandom(p);
 	c.setCentro(cambiado);
 	assertTrue("El circulo se cambio a centro " + cambiado + ":" + c.getCentro(), equals(cambiado, c.getCentro()));
     }
@@ -82,16 +84,16 @@ public class CirculoTest {
     @Test
     public void creacionDeCirculoRadio() {
 	double r = Math.abs(random());
-	Punto p = puntoRandom();
-	Circulo c = new Circulo(p, r);
+	IPunto p = puntoRandom();
+	ICirculo c = ICirculo.createCirculo(p, r);
 	assertTrue("El circulo se creo con radio " + r + ":" + c.getRadio(), equals(r, c.getRadio()));
     }
 
     @Test
     public void cambioDeRadio() {
 	double r = Math.abs(random());
-	Punto p = puntoRandom();
-	Circulo c = new Circulo(p, r);
+	IPunto p = puntoRandom();
+	ICirculo c = ICirculo.createCirculo(p, r);
 	double cambiado = random(r, true);
 	c.setRadio(cambiado);
 	assertTrue("El circulo se cambio a radio " + cambiado + ":" + c.getRadio(), equals(cambiado, c.getRadio()));
@@ -110,7 +112,7 @@ public class CirculoTest {
 	double y = random();
 	double r = Math.abs(random());
 
-	Circulo c = new Circulo(new Punto(x, y), r);
+	ICirculo c = ICirculo.createCirculo(IPunto.createPunto(x, y), r);
 
 	String regex = expresion(x, y, r);
 
@@ -124,7 +126,7 @@ public class CirculoTest {
 	double y = random();
 	double r = Math.abs(random());
 
-	Circulo c = new Circulo(new Punto(x, y), r);
+	ICirculo c = ICirculo.createCirculo(IPunto.createPunto(x, y), r);
 	double cambiado = random(r, true);
 	c.setRadio(cambiado);
 
@@ -140,9 +142,9 @@ public class CirculoTest {
 	double y = random();
 	double r = random();
 
-	Punto p = new Punto(x, y);
-	Circulo c = new Circulo(p, r);
-	Punto cambiado = puntoRandom(p);
+	IPunto p = IPunto.createPunto(x, y);
+	ICirculo c = ICirculo.createCirculo(p, r);
+	IPunto cambiado = puntoRandom(p);
 	c.setCentro(cambiado);
 
 	String regex = expresion(p.getX(), p.getY(), r);
@@ -154,7 +156,7 @@ public class CirculoTest {
     @Test
     public void area() {
 	double r = random();
-	Circulo c = new Circulo(puntoRandom(), r);
+	ICirculo c = ICirculo.createCirculo(puntoRandom(), r);
 	double a = Math.PI * r * r;
 	double aAlumno = c.getArea();
 
@@ -164,7 +166,7 @@ public class CirculoTest {
     @Test
     public void areaTrasCambioDeRadio() {
 	double r = random();
-	Circulo c = new Circulo(puntoRandom(), r);
+	ICirculo c = ICirculo.createCirculo(puntoRandom(), r);
 	double cambiado = random(r, true);
 	c.setRadio(cambiado);
 	double a = Math.PI * cambiado * cambiado;

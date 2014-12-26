@@ -1,6 +1,7 @@
 package geometria;
 
 import static org.junit.Assert.*;
+import geometria.mock.IPunto;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,27 +22,27 @@ public class PuntoTest {
 
     @Test
     public void porDefectoEnOrigenX() {
-	Punto p = new Punto();
+	IPunto p = IPunto.createPunto();
 	assertTrue("Un punto por defecto tiene y=0:" + p.getY(), equals(p.getY(), 0));
     }
 
     @Test
     public void porDefectoEnOrigenY() {
-	Punto p = new Punto();
+	IPunto p = IPunto.createPunto();
 	assertTrue("Un punto por defecto tiene y=0:" + p.getY(), equals(p.getY(), 0));
     }
 
     @Test
     public void construirConX() {
 	double x = random();
-	Punto p = new Punto(x, 0);
+	IPunto p = IPunto.createPunto(x, 0);
 	assertTrue("Lo he construido con x=" + x + ":" + p.getX(), equals(p.getX(), x));
     }
 
     @Test
     public void construirConY() {
 	double y = random();
-	Punto p = new Punto(0, y);
+	IPunto p = IPunto.createPunto(0, y);
 	assertTrue("Lo he construido con y=" + y + ":" + p.getX(), equals(p.getY(), y));
     }
 
@@ -49,7 +50,7 @@ public class PuntoTest {
     public void conversionACadena() {
 	double x = random();
 	double y = random();
-	Punto p = new Punto(x, y);
+	IPunto p = IPunto.createPunto(x, y);
 	String regex = ".*\\(.*" + x + ".*,.*" + y + ".*\\).*";
 	assertTrue("El punto en " + x + "," + y + " tiene representacion en cadena:" + p, p.toString().matches(regex));
     }
@@ -58,9 +59,9 @@ public class PuntoTest {
     public void distanciaConOrigen() {
 	double x = random();
 	double y = random();
-	Punto p = new Punto(x, y);
+	IPunto p = IPunto.createPunto(x, y);
 	double d = Math.sqrt(x * x + y * y);
-	double dAlumno = new Punto().distanciaHasta(p);
+	double dAlumno = IPunto.createPunto().distanciaHasta(p);
 	assertTrue(p + " deberia distar del origen " + d + ":" + dAlumno, equals(d, dAlumno));
     }
 
@@ -70,8 +71,8 @@ public class PuntoTest {
 	double y1 = random();
 	double x2 = random();
 	double y2 = random();
-	Punto p1 = new Punto(x1, y1);
-	Punto p2 = new Punto(x2, y2);
+	IPunto p1 = IPunto.createPunto(x1, y1);
+	IPunto p2 = IPunto.createPunto(x2, y2);
 	double x = x1 - x2;
 	double y = y1 - y2;
 	double d = Math.sqrt(x * x + y * y);
@@ -85,9 +86,9 @@ public class PuntoTest {
 	double y1 = random();
 	double x2 = random();
 	double y2 = random();
-	Punto p1 = new Punto(x1, y1);
-	Punto p2 = new Punto(x2, y2);
-	Punto suma = p1.suma(p2);
+	IPunto p1 = IPunto.createPunto(x1, y1);
+	IPunto p2 = IPunto.createPunto(x2, y2);
+	IPunto suma = p1.suma(p2);
 	assertTrue("La X de " + p1 + "+" + p2 + " deberia ser " + (x1 + x2) + ":" + suma.getX(),
 		equals(suma.getX(), x1 + x2));
     }
@@ -98,9 +99,9 @@ public class PuntoTest {
 	double y1 = random();
 	double x2 = random();
 	double y2 = random();
-	Punto p1 = new Punto(x1, y1);
-	Punto p2 = new Punto(x2, y2);
-	Punto suma = p1.suma(p2);
+	IPunto p1 = IPunto.createPunto(x1, y1);
+	IPunto p2 = IPunto.createPunto(x2, y2);
+	IPunto suma = p1.suma(p2);
 	assertTrue("La Y de " + p1 + "+" + p2 + " deberia ser " + (y1 + y2) + ":" + suma.getX(),
 		equals(suma.getY(), y1 + y2));
     }

@@ -1,6 +1,5 @@
 package geometria;
 
-
 public class Rectangulo{
 
 
