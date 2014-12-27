@@ -8,8 +8,10 @@ import org.junit.rules.Timeout;
 
 public class CirculoTest {
 
+    private static final int[] VECES = new int[100];
+
     @Rule
-    public Timeout globalTimeout = new Timeout(1000000);
+    public Timeout globalTimeout = new Timeout(10000);
 
     private static boolean equals(double d1, double d2) {
         return Math.abs(d1 - d2) < 0.00001;
@@ -65,51 +67,63 @@ public class CirculoTest {
 
     @Test
     public void noDeberiaHaberRadiosNegativos() {
-        boolean exception = false;
-        try {
-            double r = -Math.abs(random()) - 1;
-            createCirculo(createPunto(0, 0), r);
+        for (int i : VECES) {
+            boolean exception = false;
+            try {
+                double r = -Math.abs(random()) - 1;
+                createCirculo(createPunto(0, 0), r);
+            }
+            catch (Exception e) {
+                exception = true;
+            }
+            assertTrue("No deberia haber radios negativos", exception);
         }
-        catch (Exception e) {
-            exception = true;
-        }
-        assertTrue("No deberia haber radios negativos", exception);
     }
 
     @Test
     public void creacionDeCirculoCentro() {
-        double r = Math.abs(random());
-        Punto p = puntoRandom();
-        Circulo c = createCirculo(p, r);
-        assertTrue("El circulo se creo con el centro en " + p + ":" + c.getCentro(), equals(p, c.getCentro()));
+        for (int i : VECES) {
+            double r = Math.abs(random());
+            Punto p = puntoRandom();
+            Circulo c = createCirculo(p, r);
+            assertTrue("El circulo se creo con el centro en " + p + ":" + c.getCentro(), equals(p, c.getCentro()));
+
+        }
     }
 
     @Test
     public void cambioDeCentro() {
-        double r = Math.abs(random());
-        Punto p = puntoRandom();
-        Circulo c = createCirculo(p, r);
-        Punto cambiado = puntoRandom(p);
-        c.setCentro(cambiado);
-        assertTrue("El circulo se cambio a centro " + cambiado + ":" + c.getCentro(), equals(cambiado, c.getCentro()));
+        for (int i : VECES) {
+            double r = Math.abs(random());
+            Punto p = puntoRandom();
+            Circulo c = createCirculo(p, r);
+            Punto cambiado = puntoRandom(p);
+            c.setCentro(cambiado);
+            assertTrue("El circulo se cambio a centro " + cambiado + ":" + c.getCentro(),
+                    equals(cambiado, c.getCentro()));
+        }
     }
 
     @Test
     public void creacionDeCirculoRadio() {
-        double r = Math.abs(random());
-        Punto p = puntoRandom();
-        Circulo c = createCirculo(p, r);
-        assertTrue("El circulo se creo con radio " + r + ":" + c.getRadio(), equals(r, c.getRadio()));
+        for (int i : VECES) {
+            double r = Math.abs(random());
+            Punto p = puntoRandom();
+            Circulo c = createCirculo(p, r);
+            assertTrue("El circulo se creo con radio " + r + ":" + c.getRadio(), equals(r, c.getRadio()));
+        }
     }
 
     @Test
     public void cambioDeRadio() {
-        double r = Math.abs(random());
-        Punto p = puntoRandom();
-        Circulo c = createCirculo(p, r);
-        double cambiado = random(r, true);
-        c.setRadio(cambiado);
-        assertTrue("El circulo se cambio a radio " + cambiado + ":" + c.getRadio(), equals(cambiado, c.getRadio()));
+        for (int i : VECES) {
+            double r = Math.abs(random());
+            Punto p = puntoRandom();
+            Circulo c = createCirculo(p, r);
+            double cambiado = random(r, true);
+            c.setRadio(cambiado);
+            assertTrue("El circulo se cambio a radio " + cambiado + ":" + c.getRadio(), equals(cambiado, c.getRadio()));
+        }
     }
 
     private String expresion(double x, double y, double r) {
@@ -121,72 +135,82 @@ public class CirculoTest {
 
     @Test
     public void conversionACadena() {
-        double x = random();
-        double y = random();
-        double r = Math.abs(random());
+        for (int i : VECES) {
+            double x = random();
+            double y = random();
+            double r = Math.abs(random());
 
-        Circulo c = createCirculo(createPunto(x, y), r);
+            Circulo c = createCirculo(createPunto(x, y), r);
 
-        String regex = expresion(x, y, r);
+            String regex = expresion(x, y, r);
 
-        assertTrue("La conversion a cadena no es correcta para " + x + "," + y + "," + r + ":" + c, c.toString()
-                .matches(regex));
+            assertTrue("La conversion a cadena no es correcta para " + x + "," + y + "," + r + ":" + c, c.toString()
+                    .matches(regex));
+        }
     }
 
     @Test
     public void conversionACadenaTrasCambioDeRadio() {
-        double x = random();
-        double y = random();
-        double r = Math.abs(random());
+        for (int i : VECES) {
+            double x = random();
+            double y = random();
+            double r = Math.abs(random());
 
-        Circulo c = createCirculo(createPunto(x, y), r);
-        double cambiado = random(r, true);
-        c.setRadio(cambiado);
+            Circulo c = createCirculo(createPunto(x, y), r);
+            double cambiado = random(r, true);
+            c.setRadio(cambiado);
 
-        String regex = expresion(x, y, cambiado);
+            String regex = expresion(x, y, cambiado);
 
-        assertTrue("La conversion a cadena no es correcta tras cambiar radio para " + x + "," + y + "," + cambiado
-                + ":" + c, c.toString().matches(regex));
+            assertTrue("La conversion a cadena no es correcta tras cambiar radio para " + x + "," + y + "," + cambiado
+                    + ":" + c, c.toString().matches(regex));
+        }
     }
 
     @Test
     public void conversionACadenaTrasCambioDeCentro() {
-        double x = random();
-        double y = random();
-        double r = Math.abs(random());
+        for (int i : VECES) {
+            double x = random();
+            double y = random();
+            double r = Math.abs(random());
 
-        Punto p = createPunto(x, y);
-        Circulo c = createCirculo(p, r);
-        Punto cambiado = puntoRandom(p);
-        c.setCentro(cambiado);
+            Punto p = createPunto(x, y);
+            Circulo c = createCirculo(p, r);
+            Punto cambiado = puntoRandom(p);
+            c.setCentro(cambiado);
 
-        String regex = expresion(cambiado.getX(), cambiado.getY(), r);
+            String regex = expresion(cambiado.getX(), cambiado.getY(), r);
 
-        assertTrue("La conversion a cadena no es correcta tras cambiar centro para " + x + "," + y + "," + cambiado
-                + ":" + c, c.toString().matches(regex));
+            assertTrue("La conversion a cadena no es correcta tras cambiar centro para " + x + "," + y + "," + cambiado
+                    + ":" + c, c.toString().matches(regex));
+        }
     }
 
     @Test
     public void area() {
-        double r = Math.abs(random());
-        Circulo c = createCirculo(puntoRandom(), r);
-        double a = Math.PI * r * r;
-        double aAlumno = c.getArea();
+        for (int i : VECES) {
+            double r = Math.abs(random());
+            Circulo c = createCirculo(puntoRandom(), r);
+            double a = Math.PI * r * r;
+            double aAlumno = c.getArea();
 
-        assertTrue("El area con radio " + r + " deberia ser " + a + ":" + aAlumno, equals(a, aAlumno));
+            assertTrue("El area con radio " + r + " deberia ser " + a + ":" + aAlumno, equals(a, aAlumno));
+        }
     }
 
     @Test
     public void areaTrasCambioDeRadio() {
-        double r = Math.abs(random());
-        Circulo c = createCirculo(puntoRandom(), r);
-        double cambiado = random(r, true);
-        c.setRadio(cambiado);
-        double a = Math.PI * cambiado * cambiado;
-        double aAlumno = c.getArea();
+        for (int i : VECES) {
+            double r = Math.abs(random());
+            Circulo c = createCirculo(puntoRandom(), r);
+            double cambiado = random(r, true);
+            c.setRadio(cambiado);
+            double a = Math.PI * cambiado * cambiado;
+            double aAlumno = c.getArea();
 
-        assertTrue("El area tras cambiar radio radio a " + cambiado + " deberia ser " + a + ":" + aAlumno,
-                equals(a, aAlumno));
+            assertTrue("El area tras cambiar radio radio a " + cambiado + " deberia ser " + a + ":" + aAlumno,
+                    equals(a, aAlumno));
+        }
     }
 
     private Circulo createCirculo(Punto p, double r) {

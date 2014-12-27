@@ -8,8 +8,9 @@ import org.junit.rules.Timeout;
 
 public class RectanguloTest {
 
+    private static final int[] VECES = new int[100];
     @Rule
-    public Timeout globalTimeout = new Timeout(1000000);
+    public Timeout globalTimeout = new Timeout(10000);
 
     private static boolean equals(double d1, double d2) {
         return Math.abs(d1 - d2) < 0.00001;
@@ -42,11 +43,10 @@ public class RectanguloTest {
     private static Punto createPunto(double x, double y) {
         return new Punto(x, y);
     }
-    
-    private Rectangulo createRectangulo(Punto p, double alto, double ancho) {
-        return new Rectangulo( p, alto,ancho );
-    }
 
+    private Rectangulo createRectangulo(Punto p, double alto, double ancho) {
+        return new Rectangulo(p, alto, ancho);
+    }
 
     private static double random(double distinto) {
         return random(distinto, false);
@@ -78,143 +78,164 @@ public class RectanguloTest {
     @Test(expected = Exception.class)
     public void noDeberiaHaberAnchosNegativos() {
         double alto = 1;
-        double ancho = -Math.abs(random()) -1;
+        double ancho = -Math.abs(random()) - 1;
         createRectangulo(createPunto(0, 0), alto, ancho);
     }
 
     @Test
     public void creacionDeRectanguloCentro() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
-        assertTrue("El rectangulo se creo con el centro en " + p + ":" + r.getCentro(), equals(p, r.getCentro()));
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            assertTrue("El rectangulo se creo con el centro en " + p + ":" + r.getCentro(), equals(p, r.getCentro()));
+        }
     }
 
     @Test
     public void creacionDeRectanguloAlto() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
-        assertTrue("El rectangulo se creo con alto " + alto + ":" + r.getAlto(), equals(alto, r.getAlto()));
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            assertTrue("El rectangulo se creo con alto " + alto + ":" + r.getAlto(), equals(alto, r.getAlto()));
+        }
     }
 
     @Test
     public void creacionDeRectanguloAncho() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
-        assertTrue("El rectangulo se creo con ancho " + ancho + ":" + r.getAncho(), equals(ancho, r.getAncho()));
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            assertTrue("El rectangulo se creo con ancho " + ancho + ":" + r.getAncho(), equals(ancho, r.getAncho()));
+        }
     }
 
     @Test
     public void cambioDeCentro() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        Punto cambiado = puntoRandom(p);
-        r.setCentro(cambiado);
+            Punto cambiado = puntoRandom(p);
+            r.setCentro(cambiado);
 
-        assertTrue("Se cambio el centro a " + cambiado + ":" + r.getCentro(), equals(cambiado, r.getCentro()));
+            assertTrue("Se cambio el centro a " + cambiado + ":" + r.getCentro(), equals(cambiado, r.getCentro()));
+        }
     }
 
     @Test
     public void cambioDeAlto() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        double cambiado = Math.abs( random(alto) );
-        r.setAlto(cambiado);
+            double cambiado = Math.abs(random(alto));
+            r.setAlto(cambiado);
 
-        assertTrue("Se cambio el alto a " + cambiado + ":" + r.getAlto(), equals(cambiado, r.getAlto()));
+            assertTrue("Se cambio el alto a " + cambiado + ":" + r.getAlto(), equals(cambiado, r.getAlto()));
+        }
     }
 
     @Test
     public void cambioDeAncho() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        double cambiado = Math.abs( random(ancho) );
-        r.setAncho(cambiado);
+            double cambiado = Math.abs(random(ancho));
+            r.setAncho(cambiado);
 
-        assertTrue("Se cambio el ancho a " + cambiado + ":" + r.getAncho(), equals(cambiado, r.getAncho()));
+            assertTrue("Se cambio el ancho a " + cambiado + ":" + r.getAncho(), equals(cambiado, r.getAncho()));
+        }
     }
 
     @Test
     public void lasEsquinasSonCuatro() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        Punto[] esquinas = r.getEsquinas();
+            Punto[] esquinas = r.getEsquinas();
 
-        assertTrue("Se esperan cuatro esquinas:" + esquinas.length, esquinas.length == 4);
+            assertTrue("Se esperan cuatro esquinas:" + esquinas.length, esquinas.length == 4);
+        }
     }
 
     @Test
     public void esquinaTopLeft() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        Punto[] esquinas = r.getEsquinas();
-        Punto expected = createPunto(p.getX() - ancho / 2, p.getY() + alto / 2);
+            Punto[] esquinas = r.getEsquinas();
+            Punto expected = createPunto(p.getX() - ancho / 2, p.getY() + alto / 2);
 
-        assertTrue("La primera esquina (topleft) deberia ser " + expected + ":" + esquinas[0],
-                equals(expected, esquinas[0]));
+            assertTrue("La primera esquina (topleft) deberia ser " + expected + ":" + esquinas[0],
+                    equals(expected, esquinas[0]));
+        }
     }
 
     @Test
     public void esquinaTopRigth() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        Punto[] esquinas = r.getEsquinas();
-        Punto expected = createPunto(p.getX() + ancho / 2, p.getY() + alto / 2);
+            Punto[] esquinas = r.getEsquinas();
+            Punto expected = createPunto(p.getX() + ancho / 2, p.getY() + alto / 2);
 
-        assertTrue("La segunda esquina (toprigth) deberia ser " + expected + ":" + esquinas[1],
-                equals(expected, esquinas[1]));
+            assertTrue("La segunda esquina (toprigth) deberia ser " + expected + ":" + esquinas[1],
+                    equals(expected, esquinas[1]));
+        }
     }
 
     @Test
     public void esquinaBottomLeft() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        Punto[] esquinas = r.getEsquinas();
-        Punto expected = createPunto(p.getX() - ancho / 2, p.getY() - alto / 2);
+            Punto[] esquinas = r.getEsquinas();
+            Punto expected = createPunto(p.getX() - ancho / 2, p.getY() - alto / 2);
 
-        assertTrue("La tercera esquina (bottomleft) deberia ser " + expected + ":" + esquinas[2],
-                equals(expected, esquinas[2]));
+            assertTrue("La tercera esquina (bottomleft) deberia ser " + expected + ":" + esquinas[2],
+                    equals(expected, esquinas[2]));
+        }
     }
 
     @Test
     public void esquinaBottomRigth() {
-        double alto = Math.abs(random());
-        double ancho = Math.abs(random());
-        Punto p = puntoRandom();
-        Rectangulo r = createRectangulo(p, alto, ancho);
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
 
-        Punto[] esquinas = r.getEsquinas();
-        Punto expected = createPunto(p.getX() + ancho / 2, p.getY() - alto / 2);
+            Punto[] esquinas = r.getEsquinas();
+            Punto expected = createPunto(p.getX() + ancho / 2, p.getY() - alto / 2);
 
-        assertTrue("La cuarta esquina (bottomrigth) deberia ser " + expected + ":" + esquinas[3],
-                equals(expected, esquinas[3]));
+            assertTrue("La cuarta esquina (bottomrigth) deberia ser " + expected + ":" + esquinas[3],
+                    equals(expected, esquinas[3]));
+        }
     }
-
 
 }
