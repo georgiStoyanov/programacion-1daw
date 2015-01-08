@@ -68,18 +68,75 @@ public class RectanguloTest {
         }
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void noDeberiaHaberAltosNegativos() {
-        double alto = -Math.abs(random()) - 1;
-        double ancho = 1;
-        createRectangulo(createPunto(0, 0), alto, ancho);
+        for (int i : VECES) {
+
+            boolean exception = false;
+            try {
+                double alto = -Math.abs(random()) - 1;
+                double ancho = 1;
+                createRectangulo(createPunto(0, 0), alto, ancho);
+            }
+            catch (Exception e) {
+                exception = true;
+            }
+            assertTrue("No deberia haber altos negativos", exception);
+        }
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void noDeberiaHaberAnchosNegativos() {
-        double alto = 1;
-        double ancho = -Math.abs(random()) - 1;
-        createRectangulo(createPunto(0, 0), alto, ancho);
+        for (int i : VECES) {
+            boolean exception = false;
+            try {
+                double alto = 1;
+                double ancho = -Math.abs(random()) - 1;
+                createRectangulo(createPunto(0, 0), alto, ancho);
+            }
+            catch (Exception e) {
+                exception = true;
+            }
+            assertTrue("No deberia haber anchos negativos", exception);
+        }
+    }
+
+    @Test
+    public void noSePueceCambiarAAnchosNegativos() {
+        for (int i : VECES) {
+            boolean exception = false;
+            try {
+                double alto = Math.abs(random());
+                double ancho = Math.abs(random());
+                Punto p = puntoRandom();
+                Rectangulo r = createRectangulo(p, alto, ancho);
+                double cambiado = -Math.abs(random()) - 1;
+                r.setAncho(cambiado);
+            }
+            catch (Exception e) {
+                exception = true;
+            }
+            assertTrue("No se deberia cambiar a anchos negativos", exception);
+        }
+    }
+
+    @Test
+    public void noSePueceCambiarAAltosNegativos() {
+        for (int i : VECES) {
+            boolean exception = false;
+            try {
+                double alto = Math.abs(random());
+                double ancho = Math.abs(random());
+                Punto p = puntoRandom();
+                Rectangulo r = createRectangulo(p, alto, ancho);
+                double cambiado = -Math.abs(random()) - 1;
+                r.setAlto(cambiado);
+            }
+            catch (Exception e) {
+                exception = true;
+            }
+            assertTrue("No se deberia cambiar a altos negativos", exception);
+        }
     }
 
     @Test
@@ -185,7 +242,7 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() - ancho / 2, p.getY() + alto / 2);
 
-            assertTrue("La primera esquina (topleft) deberia ser " + expected + ":" + esquinas[0],
+            assertTrue("La primera esquina (topleft) de " + r + " deberia ser " + expected + ":" + esquinas[0],
                     equals(expected, esquinas[0]));
         }
     }
@@ -201,7 +258,7 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() + ancho / 2, p.getY() + alto / 2);
 
-            assertTrue("La segunda esquina (toprigth) deberia ser " + expected + ":" + esquinas[1],
+            assertTrue("La segunda esquina (toprigth)  de " + r + " deberia ser " + expected + ":" + esquinas[1],
                     equals(expected, esquinas[1]));
         }
     }
@@ -217,7 +274,7 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() - ancho / 2, p.getY() - alto / 2);
 
-            assertTrue("La tercera esquina (bottomleft) deberia ser " + expected + ":" + esquinas[2],
+            assertTrue("La tercera esquina (bottomleft)  de " + r + " deberia ser " + expected + ":" + esquinas[2],
                     equals(expected, esquinas[2]));
         }
     }
@@ -233,9 +290,145 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() + ancho / 2, p.getY() - alto / 2);
 
-            assertTrue("La cuarta esquina (bottomrigth) deberia ser " + expected + ":" + esquinas[3],
+            assertTrue("La cuarta esquina (bottomrigth)  de " + r + " deberia ser " + expected + ":" + esquinas[3],
                     equals(expected, esquinas[3]));
         }
+    }
+
+    @Test
+    public void conversionACadena() {
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+
+            String regex = expresion(alto, ancho, p);
+
+            assertTrue("La conversion a cadena no es correcta para " + alto + "," + ancho + "," + p + ":" + r, r
+                    .toString()
+                    .matches(regex));
+        }
+    }
+
+    @Test
+    public void conversionACadenaTrasCambioDeCentro() {
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            Punto cambiado = puntoRandom(p);
+            r.setCentro(cambiado);
+
+            String regex = expresion(alto, ancho, cambiado);
+
+            assertTrue("La conversion a cadena no es correcta tras cambiar centro para " + alto + "," + ancho + ","
+                    + cambiado + ":" + r, r
+                    .toString()
+                    .matches(regex));
+        }
+    }
+
+    @Test
+    public void conversionACadenaTrasCambioDeAlto() {
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            double cambiado = random(alto, true);
+            r.setAlto(cambiado);
+
+            String regex = expresion(cambiado, ancho, p);
+
+            assertTrue("La conversion a cadena no es correcta tras cambiar alto para " + cambiado + "," + ancho + ","
+                    + p + ":" + r, r
+                    .toString()
+                    .matches(regex));
+        }
+    }
+
+    @Test
+    public void conversionACadenaTrasCambioDeAncho() {
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            double cambiado = random(ancho, true);
+            r.setAncho(cambiado);
+
+            String regex = expresion(alto, cambiado, p);
+
+            assertTrue("La conversion a cadena no es correcta tras cambiar ancho para " + alto + "," + cambiado + ","
+                    + p + ":" + r, r
+                    .toString()
+                    .matches(regex));
+        }
+    }
+
+    @Test
+    public void area() {
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            double a = alto * ancho;
+            double aAlumno = r.getArea();
+
+            assertTrue("El area con " + alto + "," + ancho + " deberia ser " + a + ":" + aAlumno, equals(a, aAlumno));
+        }
+    }
+
+    @Test
+    public void areaTrasCambioAlto() {
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            double cambiado = random(alto, true);
+            r.setAlto(cambiado);
+
+            double a = cambiado * ancho;
+            double aAlumno = r.getArea();
+
+            assertTrue("El area con " + cambiado + "," + ancho + " deberia ser " + a + ":" + aAlumno,
+                    equals(a, aAlumno));
+        }
+    }
+
+    @Test
+    public void areaTrasCambioAncho() {
+        for (int i : VECES) {
+            double alto = Math.abs(random());
+            double ancho = Math.abs(random());
+            Punto p = puntoRandom();
+            Rectangulo r = createRectangulo(p, alto, ancho);
+            double cambiado = random(ancho, true);
+            r.setAncho(cambiado);
+
+            double a = alto * cambiado;
+            double aAlumno = r.getArea();
+
+            assertTrue("El area con " + alto + "," + cambiado + " deberia ser " + a + ":" + aAlumno,
+                    equals(a, aAlumno));
+        }
+    }
+
+    private String expresion(double alto, double ancho, Punto p) {
+        double x1 = p.getX() - ancho / 2;
+        double y1 = p.getY() + alto / 2;
+        double x2 = p.getX() + ancho / 2;
+        double y2 = p.getY() - alto / 2;
+        String regex = "(?i)" +
+                ".*arriba.*izquierda.*:.*" +
+                ".*\\(.*" + x1 + ".*,.*" + y1 + ".*\\).*" +
+                ".*abajo.*derecha.*:.*" +
+                ".*\\(.*" + x2 + ".*,.*" + y2 + ".*\\).*";
+        return regex;
     }
 
 }

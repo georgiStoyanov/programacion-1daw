@@ -49,7 +49,7 @@ public class Rectangulo {
         double al = getAlto()/2;
         double an = getAncho()/2;
         return new Punto[]{
-                new Punto( x - an, y+ al ),
+                new Punto( x - an, y + al ),
                 new Punto( x + an, y + al),
                 new Punto( x - an, y - al),
                 new Punto( x + an, y - al),
@@ -58,5 +58,13 @@ public class Rectangulo {
 
     public double getArea() {
         return getAlto() * getAncho();
+    }
+    
+    @Override
+    public String toString() {
+        Punto[] esquinas = getEsquinas();
+        Punto ari = esquinas[0];
+        Punto abd = esquinas[3];
+        return "arribaizquierda:" + ari + " abajoderecha:" + abd;
     }
 }

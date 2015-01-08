@@ -214,7 +214,6 @@ public class CirculoTest {
     }
 
     private Circulo createCirculo(Punto p, double r) {
-        System.out.println("Creando circulo " + p + " " + r);
         return new Circulo(p, r);
     }
 
