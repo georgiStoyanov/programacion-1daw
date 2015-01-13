@@ -2,11 +2,12 @@ package fecha;
 
 public class Calendario {
 	
-	private int _dia, _mes;
+	private int _dia, _mes, _año;
 	
 	public Calendario(){
 		_dia = 1;
 		_mes = 1;
+		_año = 2000;
 		
 	}
 	public void avanzaDia(){
@@ -20,6 +21,7 @@ public class Calendario {
 		
 		if( _mes == 13 ){
 			_mes = 1;
+			_año += 1;
 		}
 	}
 	
@@ -33,7 +35,7 @@ public class Calendario {
 	
 	@Override
 	public String toString() {
-		return String.format("%02d/%02d", _dia, _mes );
+		return String.format("%02d/%02d/%d", _dia, _mes, _año );
 	}
 	
 	public static void main(String[] args) {
