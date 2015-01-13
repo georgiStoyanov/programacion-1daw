@@ -242,7 +242,7 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() - ancho / 2, p.getY() + alto / 2);
 
-            assertTrue("La primera esquina (topleft) centro:" + p + " alto:" + alto + " ancho:" + ancho + " deberia ser " + expected + ":" + esquinas[0],
+            assertTrue("La primera esquina (topleft) de " + r + " deberia ser " + expected + ":" + esquinas[0],
                     equals(expected, esquinas[0]));
         }
     }
@@ -258,7 +258,7 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() + ancho / 2, p.getY() + alto / 2);
 
-            assertTrue("La segunda esquina (toprigth)  centro:" + p + " alto:" + alto + " ancho:" + ancho + " deberia ser " + expected + ":" + esquinas[1],
+            assertTrue("La segunda esquina (toprigth)  de " + r + " deberia ser " + expected + ":" + esquinas[1],
                     equals(expected, esquinas[1]));
         }
     }
@@ -274,7 +274,7 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() - ancho / 2, p.getY() - alto / 2);
 
-            assertTrue("La tercera esquina (bottomleft)  centro:" + p + " alto:" + alto + " ancho:" + ancho + " deberia ser " + expected + ":" + esquinas[2],
+            assertTrue("La tercera esquina (bottomleft)  de " + r + " deberia ser " + expected + ":" + esquinas[2],
                     equals(expected, esquinas[2]));
         }
     }
@@ -290,7 +290,7 @@ public class RectanguloTest {
             Punto[] esquinas = r.getEsquinas();
             Punto expected = createPunto(p.getX() + ancho / 2, p.getY() - alto / 2);
 
-            assertTrue("La cuarta esquina (bottomrigth)  centro:" + p + " alto:" + alto + " ancho:" + ancho + " deberia ser " + expected + ":" + esquinas[3],
+            assertTrue("La cuarta esquina (bottomrigth)  de " + r + " deberia ser " + expected + ":" + esquinas[3],
                     equals(expected, esquinas[3]));
         }
     }
