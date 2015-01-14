@@ -3,9 +3,13 @@ package herencia.animales;
 public class MainDeAnimales {
 
 	public static void main(String[] args) {
-		Pelicano pe = new Pelicano("lolo");
-		Pinguino pi = new Pinguino("chili willi");
-		System.out.println( pe );
-		System.out.println( pi );
+		Pelicano pelicano = new Pelicano("lolo");
+		//Animal pinguino = new Pelicano("lolo");
+		String pinguino = "hola";
+		//System.out.println( pelicano );
+		//System.out.println( pinguino );
+		
+		//System.out.println( "==:" + (pinguino==pelicano) );
+		System.out.println( "equals:" + pelicano.equals(pinguino) );
 	}
 }
