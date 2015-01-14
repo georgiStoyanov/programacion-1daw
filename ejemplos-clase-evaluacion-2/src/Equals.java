@@ -31,7 +31,7 @@ public class Equals {
 			String mes = in.nextLine().toLowerCase();
 
 			int i = buscaEnArray(meses, mes);
-			if( i > 0 ){
+			if( i >= 0 ){
 				return meses[i];
 			}
 			
@@ -43,7 +43,7 @@ public class Equals {
 
 	public static int diasDeMes(String mes) {
 		int i = buscaEnArray(meses, mes);
-		if( i > 0 ){
+		if( i >= 0 ){
 			return diasDeMes[i];
 		}
 		throw new IllegalArgumentException();
