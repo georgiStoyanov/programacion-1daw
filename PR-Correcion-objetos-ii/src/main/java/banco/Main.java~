@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-        TerminalBancario banco = new TerminalBancario();
+        TerminalBancario banco = new Ter
         
         Pantalla salir = new Pantalla("Salir del programa"){
             @Override

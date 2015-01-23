@@ -65,7 +65,7 @@ public class Lista{
         String ret = "";
         for( int i = 0 ; i < getNumero() ; i++ ){
             ret += getObjeto(i).toString();
-            if( i < getNumero() - 1 ){
+            if( i < numero() - 1 ){
                 ret += " , ";
             }
         }

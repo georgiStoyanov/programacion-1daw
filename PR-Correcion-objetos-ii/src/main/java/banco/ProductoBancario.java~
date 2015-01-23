@@ -57,6 +57,6 @@ public class ProductoBancario{
           return false;
        }
        ProductoBancario pb = (ProductoBancario)o;
-       return pb.getTitular().equals( getTitular() ) && pb.getCodigo() == getCodigo() && pb.getClass().equals( getClass() );
+       return o.getTitular().equals( getTitular() ) && o.getCodigo() == getCodigo() && o.getClass().equals( getClass() );
     }
 }

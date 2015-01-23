@@ -60,13 +60,6 @@ public abstract class Menu extends Pantalla{
     
     public void render( PrintStream out ){
         out.println( "Menu de " + nombre().toUpperCase() );
-
-        String[] cs = cabecera();
-        for( int i = 0 ; i < cs.length ; i++ ){
-            out.println( cs[i] );
-        }
-
-
         Opcion[] ops = opciones();
         for( int i = 0 ; i < ops.length ; i++ ){
             out.printf( "%d .- %s\n", i, ops[i].nombre() );
