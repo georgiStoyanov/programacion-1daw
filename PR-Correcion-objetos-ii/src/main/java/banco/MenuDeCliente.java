@@ -37,11 +37,12 @@ public class MenuDeCliente extends Menu {
         @Override 
         public Opcion[] opciones(){
             Lista productos = _terminal.productosDeTitular(_titular);
-            Opcion[] ret = new Opcion[productos.getNumero()+1];
+            Opcion[] ret = new Opcion[productos.getNumero()+2];
             for( int i = 0 ; i < productos.getNumero() ; i++ ){
                 ProductoBancario pb = (ProductoBancario) productos.getObjeto(i);
-                ret[i] = new Opcion( new PantallaDeProducto(MenuDeCliente.this, _terminal, pb) );
+                ret[i] = new Opcion( new PantallaDeProducto(MenuTitular.this, _terminal, pb) );
             }
+            ret[ret.length-2] = new Opcion( "Crear un producto", new PantallaCrearProducto(MenuTitular.this,_titular,_terminal) );
             ret[ret.length-1] = new Opcion( "Pantalla anterior", MenuDeCliente.this );
             return ret;
         }

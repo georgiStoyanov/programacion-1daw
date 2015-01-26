@@ -4,14 +4,16 @@ package banco;
 public abstract class NumericOptionMenu extends Menu {
 
     private Opcion[] _opciones;
+    private String[] _cabecera;
 
-    public NumericOptionMenu( Opcion[] os) {
+    public NumericOptionMenu( String cabecera[], Opcion[] os) {
         _opciones = os;
+        _cabecera = cabecera;
     }
 
     @Override
     public String[] cabecera(){
-        return new String[0];
+        return _cabecera;   
     }
 
 

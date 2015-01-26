@@ -28,7 +28,7 @@ public class Main {
 
         Pantalla clientes = new MenuDeCliente(null, banco);
 
-        NumericOptionMenu root = new NumericOptionMenu(new Opcion[] {
+        NumericOptionMenu root = new NumericOptionMenu( new String[]{ "Q U I S I E R A   S E R   M I   B A N C O" }, new Opcion[] {
                 new Opcion(clientes),
                 new Opcion(salir)
         }) {
@@ -47,7 +47,7 @@ public class Main {
         TerminalBancario ret = new TerminalBancario();
 
         Random r = new Random();
-        String[] titulares = { "Alvaro", "Pepe", "Maria" };
+        String[] titulares = { "Alvaro", "Felipe", "Alejandra", "Eugenio", "Josefa" };
         for (String titular : titulares) {
             Cuenta c = ret.creaCuenta(titular);
             c.movimientoSaldo(r.nextInt(1000));
