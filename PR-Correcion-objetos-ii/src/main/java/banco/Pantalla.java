@@ -5,15 +5,7 @@ import java.util.Scanner;
 
 public abstract class Pantalla {
     
-    private String _nombre;
-
-    public Pantalla( String nombre ){
-        _nombre = nombre;
-    }
-    
-    public String nombre(){
-        return _nombre;
-    }
+    abstract public String nombre();
     
     abstract public Pantalla execute( Scanner in, PrintStream out );
     

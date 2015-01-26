@@ -76,6 +76,7 @@ public class TerminalBancario{
     public Cuenta creaCuenta(String titular){
        int codigo = codigoLibrePara(titular);
        Cuenta ret = new Cuenta( titular, codigo );
+       _productos.agrega(ret);
        return ret;
     }
 
@@ -87,6 +88,7 @@ public class TerminalBancario{
     public TarjetaDeCredito creaTarjeta(String titular){
        int codigo = codigoLibrePara(titular);
        TarjetaDeCredito ret = new TarjetaDeCredito( titular, codigo );
+       _productos.agrega(ret);
        return ret;    
     }
 
@@ -97,6 +99,7 @@ public class TerminalBancario{
     public Deposito creaDeposito(String titular, double saldo){
        int codigo = codigoLibrePara(titular);
        Deposito ret = new Deposito( titular, codigo, saldo );
+       _productos.agrega(ret);
        return ret;
     }
 }

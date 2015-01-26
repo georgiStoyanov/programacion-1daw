@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 public abstract class Menu extends Pantalla{
     
+    private static int ALTO = 20;
+    private static int ANCHO = 80;
+    
     public static class Opcion{
         private Pantalla _accion;
         private String _msg;
@@ -30,10 +33,6 @@ public abstract class Menu extends Pantalla{
 
     private Opcion[] _opciones;
     
-    public Menu( String nombre){
-        super(nombre);
-    }
-
     protected int readOption(Scanner in, PrintStream out, int min, int max) {
         int ret;
         do {
@@ -59,21 +58,68 @@ public abstract class Menu extends Pantalla{
     abstract public String[] cabecera();
     
     public void render( PrintStream out ){
-        out.println( "Menu de " + nombre().toUpperCase() );
+        borrarPantalla(out);
+        inicioMarco( nombre(), out );
+
+        lineaEnMarco( " ", out );
 
         String[] cs = cabecera();
-        for( int i = 0 ; i < cs.length ; i++ ){
-            out.println( cs[i] );
+        for( int i = 0 ; cs != null && i < cs.length ; i++ ){
+            lineaEnMarco( cs[i], out );
         }
 
+        lineaEnMarco( " ", out );
 
         Opcion[] ops = opciones();
         for( int i = 0 ; i < ops.length ; i++ ){
-            out.printf( "%d .- %s\n", i, ops[i].nombre() );
+            lineaEnMarco( String.format( "%d .- %s", i, ops[i].nombre()), out );
         }
+
+        lineaEnMarco( " ", out );
+
+        
+        
+        finMarco(out);
+        
+        out.println();
+        out.println();
+        out.println();
     }
     
+    private void lineaEnMarco( String s, PrintStream out ){
+        int anchoInterior = ANCHO-4;
+        String linea = String.format( "|  %-" + (anchoInterior) + "s |", s.substring(0, Math.min(anchoInterior,s.length())) );
+        out.println( linea );
+    }
 
+    private void inicioMarco( String s, PrintStream out ){
+        int margen = (ANCHO - s.length())/2;
+        String linea = "/";
+        for( int i = 0 ; i < margen-2 ; i++ ){
+            linea += "-";
+        }
+        linea += " " + s.toUpperCase() + " ";
+        for( int i = 0 ; linea.length() < ANCHO-1 ; i++ ){
+            linea += "-";
+        }
+        linea += "\\";
+        out.println( linea );
+    }
+
+    private void finMarco( PrintStream out ){
+        out.print( "\\" );
+        for( int i = 0 ; i < ANCHO-2; i++ ){
+            out.print( "-" );
+        }
+        out.println( "/");
+    }
+
+    
+    private void borrarPantalla(PrintStream out) {
+        for( int i = 0 ; i < ALTO*2 ; i++ ){
+            out.println();
+        }
+    }
 
     @Override
     public Pantalla execute(Scanner in, PrintStream out) {
