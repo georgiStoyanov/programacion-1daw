@@ -12,3 +12,6 @@ Es necesario configurar el proxy. Para ello, se ejecutará:
 El proxy también se puede configurar en el fichero `/etc/environment`
 
 Para actualizar el código, cada alumno deberá utilizar el comando `git pull` en su directorio `~/programacion-1daw`
+
+
+Para manejar información sensible, https://help.github.com/articles/remove-sensitive-data/
