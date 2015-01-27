@@ -3,7 +3,7 @@ package banco;
 /**
  * 
  */
-public class ProductoBancario {
+public abstract class ProductoBancario {
 
     private String _titular;
     private int _codigo;
