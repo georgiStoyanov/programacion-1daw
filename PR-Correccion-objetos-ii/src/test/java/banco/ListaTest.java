@@ -229,4 +229,28 @@ public class ListaTest {
             assertTrue( "La excepcion " + msg + " no deberia ser " + e, exactamenteIndexOutOfBounds(e) );
         }
     }
+    
+    @Test
+    public void toStringDeListaVacia(){
+        Lista l = new Lista();
+        assertTrue( "toString de una lista vacia debe ser \"\" ", l.toString().trim().equals("") );
+    }
+
+    @Test
+    public void toStringDeListaConUnElemento(){
+        Lista l = new Lista();
+        l.agrega( "Hola" );
+        assertTrue( "toString de una lista con Hola debe ser Hola ", l.toString().trim().equals("Hola") );
+    }
+
+    @Test
+    public void toStringDeListaConTresElementos(){
+        Lista l = new Lista();
+        l.agrega( "Hola" );
+        l.agrega( "Que" );
+        l.agrega( "Tal" );
+        String regexp = " *Hola *, *Que *, *Tal *";
+        assertTrue( "toString de una lista con Hola,Que,Tal debe ser Hola,Que,Tal", l.toString().matches(regexp) );
+    }
+
 }
