@@ -10,6 +10,10 @@ task wrapper(type: Wrapper) {
     gradleVersion = '1.6'
 }
 
+dependencies {
+    testCompile 'junit:junit:4.10'
+}
+
 mainClassName = 'banco.Main'
 
 run{
