@@ -207,4 +207,26 @@ public class ListaTest {
     }
     
 
+    @Test
+    public void caben1000Elementos(){
+        Lista l = new Lista();
+        for( int i = 0 ; i < 1000; i++ ){
+            l.agrega( new Object() );
+        }
+    }
+
+    @Test
+    public void noCaben1001Elementos(){
+        String msg = " al insertar 1001 elementos ";
+        try{
+            Lista l = new Lista();
+            for( int i = 0 ; i < 1001; i++ ){
+                l.agrega( new Object() );
+            }
+            fail( "No se ha producido excepcion " + msg );
+        }
+        catch( IndexOutOfBoundsException e ){
+            assertTrue( "La excepcion " + msg + " no deberia ser " + e, exactamenteIndexOutOfBounds(e) );
+        }
+    }
 }
