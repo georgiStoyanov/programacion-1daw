@@ -1,6 +1,8 @@
 package banco;
 
+import java.io.PrintStream;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class MenuDeCliente extends Menu {
 
@@ -12,13 +14,16 @@ public class MenuDeCliente extends Menu {
         _anterior = anterior;
     }
 
-    private String[] getTitulares(){
-        HashSet<String> s = new HashSet<String>();
+    private Lista getTitulares(){
+        Lista ret = new Lista();
         Lista l = _terminal.getProductos();
         for( int i = 0 ; i < l.getNumero() ; i++ ){
-            s.add( ((ProductoBancario)l.getObjeto(i)).getTitular() );
+            String titular = ((ProductoBancario)l.getObjeto(i)).getTitular();
+            if( ret.indiceDe(titular) == -1 ){
+                ret.agrega(titular);
+            }
         }
-        return s.toArray(new String[0]);
+        return ret;
     }
     
 
@@ -59,15 +64,32 @@ public class MenuDeCliente extends Menu {
         return new String[]{ "Estos son todos los clientes existentes en el banco" };
     }
 
+    private class PantallaNuevoCliente extends Pantalla{
+
+        @Override
+        public String nombre() {
+            return "Crear producto para nuevo titular";
+        }
+
+        @Override
+        public Pantalla execute(Scanner in, PrintStream out) {
+            out.print( "Nombre del nuevo titular:" );
+            String nuevo = in.nextLine();
+            return new MenuTitular(nuevo);
+        }
+        
+    }
+    
     @Override 
     public Opcion[] opciones(){
-        String[] titulares = getTitulares();
-        Opcion[] ret = new Opcion[titulares.length+1];
-        for( int i = 0 ; i < titulares.length ; i++ ){
-            String t = titulares[i];
+        Lista titulares = getTitulares();
+        Opcion[] ret = new Opcion[titulares.getNumero()+2];
+        for( int i = 0 ; i < titulares.getNumero() ; i++ ){
+            String t = (String) titulares.getObjeto(i);
             ret[i] = new Opcion(t, new MenuTitular(t));
         }
-        ret[titulares.length] = new Opcion( "Volver al menú anterior", _anterior );
+        ret[titulares.getNumero()] = new Opcion(  new PantallaNuevoCliente() );
+        ret[titulares.getNumero()+1] = new Opcion( "Volver al menú anterior", _anterior );
 
         return ret;
     }
