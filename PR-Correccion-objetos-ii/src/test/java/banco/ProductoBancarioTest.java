@@ -172,7 +172,7 @@ public class ProductoBancarioTest {
         b.movimientoSaldo(100);
         b.movimientoSaldo(-1);
         b.movimientoSaldo(-199);
-        assertTrue("El saldo tras 100, 100 ,-1 m -199 deberia ser 0: " + b, b.getSaldo() == 0);
+        assertTrue("El saldo tras 100, 100 ,-1 , -199 deberia ser 0: " + b, b.getSaldo() == 0);
      }
 
 }
