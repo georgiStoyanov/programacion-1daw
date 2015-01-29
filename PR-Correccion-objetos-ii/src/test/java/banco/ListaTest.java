@@ -156,7 +156,7 @@ public class ListaTest {
 
     @Test
     public void accederACeroEnListaVacia(){
-        String msg = "al acceder a debajo de cero en lista vacia";
+        String msg = "al acceder a cero en lista vacia";
         try{
             new Lista().getObjeto(0);
             fail( "No se ha producido excepcion " + msg );
@@ -251,6 +251,26 @@ public class ListaTest {
         l.agrega( "Tal" );
         String regexp = " *Hola *, *Que *, *Tal *";
         assertTrue( "toString de una lista con Hola,Que,Tal debe ser Hola,Que,Tal", l.toString().matches(regexp) );
+    }
+
+    @Test
+    public void toStringDeListaConNull(){
+        Lista l = new Lista();
+        l.agrega( "Hola" );
+        l.agrega( "null" );
+        l.agrega( "Tal" );
+        String regexp = " *Hola *, *null *, *Tal *";
+        assertTrue( "toString de una lista con Hola,Que,Tal debe ser Hola,Que,Tal", l.toString().matches(regexp) );
+    }
+
+    @Test
+    public void sePuedeMeterUnNull(){
+    	Lista l = new Lista();
+    	l.agrega( "Hola");
+    	l.agrega( null );
+    	l.agrega( "Tal");
+    	assertTrue( "El segundo elemento deberia ser null, que es lo que se agrego:" + l, l.getObjeto(1) == null );
+    	assertTrue( "Tras agregar Hola, null, Tal deberia haber tres elementos" + l, l.getNumero() == 3 );
     }
 
 }

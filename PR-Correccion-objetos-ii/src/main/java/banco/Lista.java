@@ -80,7 +80,7 @@ public class Lista{
     public String toString(){
         String ret = "";
         for( int i = 0 ; i < getNumero() ; i++ ){
-            ret += getObjeto(i).toString();
+            ret += String.valueOf( getObjeto(i) );
             if( i < getNumero() - 1 ){
                 ret += " , ";
             }
