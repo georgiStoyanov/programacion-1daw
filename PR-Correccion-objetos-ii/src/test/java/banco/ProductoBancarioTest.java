@@ -17,6 +17,24 @@ public class ProductoBancarioTest {
     }
 
     @Test
+    public void equalsCuentaString() {
+        ProductoBancario c = new Cuenta("a", 0);
+        assertTrue( "Una cuenta y un String no deben ser iguales", !c.equals("hola") );
+    }
+
+    @Test
+    public void equalsDepositoString() {
+    	ProductoBancario c = new Deposito("a", 0, 10 );
+        assertTrue( "Una cuenta y un String no deben ser iguales", !c.equals("hola") );
+    }
+
+    @Test
+    public void equalsTarjetaString() {
+    	ProductoBancario c = new TarjetaDeCredito("a", 0);
+        assertTrue( "Una cuenta y un String no deben ser iguales", !c.equals("hola") );
+    }
+    
+    @Test
     public void equalsCuentaDepositoTrue() {
         Cuenta c = new Cuenta("a", 0);
         Deposito d = new Deposito("a", 0, 1);
