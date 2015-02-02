@@ -1,14 +1,17 @@
 package banco;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.lang.reflect.Modifier;
-import java.util.Date;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class ProductoBancarioTest {
+	
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void productoBancarioDebeSerAbstract() {
@@ -114,39 +117,53 @@ public class ProductoBancarioTest {
         assertTrue("El saldo inicial se puso a 100:" + d , d.getSaldo() == 100);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void elDepositoNoSeCreaConSaldoNegativo() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "No se debe crear un deposito con saldo negativo" );
         new Deposito("a", 0, -1);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void elDepositoNoSePuedeModificarPositivo1() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "No se debe modificar el saldo de un deposito" );
         new Deposito("a", 0, 0).movimientoSaldo(1);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void elDepositoNoSePuedeModificarPositivo2() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "No se debe modificar el saldo de un deposito" );
         new Deposito("a", 0, 10).movimientoSaldo(1);
     }
 
     
-    @Test(expected = Exception.class)
+    @Test
     public void elDepositoNoSePuedeModificarNegativo1() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "No se debe modificar el saldo de un deposito" );
         new Deposito("a", 0, 0).movimientoSaldo(-1);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void elDepositoNoSePuedeModificarNegativo2() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "No se debe modificar el saldo de un deposito" );
         new Deposito("a", 0, 10).movimientoSaldo(-1);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void laCuentaNoPuedeTenerDescubierto() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "La cuenta no puede tener descubierto" );
         new Cuenta("a", 0).movimientoSaldo(-1);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void laTarjetaNoPuedeModificarPositivo() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "La tarjeta no puede tener movimientos positivos" );
         new TarjetaDeCredito("a", 0).movimientoSaldo(1);
     }
 
@@ -158,8 +175,10 @@ public class ProductoBancarioTest {
         assertTrue("El saldo tras -1 y -1 deberia ser -2: " + b, b.getSaldo() == -2);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void laTarjetaSoloPuedeModificarNegativo() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "La tarjeta no puede tener movimientos positivos" );
         ProductoBancario b = new TarjetaDeCredito("a", 0);
         b.movimientoSaldo(-100);
         b.movimientoSaldo(1);
@@ -173,8 +192,11 @@ public class ProductoBancarioTest {
         assertTrue("El saldo tras 100 y -1 deberia ser 99: " + b, b.getSaldo() == 99);
     }
 
-    @Test(expected = Exception.class)
+    @Test
     public void laCuentaPuedeModificarPositivoYNegativoPeroNoDescubierto() {
+    	thrown.expect( Exception.class );
+    	//thrown.expectMessage( "La cuenta no puede tener descubiertos" );
+    	
         ProductoBancario b = new Cuenta("a", 0);
         b.movimientoSaldo(100);
         b.movimientoSaldo(100);
