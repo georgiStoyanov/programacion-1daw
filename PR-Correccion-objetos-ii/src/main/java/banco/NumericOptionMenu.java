@@ -1,20 +1,19 @@
 package banco;
 
-import java.io.PrintStream;
-import java.util.Scanner;
 
-public class NumericOptionMenu extends Menu {
+public abstract class NumericOptionMenu extends Menu {
 
     private Opcion[] _opciones;
+    private String[] _cabecera;
 
-    public NumericOptionMenu(String c, Opcion[] os) {
-        super(c);
+    public NumericOptionMenu( String cabecera[], Opcion[] os) {
         _opciones = os;
+        _cabecera = cabecera;
     }
 
     @Override
     public String[] cabecera(){
-        return new String[0];
+        return _cabecera;   
     }
 
 

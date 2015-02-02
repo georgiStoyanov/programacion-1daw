@@ -9,8 +9,11 @@ public class Deposito extends ProductoBancario{
     /**
      *
      */
-    public Deposito( String titular, int codigo, doule saldo ){
-        super(titular,codigo);    
+    public Deposito( String titular, int codigo, double saldo ){
+        super(titular,codigo);
+        if( saldo < 0 ){
+            throw new IllegalArgumentException();
+        }
         super.movimientoSaldo( saldo );
     }
 

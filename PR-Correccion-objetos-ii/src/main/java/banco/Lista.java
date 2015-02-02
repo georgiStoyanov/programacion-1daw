@@ -43,6 +43,22 @@ public class Lista{
         ultimo += 1;
         array[ultimo] = o;
     }
+    
+    /**
+     * 
+     * Busca con equals el objeto en la lista
+     * @return El indice del objeto en la lista, o -1 si no esta contenido.
+     */
+    public int indiceDe( Object o ){
+        for (int i = 0; i < getNumero(); i++) {
+            Object elem = getObjeto(i);
+            if( o.equals(elem) ){
+                return i;
+            }
+            
+        }
+        return -1;
+    }
 
     /**
      * Borra un objeto de la lista. El hueco se rellena moviendo una unidad a la izquierda los objetos de indice mayor
@@ -64,11 +80,13 @@ public class Lista{
     public String toString(){
         String ret = "";
         for( int i = 0 ; i < getNumero() ; i++ ){
-            ret += getObjeto(i).toString();
-            if( i < numero() - 1 ){
+            ret += String.valueOf( getObjeto(i) );
+            if( i < getNumero() - 1 ){
                 ret += " , ";
             }
         }
         return ret;
     }
+    
+    
 }

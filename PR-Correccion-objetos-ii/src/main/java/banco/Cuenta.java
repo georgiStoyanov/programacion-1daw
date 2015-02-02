@@ -4,12 +4,12 @@ package banco;
 /**
  * 
  */
-public class TarjetaDeCredito extends ProductoBancario{
+public class Cuenta extends ProductoBancario{
 
     /**
      *
      */
-    public TarjetaDeCredito( String titular, int codigo ){
+    public Cuenta( String titular, int codigo ){
         super(titular,codigo);    
     }
 
@@ -18,8 +18,9 @@ public class TarjetaDeCredito extends ProductoBancario{
      */
     @Override
     public void movimientoSaldo( double movimiento ){
-        if( movimiento > 0 ){
-            throw IllegalArgumentException();
+        double saldo = getSaldo();
+        if( saldo + movimiento < 0 ){
+            throw new IllegalArgumentException();
         }
         super.movimientoSaldo(movimiento);
     }
