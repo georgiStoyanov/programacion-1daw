@@ -264,7 +264,7 @@ public class ListaTest {
     }
 
     @Test
-    public void sePuedeMeterUnNull(){
+    public void seDebePoderMeterUnNull(){
     	Lista l = new Lista();
     	l.agrega( "Hola");
     	l.agrega( null );
