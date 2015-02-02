@@ -26,11 +26,26 @@ public abstract class Animal {
 	public final boolean viviparo() {
 		return !oviparo();
 	}
-	
 
 	@Override
 	public String toString() {
 		return String.format(" %s : vuela: %b , caliente: %b , oviparo: %b ",
 				getNombre(), vuela(), sangreCaliente(), oviparo());
+	}
+
+	@Override
+	public boolean equals(Object o) {
+
+		
+		if (!(o instanceof Animal)) {
+			// Un animal no puede ser igual a un objeto que no sea animal
+			return false;
+		}
+		
+		Animal animal = (Animal) o; // Funciona porque nos hemos asegurado que
+									// es un Animal
+		boolean mismoNombre = animal.getNombre().equals(getNombre());
+		boolean mismaEspecie = animal.getEspecie().equals(getEspecie());
+		return mismoNombre && mismaEspecie;
 	}
 }
