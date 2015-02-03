@@ -11,15 +11,43 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class Estadistica {
 
     
+    private Map<String,Integer> _numeroDePartidosGanadosPorEquipo = new HashMap<String,Integer>();
+
     /**
      * Añade más datos a la estadística
      * @param partido
      * @param goles
      */
     public void agregaPartido( Partido partido, List<Gol> goles ){
-        throw new NotImplementedException();
+        actualizaNumeroDePartidosGanadosPorEquipo(partido,goles);
     }
     
+    private void actualizaNumeroDePartidosGanadosPorEquipo(Partido partido, List<Gol> goles) {
+        String local = partido.equipoLocal();
+        String visitante = partido.equipoVisitante();
+        String ganador = equipoGanador(partido, goles);
+        
+        int partidosGanadosLocal = 0;
+        if( _numeroDePartidosGanadosPorEquipo.containsKey(local) ){
+            partidosGanadosLocal = _numeroDePartidosGanadosPorEquipo.get(local);
+        }
+
+        int partidosGanadosVisitante = 0;
+        if( _numeroDePartidosGanadosPorEquipo.containsKey(visitante) ){
+            partidosGanadosVisitante = _numeroDePartidosGanadosPorEquipo.get(visitante);
+        }
+         
+        if(local.equals(ganador) ){
+            partidosGanadosLocal += 1;
+        }
+        if(visitante.equals(ganador) ){
+            partidosGanadosVisitante += 1;
+        }
+        
+        _numeroDePartidosGanadosPorEquipo.put( local, partidosGanadosLocal );
+        _numeroDePartidosGanadosPorEquipo.put( visitante, partidosGanadosVisitante );
+    }
+
     /**
      * 
      * @param partido
@@ -62,7 +90,7 @@ public class Estadistica {
      * @return Un mapa que tiene como clave un nombre de equipo y como valor el número de partidos que ha ganado
      */
     public Map<String,Integer> numeroDePartidosGanadosPorEquipo(){
-        throw new NotImplementedException();
+        return Collections.unmodifiableMap( _numeroDePartidosGanadosPorEquipo  );
     }
     
     /**
