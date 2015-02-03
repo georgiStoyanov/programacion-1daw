@@ -1,7 +1,10 @@
 package futbol;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -24,7 +27,34 @@ public class Estadistica {
      * @return El nombre del equipo ganador, o la cadena vacía si se produjo empate
      */
     public String equipoGanador( Partido partido, List<Gol> goles ){
-        throw new NotImplementedException();
+        
+        if( goles.size() == 0 ){
+            return "";
+        }
+        
+        Map<String,Integer> equipoToGoles = new HashMap<String,Integer>();
+        
+        for( Gol g: goles ){
+            String equipo = g.equipoMarcador();
+            int golesAcumulados = 0;
+            if( equipoToGoles.containsKey(equipo) ){
+                golesAcumulados = equipoToGoles.get(equipo);
+            }
+            equipoToGoles.put(equipo, golesAcumulados+1);
+        }
+        
+        int maxGoles = Collections.max( equipoToGoles.values() );
+        int equiposConMaxGoles = Collections.frequency(equipoToGoles.values(), maxGoles);
+        if( equiposConMaxGoles > 1 ){
+            return "";
+        }
+        
+        for( Entry<String, Integer> a: equipoToGoles.entrySet() ){
+            if( a.getValue().equals(maxGoles) ){
+                return a.getKey();
+            }
+        }
+        throw new IllegalStateException();
     }
     
     /**
