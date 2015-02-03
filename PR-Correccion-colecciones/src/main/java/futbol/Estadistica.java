@@ -2,6 +2,7 @@ package futbol;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -46,10 +47,10 @@ public class Estadistica {
     
     /**
      * 
-     * @return Un mapa que tiene como clave un nombre de equipo y como valor una lista de sus jugadores que hayan marcado un gol.
-     *          Si no ha marcado ningún gol, será una lista vacía.
+     * @return Un mapa que tiene como clave un nombre de equipo y como valor una conjunto de sus jugadores que hayan marcado un gol.
+     *          Si no ha marcado ningún gol, será un conjunto vacía.
      */
-    public Map<String,List<String>> goleadoresPorEquipo(){
+    public Map<String,Set<String>> goleadoresPorEquipo(){
         throw new NotImplementedException();
     }
     
