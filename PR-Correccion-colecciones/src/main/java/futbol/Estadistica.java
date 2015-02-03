@@ -12,6 +12,7 @@ public class Estadistica {
 
     
     private Map<String,Integer> _numeroDePartidosGanadosPorEquipo = new HashMap<String,Integer>();
+    private Map<String, Integer> _numeroDeGolesMarcadosPorJugador = new HashMap<String,Integer>();
 
     /**
      * Añade más datos a la estadística
@@ -20,8 +21,23 @@ public class Estadistica {
      */
     public void agregaPartido( Partido partido, List<Gol> goles ){
         actualizaNumeroDePartidosGanadosPorEquipo(partido,goles);
+        actualizaNumeroDeGolesMarcadosPorJugador(partido,goles);
     }
     
+    private void actualizaNumeroDeGolesMarcadosPorJugador(Partido partido, List<Gol> goles) {
+        
+        for( Gol g: goles ){
+            String jugador = g.jugador();
+            int golesDeJugador = 0;
+            if( _numeroDeGolesMarcadosPorJugador.containsKey(jugador) ){
+                golesDeJugador = _numeroDeGolesMarcadosPorJugador.get(jugador);
+            }
+            golesDeJugador += 1;
+            _numeroDeGolesMarcadosPorJugador.put(jugador,golesDeJugador);
+        }
+        
+    }
+
     private void actualizaNumeroDePartidosGanadosPorEquipo(Partido partido, List<Gol> goles) {
         String local = partido.equipoLocal();
         String visitante = partido.equipoVisitante();
@@ -98,7 +114,7 @@ public class Estadistica {
      * @return Un mapa que tiene como clave un nombre de jugador y como valor el número de goles que ha marcado
      */
     public Map<String,Integer> numeroDeGolesMarcadosPorJugador(){
-        throw new NotImplementedException();
+        return Collections.unmodifiableMap(_numeroDeGolesMarcadosPorJugador);
     }
     
     
