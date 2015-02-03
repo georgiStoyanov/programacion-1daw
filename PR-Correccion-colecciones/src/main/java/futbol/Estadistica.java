@@ -73,5 +73,14 @@ public class Estadistica {
     public List<String> clasificacionPichichi(){
         throw new NotImplementedException();
     }
+    
+    /**
+     * 
+     * @return Un mapa con clave el minuto de partido (0 a ???), 
+     *   		y con valores la lista de goles metidos en ese minutos 
+     */
+    public Map<Integer,List<Gol>> golesPorMinutoDePartido(){
+    	throw new NotImplementedException();
+    }
 
 }
