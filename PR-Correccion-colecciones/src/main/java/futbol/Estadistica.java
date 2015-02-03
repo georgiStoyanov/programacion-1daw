@@ -1,6 +1,8 @@
 package futbol;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +18,7 @@ public class Estadistica {
     private Map<String,Integer> _numeroDePartidosGanadosPorEquipo = new HashMap<String,Integer>();
     private Map<String, Integer> _numeroDeGolesMarcadosPorJugador = new HashMap<String,Integer>();
     private Map<String,Set<String>> _goleadoresPorEquipo = new HashMap<String,Set<String>>();
+    private List<String> _clasificacionEquipos = new ArrayList<String>();
 
     /**
      * Añade más datos a la estadística
@@ -26,8 +29,31 @@ public class Estadistica {
         actualizaNumeroDePartidosGanadosPorEquipo(partido,goles);
         actualizaNumeroDeGolesMarcadosPorJugador(partido,goles);
         actualizaGoleadoresPorEquipo(partido,goles);
+        actualizaClasificacionEquipos();
     }
     
+    private void actualizaClasificacionEquipos() {
+        Comparator<String> comparadorEquipos = new Comparator<String>(){
+
+            @Override
+            public int compare(String eq1, String eq2) {
+                int ret = _numeroDePartidosGanadosPorEquipo.get(eq2).intValue() - _numeroDePartidosGanadosPorEquipo.get(eq1).intValue();
+                System.out.println( eq1 + " -- " + eq2 );
+                System.out.println( _numeroDePartidosGanadosPorEquipo.get(eq1) + " -- " + _numeroDePartidosGanadosPorEquipo.get(eq2) );
+                if( ret == 0 ){
+                    ret = eq1.compareTo(eq2);
+                }System.out.println( "ret:" + ret + "\n" );
+                return ret;
+            }
+            
+        };
+        
+        List<String> ret = new ArrayList<String>(_numeroDePartidosGanadosPorEquipo.keySet());
+        Collections.sort(ret,comparadorEquipos);
+        _clasificacionEquipos.clear();
+        _clasificacionEquipos.addAll( ret );
+    }
+
     private void actualizaGoleadoresPorEquipo(Partido partido, List<Gol> goles) {
         if( !_goleadoresPorEquipo.containsKey(partido.equipoLocal()) ){
             _goleadoresPorEquipo.put( partido.equipoLocal(), new HashSet<String>() );
@@ -160,7 +186,7 @@ public class Estadistica {
      * - Orden alfabético del nombre del equipo
      */
     public List<String> clasificacionEquipos(){
-        throw new NotImplementedException();
+        return Collections.unmodifiableList( _clasificacionEquipos  );
     }
 
     /**
