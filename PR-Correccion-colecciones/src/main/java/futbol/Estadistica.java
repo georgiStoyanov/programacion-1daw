@@ -2,9 +2,11 @@ package futbol;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -13,6 +15,7 @@ public class Estadistica {
     
     private Map<String,Integer> _numeroDePartidosGanadosPorEquipo = new HashMap<String,Integer>();
     private Map<String, Integer> _numeroDeGolesMarcadosPorJugador = new HashMap<String,Integer>();
+    private Map<String,Set<String>> _goleadoresPorEquipo = new HashMap<String,Set<String>>();
 
     /**
      * Añade más datos a la estadística
@@ -22,8 +25,31 @@ public class Estadistica {
     public void agregaPartido( Partido partido, List<Gol> goles ){
         actualizaNumeroDePartidosGanadosPorEquipo(partido,goles);
         actualizaNumeroDeGolesMarcadosPorJugador(partido,goles);
+        actualizaGoleadoresPorEquipo(partido,goles);
     }
     
+    private void actualizaGoleadoresPorEquipo(Partido partido, List<Gol> goles) {
+        if( !_goleadoresPorEquipo.containsKey(partido.equipoLocal()) ){
+            _goleadoresPorEquipo.put( partido.equipoLocal(), new HashSet<String>() );
+        }
+        if( !_goleadoresPorEquipo.containsKey(partido.equipoVisitante()) ){
+            _goleadoresPorEquipo.put( partido.equipoVisitante(), new HashSet<String>() );
+        }
+        for( Gol g: goles) {
+            String jugador = g.jugador();
+            String equipo = g.equipoMarcador();
+            Set<String> goleadores;
+            if( _goleadoresPorEquipo.containsKey(equipo) ){
+                goleadores = _goleadoresPorEquipo.get(equipo);
+            }
+            else{
+                goleadores = new HashSet<String>();
+            }
+            goleadores.add(jugador);
+            _goleadoresPorEquipo.put(equipo, goleadores);
+        }
+    }
+
     private void actualizaNumeroDeGolesMarcadosPorJugador(Partido partido, List<Gol> goles) {
         
         for( Gol g: goles ){
@@ -123,8 +149,8 @@ public class Estadistica {
      * @return Un mapa que tiene como clave un nombre de equipo y como valor una lista de sus jugadores que hayan marcado un gol.
      *          Si no ha marcado ningún gol, será una lista vacía.
      */
-    public Map<String,List<String>> goleadoresPorEquipo(){
-        throw new NotImplementedException();
+    public Map<String,Set<String>> goleadoresPorEquipo(){
+        return Collections.unmodifiableMap( _goleadoresPorEquipo  );
     }
     
     /**
