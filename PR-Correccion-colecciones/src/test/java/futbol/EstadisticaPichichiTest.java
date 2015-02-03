@@ -1,7 +1,7 @@
 package futbol;
 
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,12 +9,8 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import futbol.Estadistica;
-import futbol.Gol;
-import futbol.Partido;
 
-public class EstadisticaClasificaionEquiposTest {
-
+public class EstadisticaPichichiTest {
     class GolI implements Gol {
 
         private String _equipo;
@@ -82,12 +78,12 @@ public class EstadisticaClasificaionEquiposTest {
     @Test
     public void ningunPartido(){
         Estadistica e = new Estadistica();
-        List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Sin datos no debería haber equipos en la clasificación", clasificacion.size() == 0 );
+        List<String> pichichis = e.clasificacionPichichi();
+        assertTrue( "Sin datos no debería haber pichichis:", pichichis.size() == 0 );
     }
 
     @Test
-    public void partidosEmpatados(){
+    public void goles1(){
         Estadistica e = new Estadistica();
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
@@ -98,14 +94,14 @@ public class EstadisticaClasificaionEquiposTest {
                 new GolI("barça","juan",1,partido2),
         }));
         
-        List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
-        List<String> esperada = Arrays.asList( new String[]{"barça",  "betis", "madrid", "sevilla" } );
-        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
+        List<String> pichichis = e.clasificacionPichichi();
+        assertTrue( "Debería haber 2 jugadores en pichichis", pichichis.size() == 2 );
+        List<String> esperada = Arrays.asList( new String[]{"juan","pepe" } );
+        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + pichichis, esperada.equals(pichichis) );
     }
 
     @Test
-    public void partidosEmpatadosConEquipoRepetido(){
+    public void goles2(){
         Estadistica e = new Estadistica();
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
@@ -122,31 +118,15 @@ public class EstadisticaClasificaionEquiposTest {
                 new GolI("betis","manolo",1,partido3),
         }));
 
-        List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
-        List<String> esperada = Arrays.asList( new String[]{"barça", "betis", "madrid", "sevilla" } );
-        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
+        List<String> pichichis = e.clasificacionPichichi();
+        assertTrue( "Debería haber 3 jugadores en pichichis", pichichis.size() == 3 );
+        List<String> esperada = Arrays.asList( new String[]{"pepe","juan","manolo" } );
+        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + pichichis, esperada.equals(pichichis) );
+
+        
     }
 
     
-    @Test
-    public void partidosGanadosSimple(){
-        Estadistica e = new Estadistica();
-        e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
-                
-        }));
-        PartidoI partido2 = new PartidoI("madrid", "barça", 0);
-        e.agregaPartido( partido2, Arrays.asList( new Gol[]{
-                new GolI("madrid","pepe",0,partido2),
-        }));
-
-        List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
-        List<String> esperada = Arrays.asList( new String[]{"madrid", "barça",  "betis", "sevilla" } );
-        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
-
-    }
-
     @Test
     public void partidosGanadosConEquipoRepetido(){
         Estadistica e = new Estadistica();
@@ -167,26 +147,29 @@ public class EstadisticaClasificaionEquiposTest {
                 new GolI("betis","manolo",2,partido3),
         }));
 
-        List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
-        List<String> esperada = Arrays.asList( new String[]{ "barça",  "betis", "madrid", "sevilla" } );
-        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
+        
+        List<String> pichichis = e.clasificacionPichichi();
+        assertTrue( "Debería haber 3 jugadores en pichichis", pichichis.size() == 3 );
+        List<String> esperada = Arrays.asList( new String[]{"juan","manolo","pepe" } );
+        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + pichichis, esperada.equals(pichichis) );
+
+        
     }
 
     @Test
-    public void laClasificacionEsInmutable(){
+    public void losGolesPorJugador(){
         Estadistica e = new Estadistica();
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
         }));
         try{
-            e.clasificacionEquipos().add("hola");
-            fail( "la clasificación de equipos no tiene sentido que se pueda modificar fuera de la clase Estadistica");
+            e.clasificacionPichichi().add("hola");
+            fail( "La estadística de goles por jugador no tiene sentido que se pueda modificar fuera de la clase Estadistica");
         }
         catch( UnsupportedOperationException ex ){
         }
         catch( Exception ex ){
-            fail( "¿no se usa Collection.unmodificableList() para hacer un List inmutable?");
+            fail( "¿no se usa Collection.unmodifiableList() para hacer un List inmutable?");
         }
     }
     
@@ -223,12 +206,13 @@ public class EstadisticaClasificaionEquiposTest {
                 new GolI("getafe","jesús",1,partido5),
                 new GolI("getafe","jesús",2,partido5),
         }));
+
+        List<String> pichichis = e.clasificacionPichichi();
+        assertTrue( "Debería haber 4 jugadores en pichichis", pichichis.size() == 4 );
+        List<String> esperada = Arrays.asList( new String[]{"jesús","manolo","pepe","juan" } );
+        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + pichichis, esperada.equals(pichichis) );
+
         
-        
-        List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 5 );
-        List<String> esperada = Arrays.asList( new String[]{ "getafe",  "barça", "betis", "madrid", "sevilla" } );
-        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
     }
 
     @Test
@@ -276,9 +260,13 @@ public class EstadisticaClasificaionEquiposTest {
                 new GolI("malaga","jose",2,partido6),
         }));
 
-        List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 6 );
-        List<String> esperada = Arrays.asList( new String[]{ "getafe",  "barça", "betis", "malaga", "madrid", "sevilla" } );
-        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
+
+        
+        List<String> pichichis = e.clasificacionPichichi();
+        assertTrue( "Debería haber 5 jugadores en pichichis", pichichis.size() == 5 );
+        List<String> esperada = Arrays.asList( new String[]{"jesús","manolo","pepe","jose","juan" } );
+        assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + pichichis, esperada.equals(pichichis) );
     }
+
+
 }

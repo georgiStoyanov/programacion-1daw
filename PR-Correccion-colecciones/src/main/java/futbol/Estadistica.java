@@ -19,6 +19,7 @@ public class Estadistica {
     private Map<String, Integer> _numeroDeGolesMarcadosPorJugador = new HashMap<String,Integer>();
     private Map<String,Set<String>> _goleadoresPorEquipo = new HashMap<String,Set<String>>();
     private List<String> _clasificacionEquipos = new ArrayList<String>();
+    private List<String> _clasificacionPichichi = new ArrayList<String>();;
 
     /**
      * Añade más datos a la estadística
@@ -30,6 +31,7 @@ public class Estadistica {
         actualizaNumeroDeGolesMarcadosPorJugador(partido,goles);
         actualizaGoleadoresPorEquipo(partido,goles);
         actualizaClasificacionEquipos();
+        actualizaClasificacionPichichi();
     }
     
     private void actualizaClasificacionEquipos() {
@@ -38,11 +40,9 @@ public class Estadistica {
             @Override
             public int compare(String eq1, String eq2) {
                 int ret = _numeroDePartidosGanadosPorEquipo.get(eq2).intValue() - _numeroDePartidosGanadosPorEquipo.get(eq1).intValue();
-                System.out.println( eq1 + " -- " + eq2 );
-                System.out.println( _numeroDePartidosGanadosPorEquipo.get(eq1) + " -- " + _numeroDePartidosGanadosPorEquipo.get(eq2) );
                 if( ret == 0 ){
                     ret = eq1.compareTo(eq2);
-                }System.out.println( "ret:" + ret + "\n" );
+                }
                 return ret;
             }
             
@@ -52,6 +52,26 @@ public class Estadistica {
         Collections.sort(ret,comparadorEquipos);
         _clasificacionEquipos.clear();
         _clasificacionEquipos.addAll( ret );
+    }
+
+    private void actualizaClasificacionPichichi() {
+        Comparator<String> comparadorPichichi = new Comparator<String>(){
+
+            @Override
+            public int compare(String eq1, String eq2) {
+                int ret = _numeroDeGolesMarcadosPorJugador.get(eq2) - _numeroDeGolesMarcadosPorJugador.get(eq1);
+                if( ret == 0 ){
+                    ret = eq1.compareTo(eq2);
+                }
+                return ret;
+            }
+            
+        };
+        
+        List<String> ret = new ArrayList<String>(_numeroDeGolesMarcadosPorJugador.keySet());
+        Collections.sort(ret,comparadorPichichi);
+        _clasificacionPichichi.clear();
+        _clasificacionPichichi.addAll( ret );
     }
 
     private void actualizaGoleadoresPorEquipo(Partido partido, List<Gol> goles) {
@@ -196,7 +216,7 @@ public class Estadistica {
      * - Orden alfabético del nombre del jugador
      */
     public List<String> clasificacionPichichi(){
-        throw new NotImplementedException();
+        return Collections.unmodifiableList( _clasificacionPichichi   );
     }
     
     /**
@@ -207,5 +227,4 @@ public class Estadistica {
     public Map<Integer,List<Gol>> golesPorMinutoDePartido(){
     	throw new NotImplementedException();
     }
-
 }
