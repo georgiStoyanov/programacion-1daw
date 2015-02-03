@@ -225,6 +225,6 @@ public class Estadistica {
      *   		y con valores la lista de goles metidos en ese minutos 
      */
     public Map<Integer,List<Gol>> golesPorMinutoDePartido(){
-    	throw new NotImplementedException();
+    	throw new NotImplementedException(); 
     }
 }
