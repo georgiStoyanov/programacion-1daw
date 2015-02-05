@@ -26,7 +26,7 @@ public class Main {
             }
         };
 
-        Pantalla clientes = new MenuDeCliente(null, banco);
+        Pantalla clientes = new MenuDeTodosLosClientes(null, banco);
 
         NumericOptionMenu root = new NumericOptionMenu( new String[]{ "Q U I S I E R A   S E R   M I   B A N C O" }, new Opcion[] {
                 new Opcion(clientes),

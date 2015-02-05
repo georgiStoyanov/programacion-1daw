@@ -4,12 +4,12 @@ import java.io.PrintStream;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class MenuDeCliente extends Menu {
+public class MenuDeTodosLosClientes extends Menu {
 
     private TerminalBancario _terminal;
     private Pantalla _anterior;
 
-    public MenuDeCliente(Pantalla anterior, TerminalBancario terminal ) {
+    public MenuDeTodosLosClientes(Pantalla anterior, TerminalBancario terminal ) {
         _terminal = terminal;
         _anterior = anterior;
     }
@@ -48,7 +48,7 @@ public class MenuDeCliente extends Menu {
                 ret[i] = new Opcion( new PantallaDeProducto(MenuTitular.this, _terminal, pb) );
             }
             ret[ret.length-2] = new Opcion( "Crear un producto", new PantallaCrearProducto(MenuTitular.this,_titular,_terminal) );
-            ret[ret.length-1] = new Opcion( "Pantalla anterior", MenuDeCliente.this );
+            ret[ret.length-1] = new Opcion( "Pantalla anterior", MenuDeTodosLosClientes.this );
             return ret;
         }
 

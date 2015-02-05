@@ -38,8 +38,19 @@ public abstract class ProductoBancario {
     public String getTitular() {
         return _titular;
     }
+    
+    @Override
+    public String toString() {
+    	return String.format( "(titular %s) (codigo %d) (tipo %s) (saldo %f)", getTitular(), getCodigo(), getTipo(), getSaldo() );
+    }
+    
+    
 
-    /**
+    private String getTipo(){
+    	return getClass().getSimpleName();
+    }
+
+	/**
      * Movimiento de saldo, a sumar al saldo. del producto.
      */
     public void movimientoSaldo(double movimiento) {
@@ -58,4 +69,9 @@ public abstract class ProductoBancario {
         ProductoBancario pb = (ProductoBancario) o;
         return pb.getTitular().equals(getTitular()) && pb.getCodigo() == getCodigo();
     }
+    
+    public static void main(String[] args) {
+		System.out.println( new Cuenta("pepe", 1 ) );
+		System.out.println( new TarjetaDeCredito("pepe", 1 ) );
+	}
 }
