@@ -6,23 +6,23 @@ package banco;
  */
 public class TerminalBancario{
 
-    private Lista _productos = new Lista();
+    private Lista<ProductoBancario> _productos = new Lista<ProductoBancario>();
 
     /**
      * Lista de todos los productos del banco
      */
-    public Lista getProductos(){
+    public Lista<ProductoBancario> getProductos(){
        return _productos;
     }
 
     /**
      * Lista de los productos de un titular 
      */
-    public Lista productosDeTitular( String titular ){
-       Lista ret = new Lista();
-       Lista p = getProductos();
+    public Lista<ProductoBancario> productosDeTitular( String titular ){
+       Lista<ProductoBancario> ret = new Lista<ProductoBancario>();
+       Lista<ProductoBancario> p = getProductos();
        for( int i = 0 ; i < p.getNumero() ; i += 1 ){
-         ProductoBancario pb = (ProductoBancario)p.getObjeto(i);
+         ProductoBancario pb = p.getObjeto(i);
          if( pb.getTitular().equals( titular ) ){
            ret.agrega( pb );
          }
@@ -34,7 +34,7 @@ public class TerminalBancario{
      * Saldo total del titular (la suma de los saldos de sus productos)
      */
     public double saldoDeTitular( String titular ){
-       Lista p = productosDeTitular(titular);
+       Lista<ProductoBancario> p = productosDeTitular(titular);
        double ret = 0;
        for( int i = 0 ; i < p.getNumero(); i += 1 ){
          ret += ((ProductoBancario)p.getObjeto(i)).getSaldo();
@@ -47,7 +47,7 @@ public class TerminalBancario{
      * @returns Si el producto no existia, devuelve false.
      */
     public boolean cancelaProducto(ProductoBancario pb){
-       Lista p = getProductos();
+       Lista<ProductoBancario> p = getProductos();
        
        int indice = p.indiceDe(pb);
        if( indice == -1 ){
@@ -58,7 +58,7 @@ public class TerminalBancario{
     }
 
     private int codigoLibrePara_basadoEnLoQueHay( String titular ){
-       Lista p = productosDeTitular(titular);
+       Lista<ProductoBancario> p = productosDeTitular(titular);
        int maximo = 0;
        for( int i = 0 ; i < p.getNumero(); i += 1 ){
          ProductoBancario candidato = (ProductoBancario)p.getObjeto(i);
