@@ -1,11 +1,19 @@
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class EjemploDeMap {
+	
+	private static Comparator<Alumno> comparadorInversoAlumno = new Comparator<Alumno>(){
+		public int compare(Alumno o1, Alumno o2) {
+			return -o1.nombre.compareTo(o2.nombre);
+		};
+	};
 
-	private static class Alumno {
+	private static class Alumno implements Comparable<Alumno>{
 		public String nombre;
 		public String curso;
 
@@ -17,6 +25,11 @@ public class EjemploDeMap {
 		@Override
 		public String toString() {
 			return "(" + nombre + " -- " + curso + ")";
+		}
+
+		@Override
+		public int compareTo(Alumno o) {
+			return nombre.compareTo(o.nombre);
 		}
 	}
 
@@ -38,7 +51,7 @@ public class EjemploDeMap {
 			
 			Set<Alumno> conjuntoAlumnos = cursoToAlumnos.get(a.curso);
 			if( conjuntoAlumnos == null ){
-				conjuntoAlumnos = new HashSet<Alumno>();
+				conjuntoAlumnos = new TreeSet<Alumno>(comparadorInversoAlumno);
 				cursoToAlumnos.put( a.curso, conjuntoAlumnos );
 			}
 			conjuntoAlumnos.add(a);
