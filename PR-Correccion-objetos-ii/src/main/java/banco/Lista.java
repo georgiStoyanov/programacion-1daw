@@ -48,10 +48,10 @@ public class Lista{
      * @return El indice del objeto en la lista, o -1 si no esta contenido.
      */
     public int indiceDe( Object o ){
-        for (int i = 0; i < getNumero(); i++) {
-            Object elem = getObjeto(i);
-            if( o.equals(elem) ){
-                return i;
+        for (int index = 0; index < getNumero(); index+=1) {
+            Object elem = getObjeto(index);
+            if( (o == null && elem == null) || o.equals(elem) ){
+                return index;
             }
             
         }
@@ -63,7 +63,7 @@ public class Lista{
      */
     public void borra( int indice ) throws IndexOutOfBoundsException{
         compruebaIndice(indice);
-        for( int i = indice ; i < ultimo ; i++ ){
+        for( int i = indice ; i < ultimo ; i+=1 ){
             array[i] = array[i+1];
         }
         ultimo -= 1;
@@ -74,7 +74,7 @@ public class Lista{
      * @param indice
      */
 	private void compruebaIndice(int indice) {
-		if( indice < 0 || indice > ultimo ){
+		if( indice < 0 || indice >= getNumero() ){
             throw new IndexOutOfBoundsException();
         }
 	}

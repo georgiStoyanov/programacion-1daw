@@ -10,11 +10,11 @@ public abstract class Pantalla {
     abstract public Pantalla execute( Scanner in, PrintStream out );
     
     public static void ejecutaPantallaPrincipal( Pantalla m, Scanner in, PrintStream out ){
-        Pantalla currentMenu = m;
+        Pantalla currentScreen = m;
         while( true ){
-            currentMenu = currentMenu.execute(in, out);
-            if( currentMenu == null ){
-                currentMenu = m;
+            currentScreen = currentScreen.execute(in, out);
+            if( currentScreen == null ){
+                currentScreen = m;
             }
         }
     }
