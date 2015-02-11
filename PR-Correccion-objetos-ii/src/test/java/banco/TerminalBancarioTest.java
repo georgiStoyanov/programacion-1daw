@@ -159,6 +159,20 @@ public class TerminalBancarioTest {
 	}
 
 	@Test
+	public void cancelarProductoYLuegoCrear(){
+		TerminalBancario tb = new TerminalBancario();
+		ProductoBancario pb1 = tb.creaCuenta("pepe");
+		ProductoBancario pb2 = tb.creaCuenta("pepe");
+		ProductoBancario pb3 = tb.creaCuenta("pepa");
+		
+		tb.cancelaProducto(pb1);
+		ProductoBancario pb4 = tb.creaCuenta("pepa");
+		assertTrue( "parece que se reutilizan codigos para los productos, y se acaban creando duplicados",
+				!pb3.equals(pb4) );
+		
+	}
+
+	@Test
 	public void cancelarProductoEquals(){
 		TerminalBancario tb = new TerminalBancario();
 		tb.creaCuenta("pepe");

@@ -48,18 +48,16 @@ public class TerminalBancario{
      */
     public boolean cancelaProducto(ProductoBancario pb){
        Lista p = getProductos();
-       boolean borrado = false;
-       for( int i = 0 ; i < p.getNumero() && !borrado; i += 1 ){
-         ProductoBancario candidato = (ProductoBancario)p.getObjeto(i);
-         if( candidato.equals( pb ) ){
-           p.borra(i);
-           borrado = true;
-         }
+       
+       int indice = p.indiceDe(pb);
+       if( indice == -1 ){
+    	   return false;
        }
-       return borrado;
+       p.borra(indice);
+       return true;
     }
 
-    private int codigoLibrePara( String titular ){
+    private int codigoLibrePara_basadoEnLoQueHay( String titular ){
        Lista p = productosDeTitular(titular);
        int maximo = 0;
        for( int i = 0 ; i < p.getNumero(); i += 1 ){
@@ -80,8 +78,14 @@ public class TerminalBancario{
        return ret;
     }
 
+    private int _ultimoCodigoDado = 0;
 
-    /**
+    private int codigoLibrePara(String titular) {
+		_ultimoCodigoDado += 1;
+		return _ultimoCodigoDado;
+	}
+
+	/**
      * Crea una nueva tarjeta para un titular y la agrega a la lista de productos del banco.
      * La tarjeta comienza con saldo 0. El codigo debera calcularlo el propio metodo, para que no coincida con otro del titular
      */

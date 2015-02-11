@@ -27,9 +27,7 @@ public class Lista{
      * Si la posicion no es valida (entre 0 y numero()-1), lanza un IndexOutOfBoundsException
      */
     public Object getObjeto( int indice ) throws IndexOutOfBoundsException{
-        if( indice < 0 || indice > ultimo ){
-            throw new IndexOutOfBoundsException();
-        }
+        compruebaIndice(indice);
         return array[indice];
     }
 
@@ -50,10 +48,10 @@ public class Lista{
      * @return El indice del objeto en la lista, o -1 si no esta contenido.
      */
     public int indiceDe( Object o ){
-        for (int i = 0; i < getNumero(); i++) {
-            Object elem = getObjeto(i);
-            if( o.equals(elem) ){
-                return i;
+        for (int index = 0; index < getNumero(); index+=1) {
+            Object elem = getObjeto(index);
+            if( (o == null && elem == null) || o.equals(elem) ){
+                return index;
             }
             
         }
@@ -64,14 +62,22 @@ public class Lista{
      * Borra un objeto de la lista. El hueco se rellena moviendo una unidad a la izquierda los objetos de indice mayor
      */
     public void borra( int indice ) throws IndexOutOfBoundsException{
-        if( indice < 0 || indice > ultimo ){
-            throw new IndexOutOfBoundsException();
-        }
-        for( int i = indice ; i < ultimo ; i++ ){
+        compruebaIndice(indice);
+        for( int i = indice ; i < ultimo ; i+=1 ){
             array[i] = array[i+1];
         }
         ultimo -= 1;
     }
+
+    /**
+     * 
+     * @param indice
+     */
+	private void compruebaIndice(int indice) {
+		if( indice < 0 || indice >= getNumero() ){
+            throw new IndexOutOfBoundsException();
+        }
+	}
 
     /**
      * Devuelve la conversion a cadena de objetos contenidos, separados por coma
