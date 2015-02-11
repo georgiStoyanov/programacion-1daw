@@ -290,5 +290,68 @@ public class EstadisticaGolesPorJugadorTest {
         }
     }
 
+   @Test
+    public void muchosMasPartidosGanadosConEquipoRepetidoYColeccionReutilizada(){
+        Estadistica e = new Estadistica();
+        Map<String, Integer> jugadorToGoles = e.numeroDeGolesMarcadosPorJugador();
+
+        e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
+                
+        }));
+
+        e.agregaPartido( new PartidoI("malaga", "getafe", 0), Arrays.asList( new Gol[]{
+                
+        }));
+
+        PartidoI partido2 = new PartidoI("madrid", "barça", 0);
+        e.agregaPartido( partido2, Arrays.asList( new Gol[]{
+                new GolI("madrid","pepe",0,partido2),
+                new GolI("barça","juan",1,partido2),
+                new GolI("barça","juan",2,partido2),
+        }));
+
+        PartidoI partido3 = new PartidoI("madrid", "betis", 1);
+        e.agregaPartido( partido3, Arrays.asList( new Gol[]{
+                new GolI("madrid","pepe",0,partido3),
+                new GolI("betis","manolo",1,partido3),
+                new GolI("betis","manolo",2,partido3),
+        }));
+
+        PartidoI partido4 = new PartidoI("madrid", "getafe", 2);
+        e.agregaPartido( partido4, Arrays.asList( new Gol[]{
+                new GolI("madrid","pepe",0,partido4),
+                new GolI("getafe","jesús",1,partido4),
+                new GolI("getafe","jesús",2,partido4),
+        }));
+
+        PartidoI partido5 = new PartidoI("betis", "getafe", 3);
+        e.agregaPartido( partido4, Arrays.asList( new Gol[]{
+                new GolI("betis","manolo",0,partido5),
+                new GolI("getafe","jesús",1,partido5),
+                new GolI("getafe","jesús",2,partido5),
+        }));
+        
+        PartidoI partido6 = new PartidoI("betis", "malaga", 4);
+        e.agregaPartido( partido6, Arrays.asList( new Gol[]{
+                new GolI("malaga","jose",1,partido6),
+                new GolI("malaga","jose",2,partido6),
+        }));
+
+        
+        
+        assertTrue( "Debería haber 5 jugadores", jugadorToGoles.size() == 5 );
+        for( String jugador: new String[]{ "juan", "jose"} ){
+            assertTrue( jugador + " debería estar en la estadística. Sigue valiendo la clasificacion tras introducir mas partidos?", jugadorToGoles.containsKey(jugador) );
+            assertTrue( jugador + " ha marcado 2 gol, la estadística dice:" + jugadorToGoles.get(jugador) +". Sigue valiendo la clasificacion tras introducir mas partidos?", jugadorToGoles.get(jugador).equals(2) );
+        }
+        for( String jugador: new String[]{ "pepe", "manolo"} ){
+            assertTrue( jugador + " debería estar en la estadística. . Sigue valiendo la clasificacion tras introducir mas partidos?", jugadorToGoles.containsKey(jugador) );
+            assertTrue( jugador + " ha marcado 3 gol, la estadística dice:" + jugadorToGoles.get(jugador) + ". Sigue valiendo la clasificacion tras introducir mas partidos?", jugadorToGoles.get(jugador).equals(3) );
+        }
+        for( String jugador: new String[]{ "jesús"} ){
+            assertTrue( jugador + " debería estar en la estadística. Sigue valiendo la clasificacion tras introducir mas partidos?", jugadorToGoles.containsKey(jugador) );
+            assertTrue( jugador + " ha marcado 4 gol, la estadística dice:" + jugadorToGoles.get(jugador) + ". Sigue valiendo la clasificacion tras introducir mas partidos?", jugadorToGoles.get(jugador).equals(4) );
+        }
+    }
 
 }
