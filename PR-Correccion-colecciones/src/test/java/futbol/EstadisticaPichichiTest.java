@@ -258,13 +258,16 @@ public class EstadisticaPichichiTest {
         e.agregaPartido( partido6, Arrays.asList( new Gol[]{
                 new GolI("malaga","jose",1,partido6),
                 new GolI("malaga","jose",2,partido6),
+                new GolI("malaga","jose",3,partido6),
+                new GolI("malaga","jose",4,partido6),
+                new GolI("malaga","jose",5,partido6),
         }));
 
 
         
         List<String> pichichis = e.clasificacionPichichi();
         assertTrue( "Debería haber 5 jugadores en pichichis", pichichis.size() == 5 );
-        List<String> esperada = Arrays.asList( new String[]{"jesús","manolo","pepe","jose","juan" } );
+        List<String> esperada = Arrays.asList( new String[]{"jose","jesús","manolo","pepe","juan" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + pichichis, esperada.equals(pichichis) );
     }
 
