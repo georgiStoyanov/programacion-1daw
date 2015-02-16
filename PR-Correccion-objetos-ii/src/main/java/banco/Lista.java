@@ -123,8 +123,11 @@ public class Lista<T> implements Iterable<T>{
     
     public static void main(String[] args) {
 		Lista<String> lista = new Lista<String>();
+		
+		
 		lista.agrega( "hola" );
 		lista.agrega( "adios" );
+		
 		
 		for( String s: lista ){
 			System.out.println( s );
@@ -133,3 +136,23 @@ public class Lista<T> implements Iterable<T>{
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
