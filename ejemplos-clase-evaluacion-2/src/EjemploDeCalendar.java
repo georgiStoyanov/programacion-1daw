@@ -1,39 +1,59 @@
-import java.util.Calendar;
-import java.util.Date;
-
 import static java.util.Calendar.*;
+import static java.util.Calendar.DATE;
+import static java.util.Calendar.DAY_OF_MONTH;
+import static java.util.Calendar.DAY_OF_WEEK;
+import static java.util.Calendar.FEBRUARY;
+import static java.util.Calendar.FRIDAY;
+import static java.util.Calendar.MONDAY;
+import static java.util.Calendar.MONTH;
+import static java.util.Calendar.SATURDAY;
+import static java.util.Calendar.SUNDAY;
+import static java.util.Calendar.THURSDAY;
+import static java.util.Calendar.TUESDAY;
+import static java.util.Calendar.WEDNESDAY;
+import static java.util.Calendar.YEAR;
+
+import java.util.Calendar;
 
 public class EjemploDeCalendar {
-	// 15 de abril del 2022
 
 	public static void main(String[] args) {
-		queCaeEl15DeAbrilDel22();
-		
-		
-		Calendar c = Calendar.getInstance();
-		
-		mueveAProximo28FebreroEnDomingo(c);
-		
-		System.out.println(c.getTime());
-		
+		int anyo = 2015;
+		System.out.printf("Cambio de horario a verano de %d: %s\n", anyo,
+				diaDeCambioDeHorarioInviernoAVerano(anyo).getTime());
 	}
-	
-	private static void mueveAProximo28FebreroEnDomingo(Calendar c){
-		
+
+	private static Calendar diaDeCambioDeHorarioInviernoAVerano(int anyo) {
+		// EL ULTIMO DOMINGO DE MARZO DE ESE AÑO
+		Calendar c = getInstance();
+
+		c.set(YEAR, anyo);
+		c.set(MONTH, MARCH);
+		c.set(DAY_OF_MONTH, 31);
+
+		while (c.get(DAY_OF_WEEK) != SUNDAY) {
+			c.add(DAY_OF_MONTH, -1);
+		}
+
+		return c;
+	}
+
+	private static void mueveAProximo28FebreroEnDomingo(Calendar c) {
+
 		mueveAProximoDomingo(c);
-		while( !es28DeFebrero(c) ){
-			c.add( DATE, 1 );
+		while (!es28DeFebrero(c)) {
+			c.add(DATE, 1);
 			mueveAProximoDomingo(c);
 		}
 	}
 
-	private static boolean es28DeFebrero(Calendar c){
+	private static boolean es28DeFebrero(Calendar c) {
 		return c.get(MONTH) == FEBRUARY && c.get(DAY_OF_MONTH) == 28;
 	}
-	
+
 	private static void mueveAProximoDomingo(Calendar c) {
-		while( c.get(DAY_OF_WEEK) != SUNDAY ){
-			c.add( DATE, 1 );
+		while (c.get(DAY_OF_WEEK) != SUNDAY) {
+			c.add(DATE, 1);
 		}
 	}
 
@@ -46,7 +66,6 @@ public class EjemploDeCalendar {
 
 		int diaDeLaSemana = c.get(DAY_OF_WEEK);
 		String dia = diaDeLaSemana(diaDeLaSemana);
-
 
 		System.out.println(dia);
 	}
