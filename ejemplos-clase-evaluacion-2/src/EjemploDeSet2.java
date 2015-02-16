@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 public class EjemploDeSet2 {
 
-	static class ComparadorInversoDeCadenas implements Comparator<String>{
+	private static class ComparadorInversoDeCadenas implements Comparator<String>{
 		@Override
 		public int compare(String o1, String o2) {
 			System.err.printf("Me piden comparar %s y %s\n", o1, o2);
