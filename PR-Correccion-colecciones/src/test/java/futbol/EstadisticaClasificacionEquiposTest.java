@@ -89,6 +89,8 @@ public class EstadisticaClasificacionEquiposTest {
     @Test
     public void partidosEmpatados(){
         Estadistica e = new Estadistica();
+        List<String> clasificacion = e.clasificacionEquipos();
+        
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
         }));
@@ -98,7 +100,7 @@ public class EstadisticaClasificacionEquiposTest {
                 new GolI("barça","juan",1,partido2),
         }));
         
-        List<String> clasificacion = e.clasificacionEquipos();
+        
         assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size() , clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{"barça",  "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
@@ -107,6 +109,8 @@ public class EstadisticaClasificacionEquiposTest {
     @Test
     public void partidosEmpatadosConEquipoRepetido(){
         Estadistica e = new Estadistica();
+        List<String> clasificacion = e.clasificacionEquipos();
+        
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
         }));
@@ -122,7 +126,7 @@ public class EstadisticaClasificacionEquiposTest {
                 new GolI("betis","manolo",1,partido3),
         }));
 
-        List<String> clasificacion = e.clasificacionEquipos();
+        
         assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size(), clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{"barça", "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
@@ -132,6 +136,8 @@ public class EstadisticaClasificacionEquiposTest {
     @Test
     public void partidosGanadosSimple(){
         Estadistica e = new Estadistica();
+        List<String> clasificacion = e.clasificacionEquipos();
+        
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
         }));
@@ -140,7 +146,7 @@ public class EstadisticaClasificacionEquiposTest {
                 new GolI("madrid","pepe",0,partido2),
         }));
 
-        List<String> clasificacion = e.clasificacionEquipos();
+        
         assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size(), clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{"madrid", "barça",  "betis", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
@@ -150,6 +156,8 @@ public class EstadisticaClasificacionEquiposTest {
     @Test
     public void partidosGanadosConEquipoRepetido(){
         Estadistica e = new Estadistica();
+        List<String> clasificacion = e.clasificacionEquipos();
+        
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
         }));
@@ -167,7 +175,7 @@ public class EstadisticaClasificacionEquiposTest {
                 new GolI("betis","manolo",2,partido3),
         }));
 
-        List<String> clasificacion = e.clasificacionEquipos();
+        
         assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size(), clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{ "barça",  "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
@@ -193,6 +201,8 @@ public class EstadisticaClasificacionEquiposTest {
     @Test
     public void muchosPartidosGanadosConEquipoRepetido(){
         Estadistica e = new Estadistica();
+        List<String> clasificacion = e.clasificacionEquipos();
+        
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
         }));
@@ -225,7 +235,7 @@ public class EstadisticaClasificacionEquiposTest {
         }));
         
         
-        List<String> clasificacion = e.clasificacionEquipos();
+        
         assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" + clasificacion.size(), clasificacion.size() == 5 );
         List<String> esperada = Arrays.asList( new String[]{ "getafe",  "barça", "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
@@ -234,6 +244,8 @@ public class EstadisticaClasificacionEquiposTest {
     @Test
     public void muchosMasPartidosGanadosConEquipoRepetido(){
         Estadistica e = new Estadistica();
+        List<String> clasificacion = e.clasificacionEquipos();
+
         e.agregaPartido( new PartidoI("betis", "sevilla", 0), Arrays.asList( new Gol[]{
                 
         }));
@@ -276,7 +288,6 @@ public class EstadisticaClasificacionEquiposTest {
                 new GolI("malaga","jose",2,partido6),
         }));
 
-        List<String> clasificacion = e.clasificacionEquipos();
         assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" + clasificacion.size(), clasificacion.size() == 6 );
         List<String> esperada = Arrays.asList( new String[]{ "getafe",  "barça", "betis", "malaga", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
