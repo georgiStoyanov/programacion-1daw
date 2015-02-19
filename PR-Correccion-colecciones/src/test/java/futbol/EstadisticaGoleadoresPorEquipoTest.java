@@ -95,7 +95,7 @@ public class EstadisticaGoleadoresPorEquipoTest {
         }));
 
         Map<String, Set<String>> equipoToGoleadores = e.goleadoresPorEquipo();
-        assertTrue("Debería haber 4 equipos", equipoToGoleadores.size() == 4);
+        assertTrue("Debería haber 4 equipos, hay: " + equipoToGoleadores, equipoToGoleadores.size() == 4);
 
         assertTrue(
                 "madrid debería tener como goleadores a: pepe",
@@ -134,7 +134,7 @@ public class EstadisticaGoleadoresPorEquipoTest {
         }));
 
         Map<String, Set<String>> equipoToGoleadores = e.goleadoresPorEquipo();
-        assertTrue("Debería haber 4 equipos", equipoToGoleadores.size() == 4);
+        assertTrue("Debería haber 4 equipos, hay:" + equipoToGoleadores, equipoToGoleadores.size() == 4);
 
         assertTrue(
                 "madrid debería tener como goleadores a: pepe",
@@ -176,7 +176,7 @@ public class EstadisticaGoleadoresPorEquipoTest {
         }));
 
         Map<String, Set<String>> equipoToGoleadores = e.goleadoresPorEquipo();
-        assertTrue("Debería haber 4 equipos", equipoToGoleadores.size() == 4);
+        assertTrue("Debería haber 4 equipos, hay:" + equipoToGoleadores, equipoToGoleadores.size() == 4);
 
         assertTrue(
                 "madrid debería tener como goleadores a: pepe",
@@ -249,7 +249,7 @@ public class EstadisticaGoleadoresPorEquipoTest {
         }));
 
         Map<String, Set<String>> equipoToGoleadores = e.goleadoresPorEquipo();
-        assertTrue("Debería haber 5 equipos", equipoToGoleadores.size() == 5);
+        assertTrue("Debería haber 5 equipos, hay:" + equipoToGoleadores, equipoToGoleadores.size() == 5);
 
         assertTrue(
                 "madrid debería tener como goleadores a: pepe",
@@ -309,7 +309,7 @@ public class EstadisticaGoleadoresPorEquipoTest {
                 new GolI("getafe", "jesusito", 2, partido5),
         }));
 
-        assertTrue("Debería haber 5 equipos", equipoToGoleadores.size() == 5);
+        assertTrue("Debería haber 5 equipos, hay: " + equipoToGoleadores, equipoToGoleadores.size() == 5);
 
         assertTrue(
                 "madrid debería tener como goleadores a: pepe. . Sigue valiendo la clasificacion tras introducir mas partidos?",
