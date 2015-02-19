@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 public class Estadistica {
 
@@ -225,6 +225,6 @@ public class Estadistica {
      *   		y con valores la lista de goles metidos en ese minutos 
      */
     public Map<Integer,List<Gol>> golesPorMinutoDePartido(){
-    	throw new NotImplementedException(); 
+    	throw new RuntimeException();
     }
 }

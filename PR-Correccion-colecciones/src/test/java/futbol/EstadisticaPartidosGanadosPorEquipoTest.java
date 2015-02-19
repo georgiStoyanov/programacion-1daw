@@ -83,7 +83,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
     public void ningunPartido(){
         Estadistica e = new Estadistica();
         Map<String, Integer> equipoToGanados = e.numeroDePartidosGanadosPorEquipo();
-        assertTrue( "Sin datos no debería haber equipos con partidos ganados", equipoToGanados.size() == 0 );
+        assertTrue( "Sin datos no debería haber equipos con partidos ganados, pero hay:" + equipoToGanados.size(), equipoToGanados.size() == 0 );
     }
 
     @Test
@@ -99,7 +99,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
         }));
         
         Map<String, Integer> equipoToGanados = e.numeroDePartidosGanadosPorEquipo();
-        assertTrue( "Debería haber cuatro equipos tras dos partidos", equipoToGanados.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos tras dos partidos, pero hay:" + equipoToGanados.size(), equipoToGanados.size() == 4 );
         for( String equipo: new String[]{ "betis", "sevilla", "madrid", "barça"} ){
             assertTrue( equipo + " debería estar en la estadística", equipoToGanados.containsKey(equipo) );
             assertTrue( "Todos los partidos estaban empatados, ningún equipo ganó ninguno:" + equipo, equipoToGanados.get(equipo).equals(0) );
@@ -125,7 +125,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
         }));
 
         Map<String, Integer> equipoToGanados = e.numeroDePartidosGanadosPorEquipo();
-        assertTrue( "Debería haber cuatro equipos tras tres partidos", equipoToGanados.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos tras tres partidos, hay:" + equipoToGanados.size(), equipoToGanados.size() == 4 );
         for( String equipo: new String[]{ "betis", "sevilla", "madrid", "barça"} ){
             assertTrue( equipo + " debería estar en la estadística", equipoToGanados.containsKey(equipo) );
             assertTrue( "Todos los partidos estaban empatados, ningún equipo ganó ninguno:" + equipo, equipoToGanados.get(equipo).equals(0) );
@@ -145,7 +145,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
         }));
 
         Map<String, Integer> equipoToGanados = e.numeroDePartidosGanadosPorEquipo();
-        assertTrue( "Debería haber cuatro equipos tras tres partidos", equipoToGanados.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos tras tres partidos, hay:" + equipoToGanados.size(), equipoToGanados.size() == 4 );
         for( String equipo: new String[]{ "betis", "sevilla", "madrid", "barça"} ){
             assertTrue( equipo + " debería estar en la estadística", equipoToGanados.containsKey(equipo) );
         }
@@ -176,7 +176,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
         }));
 
         Map<String, Integer> equipoToGanados = e.numeroDePartidosGanadosPorEquipo();
-        assertTrue( "Debería haber cuatro equipos tras tres partidos", equipoToGanados.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos tras tres partidos, hay:" + equipoToGanados.size(), equipoToGanados.size() == 4 );
         for( String equipo: new String[]{ "betis", "sevilla", "madrid", "barça"} ){
             assertTrue( equipo + " debería estar en la estadística", equipoToGanados.containsKey(equipo) );
         }
@@ -241,7 +241,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
         
         
         Map<String, Integer> equipoToGanados = e.numeroDePartidosGanadosPorEquipo();
-        assertTrue( "Debería haber cinco equipos", equipoToGanados.size() == 5 );
+        assertTrue( "Debería haber cinco equipos, hay:" + equipoToGanados.size(), equipoToGanados.size() == 5 );
         for( String equipo: new String[]{ "betis", "sevilla", "madrid", "barça", "getafe"} ){
             assertTrue( equipo + " debería estar en la estadística", equipoToGanados.containsKey(equipo) );
         }
@@ -303,7 +303,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
 
         
         Map<String, Integer> equipoToGanados = e.numeroDePartidosGanadosPorEquipo();
-        assertTrue( "Debería haber cinco equipos", equipoToGanados.size() == 6 );
+        assertTrue( "Debería haber seis equipos, hay:" + equipoToGanados.size(), equipoToGanados.size() == 6 );
         for( String equipo: new String[]{ "betis", "sevilla", "madrid", "barça", "getafe", "malaga"} ){
             assertTrue( equipo + " debería estar en la estadística", equipoToGanados.containsKey(equipo) );
         }
@@ -367,7 +367,7 @@ public class EstadisticaPartidosGanadosPorEquipoTest {
 
         
         
-        assertTrue( "Debería haber cinco equipos", equipoToGanados.size() == 6 );
+        assertTrue( "Debería haber seis equipos, hay:" + equipoToGanados.size(), equipoToGanados.size() == 6 );
         for( String equipo: new String[]{ "betis", "sevilla", "madrid", "barça", "getafe", "malaga"} ){
             assertTrue( equipo + " debería estar en la estadística. Sigue valiendo la clasificacion tras introducir mas partidos?", equipoToGanados.containsKey(equipo) );
         }
