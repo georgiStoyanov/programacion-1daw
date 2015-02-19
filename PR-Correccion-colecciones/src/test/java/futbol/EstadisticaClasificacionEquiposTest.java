@@ -83,7 +83,7 @@ public class EstadisticaClasificacionEquiposTest {
     public void ningunPartido(){
         Estadistica e = new Estadistica();
         List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Sin datos no debería haber equipos en la clasificación", clasificacion.size() == 0 );
+        assertTrue( "Sin datos no debería haber equipos en la clasificación, hay:" + clasificacion.size(), clasificacion.size() == 0 );
     }
 
     @Test
@@ -99,7 +99,7 @@ public class EstadisticaClasificacionEquiposTest {
         }));
         
         List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size() , clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{"barça",  "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
     }
@@ -123,7 +123,7 @@ public class EstadisticaClasificacionEquiposTest {
         }));
 
         List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size(), clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{"barça", "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
     }
@@ -141,7 +141,7 @@ public class EstadisticaClasificacionEquiposTest {
         }));
 
         List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size(), clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{"madrid", "barça",  "betis", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
 
@@ -168,7 +168,7 @@ public class EstadisticaClasificacionEquiposTest {
         }));
 
         List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 4 );
+        assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" +clasificacion.size(), clasificacion.size() == 4 );
         List<String> esperada = Arrays.asList( new String[]{ "barça",  "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
     }
@@ -226,7 +226,7 @@ public class EstadisticaClasificacionEquiposTest {
         
         
         List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 5 );
+        assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" + clasificacion.size(), clasificacion.size() == 5 );
         List<String> esperada = Arrays.asList( new String[]{ "getafe",  "barça", "betis", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
     }
@@ -277,7 +277,7 @@ public class EstadisticaClasificacionEquiposTest {
         }));
 
         List<String> clasificacion = e.clasificacionEquipos();
-        assertTrue( "Debería haber cuatro equipos en la clasificación", clasificacion.size() == 6 );
+        assertTrue( "Debería haber cuatro equipos en la clasificación, hay:" + clasificacion.size(), clasificacion.size() == 6 );
         List<String> esperada = Arrays.asList( new String[]{ "getafe",  "barça", "betis", "malaga", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion, esperada.equals(clasificacion) );
     }
@@ -329,7 +329,7 @@ public class EstadisticaClasificacionEquiposTest {
                 new GolI("malaga","jose",2,partido6),
         }));
 
-        assertTrue( "Debería haber cuatro equipos en la clasificación. Sigue valiendo la clasificacion tras introducir mas partidos?", clasificacion.size() == 6 );
+        assertTrue( "Debería haber cuatro equipos en la clasificación. Sigue valiendo la clasificacion tras introducir mas partidos?, hay:" + clasificacion.size(), clasificacion.size() == 6 );
         List<String> esperada = Arrays.asList( new String[]{ "getafe",  "barça", "betis", "malaga", "madrid", "sevilla" } );
         assertTrue( "La clasificación esperada era " + esperada + "  pero se consigue:" + clasificacion + ". Sigue valiendo la clasificacion tras introducir mas partidos?", esperada.equals(clasificacion) );
     }
