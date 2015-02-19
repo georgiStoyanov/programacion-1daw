@@ -44,6 +44,12 @@ public class EstadisticaPichichiTest {
         public Partido partido() {
             return _partido;
         }
+        
+        @Override
+        public String toString() {
+        	return "(Gol: equipo:" + equipoMarcador() + " jugador:" + jugador() + ")";
+        }
+
     }
 
     class PartidoI implements Partido {
@@ -71,6 +77,11 @@ public class EstadisticaPichichiTest {
         @Override
         public int jornada() {
             return _jornada;
+        }
+        
+        @Override
+        public String toString() {
+        	return "(Partido: local:" + equipoLocal() + " visitante:" + equipoVisitante() + ")";
         }
 
     }

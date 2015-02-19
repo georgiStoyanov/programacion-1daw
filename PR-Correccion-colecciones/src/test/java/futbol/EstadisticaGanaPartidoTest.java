@@ -12,7 +12,6 @@ import futbol.Gol;
 import futbol.Partido;
 
 public class EstadisticaGanaPartidoTest {
-
     class GolI implements Gol {
 
         private String _equipo;
@@ -46,6 +45,12 @@ public class EstadisticaGanaPartidoTest {
         public Partido partido() {
             return _partido;
         }
+        
+        @Override
+        public String toString() {
+        	return "(Gol: equipo:" + equipoMarcador() + " jugador:" + jugador() + ")";
+        }
+
     }
 
     class PartidoI implements Partido {
@@ -73,6 +78,11 @@ public class EstadisticaGanaPartidoTest {
         @Override
         public int jornada() {
             return _jornada;
+        }
+        
+        @Override
+        public String toString() {
+        	return "(Partido: local:" + equipoLocal() + " visitante:" + equipoVisitante() + ")";
         }
 
     }
