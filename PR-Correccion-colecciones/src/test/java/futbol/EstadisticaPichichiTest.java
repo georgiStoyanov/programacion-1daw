@@ -201,7 +201,7 @@ public class EstadisticaPichichiTest {
         }));
 
         PartidoI partido5 = new PartidoI("betis", "getafe", 3);
-        e.agregaPartido( partido4, Arrays.asList( new Gol[]{
+        e.agregaPartido( partido5, Arrays.asList( new Gol[]{
                 new GolI("betis","manolo",0,partido5),
                 new GolI("getafe","jesús",1,partido5),
                 new GolI("getafe","jesús",2,partido5),
@@ -248,7 +248,7 @@ public class EstadisticaPichichiTest {
         }));
 
         PartidoI partido5 = new PartidoI("betis", "getafe", 3);
-        e.agregaPartido( partido4, Arrays.asList( new Gol[]{
+        e.agregaPartido( partido5, Arrays.asList( new Gol[]{
                 new GolI("betis","manolo",0,partido5),
                 new GolI("getafe","jesús",1,partido5),
                 new GolI("getafe","jesús",2,partido5),
@@ -305,7 +305,7 @@ public class EstadisticaPichichiTest {
         }));
 
         PartidoI partido5 = new PartidoI("betis", "getafe", 3);
-        e.agregaPartido( partido4, Arrays.asList( new Gol[]{
+        e.agregaPartido( partido5, Arrays.asList( new Gol[]{
                 new GolI("betis","manolo",0,partido5),
                 new GolI("getafe","jesús",1,partido5),
                 new GolI("getafe","jesús",2,partido5),
