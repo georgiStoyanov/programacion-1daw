@@ -21,10 +21,11 @@ public class ConversorDeCharset {
 	public void convierte( InputStream in, OutputStream out ) throws IOException{
 		Reader reader = new InputStreamReader(in, charsetOrigen);
 		Writer writer = new OutputStreamWriter(out, charsetDestino);
-		int leido = reader.read();
-		while( leido != -1 ){
-			writer.write(leido);
-			leido = reader.read();
+		char[] buffer = new char[512];
+		int leidos = reader.read(buffer);
+		while( leidos != -1 ){
+			writer.write(buffer,0,leidos);
+			leidos = reader.read(buffer);
 		}
 		writer.flush();
 	}
