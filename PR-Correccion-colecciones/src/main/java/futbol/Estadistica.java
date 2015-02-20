@@ -13,11 +13,39 @@ import java.util.Set;
 
 
 public class Estadistica {
+	
+	abstract class MapaConValorInicial<K,V> extends HashMap<K,V> {
+		@Override
+		public V get(Object key) {
+			V ret = super.get(key);
+			if( ret == null ){
+				ret = creaValorInicial();
+				put((K)key,ret);
+			}
+			return ret;
+		}
 
+		abstract protected V creaValorInicial();
+	}
+
+	class MapaDeStringAInt extends MapaConValorInicial<String,Integer>{
+
+		@Override
+		protected Integer creaValorInicial() {
+			return 0;
+		}
+	}
+	
+	class MapaDeStringASetDeStrings extends  MapaConValorInicial<String,Set<String>>{
+		@Override
+		protected Set<String> creaValorInicial() {
+			return new HashSet<String>();
+		}
+	}
     
-    private Map<String,Integer> _numeroDePartidosGanadosPorEquipo = new HashMap<String,Integer>();
-    private Map<String, Integer> _numeroDeGolesMarcadosPorJugador = new HashMap<String,Integer>();
-    private Map<String,Set<String>> _goleadoresPorEquipo = new HashMap<String,Set<String>>();
+    private Map<String,Integer> _numeroDePartidosGanadosPorEquipo = new MapaDeStringAInt();
+    private Map<String, Integer> _numeroDeGolesMarcadosPorJugador = new MapaDeStringAInt();
+    private Map<String,Set<String>> _goleadoresPorEquipo = new MapaDeStringASetDeStrings();
     private List<String> _clasificacionEquipos = new ArrayList<String>();
     private List<String> _clasificacionPichichi = new ArrayList<String>();;
 
@@ -34,12 +62,12 @@ public class Estadistica {
         actualizaClasificacionPichichi();
     }
     
-    private void actualizaClasificacionEquipos() {
-        Comparator<String> comparadorEquipos = new Comparator<String>(){
+    private <C extends Comparable<C>> Comparator<C> creaComparadorDeStringBasadoEnMap( final Map<C,Integer> map ){
+    	return new Comparator<C>(){
 
             @Override
-            public int compare(String eq1, String eq2) {
-                int ret = _numeroDePartidosGanadosPorEquipo.get(eq2).intValue() - _numeroDePartidosGanadosPorEquipo.get(eq1).intValue();
+            public int compare(C eq1, C eq2) {
+                int ret = map.get(eq2).intValue() - map.get(eq1).intValue();
                 if( ret == 0 ){
                     ret = eq1.compareTo(eq2);
                 }
@@ -47,7 +75,11 @@ public class Estadistica {
             }
             
         };
-        
+    }
+    
+    
+    private void actualizaClasificacionEquipos() {
+        Comparator<String> comparadorEquipos = creaComparadorDeStringBasadoEnMap(_numeroDePartidosGanadosPorEquipo);
         List<String> ret = new ArrayList<String>(_numeroDePartidosGanadosPorEquipo.keySet());
         Collections.sort(ret,comparadorEquipos);
         _clasificacionEquipos.clear();
@@ -55,19 +87,7 @@ public class Estadistica {
     }
 
     private void actualizaClasificacionPichichi() {
-        Comparator<String> comparadorPichichi = new Comparator<String>(){
-
-            @Override
-            public int compare(String eq1, String eq2) {
-                int ret = _numeroDeGolesMarcadosPorJugador.get(eq2) - _numeroDeGolesMarcadosPorJugador.get(eq1);
-                if( ret == 0 ){
-                    ret = eq1.compareTo(eq2);
-                }
-                return ret;
-            }
-            
-        };
-        
+        Comparator<String> comparadorPichichi = creaComparadorDeStringBasadoEnMap(_numeroDeGolesMarcadosPorJugador);
         List<String> ret = new ArrayList<String>(_numeroDeGolesMarcadosPorJugador.keySet());
         Collections.sort(ret,comparadorPichichi);
         _clasificacionPichichi.clear();
@@ -75,12 +95,8 @@ public class Estadistica {
     }
 
     private void actualizaGoleadoresPorEquipo(Partido partido, List<Gol> goles) {
-        if( !_goleadoresPorEquipo.containsKey(partido.equipoLocal()) ){
-            _goleadoresPorEquipo.put( partido.equipoLocal(), new HashSet<String>() );
-        }
-        if( !_goleadoresPorEquipo.containsKey(partido.equipoVisitante()) ){
-            _goleadoresPorEquipo.put( partido.equipoVisitante(), new HashSet<String>() );
-        }
+    	_goleadoresPorEquipo.get(partido.equipoLocal());
+    	_goleadoresPorEquipo.get(partido.equipoVisitante());
         for( Gol g: goles) {
             String jugador = g.jugador();
             String equipo = g.equipoMarcador();
@@ -107,15 +123,8 @@ public class Estadistica {
         String visitante = partido.equipoVisitante();
         String ganador = equipoGanador(partido, goles);
         
-        int partidosGanadosLocal = 0;
-        if( _numeroDePartidosGanadosPorEquipo.containsKey(local) ){
-            partidosGanadosLocal = _numeroDePartidosGanadosPorEquipo.get(local);
-        }
-
-        int partidosGanadosVisitante = 0;
-        if( _numeroDePartidosGanadosPorEquipo.containsKey(visitante) ){
-            partidosGanadosVisitante = _numeroDePartidosGanadosPorEquipo.get(visitante);
-        }
+        int partidosGanadosLocal = _numeroDePartidosGanadosPorEquipo.get(local);
+        int partidosGanadosVisitante = _numeroDePartidosGanadosPorEquipo.get(visitante);
          
         if(local.equals(ganador) ){
             partidosGanadosLocal += 1;
