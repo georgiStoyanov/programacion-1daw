@@ -84,15 +84,7 @@ public class Estadistica {
         for( Gol g: goles) {
             String jugador = g.jugador();
             String equipo = g.equipoMarcador();
-            Set<String> goleadores;
-            if( _goleadoresPorEquipo.containsKey(equipo) ){
-                goleadores = _goleadoresPorEquipo.get(equipo);
-            }
-            else{
-                goleadores = new HashSet<String>();
-            }
-            goleadores.add(jugador);
-            _goleadoresPorEquipo.put(equipo, goleadores);
+            _goleadoresPorEquipo.get(equipo).add(jugador);
         }
     }
 
