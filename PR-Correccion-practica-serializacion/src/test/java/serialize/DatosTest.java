@@ -8,6 +8,46 @@ import static org.junit.Assert.*;
 public class DatosTest {
 
     @Test
+    public void datosSonEquals(){
+        CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("nombre");
+        DatoTexto dt1 = cd.addDatoTexto("1", "1");
+        DatoTexto dt2 = cd.addDatoTexto("1", "1");
+        assertTrue( "Dos datos de texto deberían ser iguales:" + dt1 + " -- " + dt2, dt1.equals(dt2) );
+    }
+
+    
+    @Test
+    public void carpetasVaciasSonEquals(){
+        CarpetaDatos cd1 = FabricaDeDatos.creaCarpetaDatos("nombre");
+        CarpetaDatos cd2 = FabricaDeDatos.creaCarpetaDatos("nombre");
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasVaciasSonEquals(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+    }
+
+    @Test
+    public void datosNoSonEqualsPorNombre(){
+        CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("nombre");
+        DatoTexto dt1 = cd.addDatoTexto("1", "1");
+        DatoTexto dt2 = cd.addDatoTexto("2", "1");
+        assertTrue( "Dos datos de texto no deberían ser iguales:" + dt1 + " -- " + dt2, !dt1.equals(dt2) );
+    }
+
+    @Test
+    public void datosNoSonEqualsPorValor(){
+        CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("nombre");
+        DatoTexto dt1 = cd.addDatoTexto("1", "1");
+        DatoTexto dt2 = cd.addDatoTexto("1", "2");
+        assertTrue( "Dos datos de texto no deberían ser iguales:" + dt1 + " -- " + dt2, !dt1.equals(dt2) );
+    }
+
+    @Test
     public void creaCarpetaDatos(){
         CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("nombre");
         assertTrue( "El nombre de la carpeta de datos creada no es correcto", cd.getNombre().equals("nombre") );
@@ -57,11 +97,24 @@ public class DatosTest {
         CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("nivel1").addCarpetaDatos("nivel2");
         _meterUnaCarpetaDeDatos(cd);
     }
-
+    
     @Test
     public void meterUnDatoDeTextoEnUnaCarpeta(){
         CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("nivel1").addCarpetaDatos("nivel2");
         _meterUnDatoDeTexto(cd);
+    }
+    
+    @Test
+    public void meterDosCamposDeTexto(){
+        CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("a");
+        cd.addDatoTexto("1", "1");
+        cd.addDatoTexto("2", "2");
+        
+        CarpetaDatos mcd = MiFabricaDeDatos.creaCarpetaDatos("a");
+        mcd.addDatoTexto("1", "1");
+        mcd.addDatoTexto("2", "2");
+        
+        assertTrue( "He intentado crear " + mcd + ", pero se ha creado:" + cd, mcd.equals(cd) );
     }
 
 }
