@@ -24,6 +24,145 @@ public class DatosTest {
     }
 
     @Test
+    public void carpetasVaciasNoSonEqualsPorNombre(){
+        CarpetaDatos cd1 = FabricaDeDatos.creaCarpetaDatos("nombre");
+        CarpetaDatos cd2 = FabricaDeDatos.creaCarpetaDatos("nombrE");
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConUnTextoSonEquals(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("1","1");
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConUnTextoNoSonEqualsPorValores(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "2");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("1","1");
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConDosTextosSonEquals(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "2");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConDosTextosYCarpetaVaciaSonEquals(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "2");
+        cd1.addCarpetaDatos("a");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        cd2.addCarpetaDatos("a");
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConDosTextosYCarpetaSonEquals(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "2");
+        CarpetaDatos cd11 = cd1.addCarpetaDatos("a");
+        cd11.addDatoTexto("a1","1");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        CarpetaDatos cd21 = cd2.addCarpetaDatos("a");
+        cd21.addDatoTexto("a1","1");
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConDosTextosYCarpetaNoSonEqualsPorValores(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "2");
+        CarpetaDatos cd11 = cd1.addCarpetaDatos("a");
+        cd11.addDatoTexto("a1","1");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        CarpetaDatos cd21 = cd2.addCarpetaDatos("a");
+        cd21.addDatoTexto("a1","2");
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+    }
+
+    public void carpetasAnidadasConDosTextosYCarpetaNoSonEqualsPorNombre(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "2");
+        CarpetaDatos cd11 = cd1.addCarpetaDatos("a");
+        cd11.addDatoTexto("a1","1");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        CarpetaDatos cd21 = cd2.addCarpetaDatos("b");
+        cd21.addDatoTexto("a1","1");
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+    }
+    
+    @Test
+    public void carpetasAnidadasConDosTextosYCarpetaVaciaNoSonEqualsPorNombreCarpeta(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "2");
+        cd1.addCarpetaDatos("a");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        cd2.addCarpetaDatos("b");
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConDosTextosNoSonEqualsPorValores(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "1");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+    }
+
+    @Test
+    public void carpetasAnidadasConDosTextosNoSonEqualsPorSize(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("1", "1");
+        cd1.addDatoTexto("2", "2");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+    }
+
+    @Test
     public void carpetasAnidadasVaciasSonEquals(){
         CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
         CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
