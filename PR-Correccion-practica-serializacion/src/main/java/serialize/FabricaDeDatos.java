@@ -36,6 +36,11 @@ public class FabricaDeDatos {
             return getNombre().equals(dt.getNombre()) && getValor().equals(dt.getValor());
         }
         
+        @Override
+        public String toString() {
+            return "[" + getNombre() +"=" + getValor()+"]";
+        }
+        
     }
     
     private static class MiCarpetaDatos implements CarpetaDatos{
@@ -80,6 +85,11 @@ public class FabricaDeDatos {
             CarpetaDatos cd = (CarpetaDatos) obj;
             Set<Dato> set = new HashSet<Dato>( Arrays.asList( cd.getDatos()) );
             return set.equals( _datos );
+        }
+        
+        @Override
+        public String toString() {
+            return _datos.toString();
         }
     }
     
