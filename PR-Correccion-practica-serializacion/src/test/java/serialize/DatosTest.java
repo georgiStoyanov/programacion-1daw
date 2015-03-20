@@ -256,4 +256,23 @@ public class DatosTest {
         assertTrue( "He intentado crear " + mcd + ", pero se ha creado:" + cd, mcd.equals(cd) );
     }
 
+
+    public void ejecutaTodosLosTest() {
+        carpetasAnidadasConDosTextosNoSonEqualsPorSize();
+        carpetasAnidadasConDosTextosNoSonEqualsPorValores();
+        carpetasAnidadasConDosTextosSonEquals();
+        carpetasAnidadasConDosTextosYCarpetaNoSonEqualsPorNombre();
+        carpetasAnidadasConDosTextosYCarpetaNoSonEqualsPorValores();
+        carpetasAnidadasConDosTextosYCarpetaSonEquals();
+        carpetasAnidadasConDosTextosYCarpetaVaciaNoSonEqualsPorNombreCarpeta();
+        carpetasAnidadasConDosTextosYCarpetaVaciaSonEquals();
+        carpetasAnidadasConUnTextoNoSonEqualsPorValores();
+        carpetasAnidadasConUnTextoSonEquals();
+        carpetasAnidadasVaciasSonEquals();
+        creaCarpetaDatos();
+        datosNoSonEqualsPorNombre();
+        datosNoSonEqualsPorValor();
+        datosSonEquals();
+    }
+
 }

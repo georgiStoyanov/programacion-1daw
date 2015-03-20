@@ -11,22 +11,7 @@ import org.junit.Test;
 public class SerializacionTest {
 
     private void ejecutaTestDeDatos(){
-        DatosTest test = new DatosTest();
-        test.carpetasAnidadasConDosTextosNoSonEqualsPorSize();
-        test.carpetasAnidadasConDosTextosNoSonEqualsPorValores();
-        test.carpetasAnidadasConDosTextosSonEquals();
-        test.carpetasAnidadasConDosTextosYCarpetaNoSonEqualsPorNombre();
-        test.carpetasAnidadasConDosTextosYCarpetaNoSonEqualsPorValores();
-        test.carpetasAnidadasConDosTextosYCarpetaSonEquals();
-        test.carpetasAnidadasConDosTextosYCarpetaVaciaNoSonEqualsPorNombreCarpeta();
-        test.carpetasAnidadasConDosTextosYCarpetaVaciaSonEquals();
-        test.carpetasAnidadasConUnTextoNoSonEqualsPorValores();
-        test.carpetasAnidadasConUnTextoSonEquals();
-        test.carpetasAnidadasVaciasSonEquals();
-        test.creaCarpetaDatos();
-        test.datosNoSonEqualsPorNombre();
-        test.datosNoSonEqualsPorValor();
-        test.datosSonEquals();
+        new DatosTest().ejecutaTodosLosTest();
     }
     
     private String ficheroTemporal() throws IOException{
@@ -57,12 +42,23 @@ public class SerializacionTest {
     }
 
     @Test
-    public void serializaUnaCarpetaConDosDato() throws IOException{
+    public void serializaUnaCarpetaConDosDatos() throws IOException{
         CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("a");
         cd.addDatoTexto("1", "1");
         cd.addDatoTexto("2", "2");
         testDeComparacion(cd);
     }
 
+    @Test
+    public void serializaUnaCarpetaConDosDatosYUnaCarpeta() throws IOException{
+        CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("a");
+        cd.addDatoTexto("1", "1");
+        cd.addDatoTexto("2", "2");
+        CarpetaDatos cd1 = cd.addCarpetaDatos("Una carpeta");
+        cd1.addDatoTexto("11", "a");
+        cd1.addDatoTexto("12", "b");
+        
+        testDeComparacion(cd);
+    }
 
 }
