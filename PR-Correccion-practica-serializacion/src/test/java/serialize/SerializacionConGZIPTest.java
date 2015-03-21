@@ -34,7 +34,7 @@ public class SerializacionConGZIPTest {
             catch( StreamCorruptedException e ){
                 return;
             }
-            fail("No parece que se utilice el flat de gzip al serializar");
+            fail("No parece que se utilice correctamente el flag de gzip al serializar");
         }
         else{
             try{
@@ -44,7 +44,7 @@ public class SerializacionConGZIPTest {
             catch( ZipException e ){
                 return;
             }
-            fail("No parece que se utilice el flat de gzip al serializar");
+            fail("No parece que se utilice correctaente el flag de gzip al serializar");
         }
     }
 
