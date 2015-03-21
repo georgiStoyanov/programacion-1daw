@@ -66,9 +66,10 @@ public class DatosTest {
     public void carpetasAnidadasConDosTextosYCarpetaVaciaSonEquals(){
         CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
         CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addCarpetaDatos("a");
         cd1.addDatoTexto("1", "1");
         cd1.addDatoTexto("2", "2");
-        cd1.addCarpetaDatos("a");
+        
         CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
         cd2.addDatoTexto("2","2");
         cd2.addDatoTexto("1","1");
@@ -101,10 +102,10 @@ public class DatosTest {
         CarpetaDatos cd11 = cd1.addCarpetaDatos("a");
         cd11.addDatoTexto("a1","1");
         CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
-        cd2.addDatoTexto("2","2");
-        cd2.addDatoTexto("1","1");
         CarpetaDatos cd21 = cd2.addCarpetaDatos("a");
         cd21.addDatoTexto("a1","2");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
         assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
     }
 
@@ -116,10 +117,10 @@ public class DatosTest {
         CarpetaDatos cd11 = cd1.addCarpetaDatos("a");
         cd11.addDatoTexto("a1","1");
         CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
-        cd2.addDatoTexto("2","2");
-        cd2.addDatoTexto("1","1");
         CarpetaDatos cd21 = cd2.addCarpetaDatos("b");
         cd21.addDatoTexto("a1","1");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
         assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
     }
     
@@ -248,7 +249,7 @@ public class DatosTest {
         CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("a");
         cd.addDatoTexto("1", "1");
         cd.addDatoTexto("2", "2");
-        
+            
         CarpetaDatos mcd = MiFabricaDeDatos.creaCarpetaDatos("a");
         mcd.addDatoTexto("1", "1");
         mcd.addDatoTexto("2", "2");

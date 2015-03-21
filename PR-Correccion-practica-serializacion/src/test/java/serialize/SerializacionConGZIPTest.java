@@ -1,11 +1,16 @@
 package serialize;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.StreamCorruptedException;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipException;
 
 import org.junit.Test;
@@ -29,6 +34,7 @@ public class SerializacionConGZIPTest {
         if( gzip ){
             try{
                 FabricaDeDatos.escribeDatoEnFichero(file, src, gzip );
+                compruebaQueElFicheroExisteYTieneAlgoSerializado(file,gzip);
                 FabricaDeDatos.leeDatoDeFichero(file, !gzip );
             }
             catch( StreamCorruptedException e ){
@@ -39,6 +45,7 @@ public class SerializacionConGZIPTest {
         else{
             try{
                 FabricaDeDatos.escribeDatoEnFichero(file, src, gzip );
+                compruebaQueElFicheroExisteYTieneAlgoSerializado(file,gzip);
                 FabricaDeDatos.leeDatoDeFichero(file, !gzip );
             }
             catch( ZipException e ){
@@ -53,9 +60,26 @@ public class SerializacionConGZIPTest {
         ejecutaTestDeDatos();
         String file = ficheroTemporal(); 
         FabricaDeDatos.escribeDatoEnFichero(file, src, gzip );
+        compruebaQueElFicheroExisteYTieneAlgoSerializado(file,gzip);
         Dato d = FabricaDeDatos.leeDatoDeFichero(file, gzip );
         assertTrue( "he serializado " + src + " y al deserializarlo no es igual:" + d, src.equals(d) );
     }
+    
+    private void compruebaQueElFicheroExisteYTieneAlgoSerializado(String file, boolean gzip) throws IOException{
+        InputStream in = new FileInputStream(file);
+        if( gzip ){
+            in = new GZIPInputStream(in);
+        }
+        ObjectInputStream ois = new ObjectInputStream( in );
+        try{
+            ois.readObject();
+        }
+        catch(Exception e ){
+            ois.close();
+            fail( "Parece que no se ha escrito correctamente el fichero serizalizado (y posiblemente comprimido)");
+        }
+    }
+
     
     @Test
     public void serializaUnaCarpeta() throws IOException{
