@@ -59,7 +59,7 @@ public class FicheroSorpresa {
             return leeFichero(in);
         }
         catch( Exception e ){
-            e.printStackTrace();
+            trazaExcepcion(e);
             return null;
         }
     }
@@ -70,7 +70,7 @@ public class FicheroSorpresa {
             return leeFichero(in);
         }
         catch( Exception e ){
-            e.printStackTrace();
+            trazaExcepcion(e);
             return null;
         }
     }
@@ -83,9 +83,13 @@ public class FicheroSorpresa {
             return o.toString();
         }
         catch( Exception e ){
-            e.printStackTrace();
+            trazaExcepcion(e);
             return null;
         }
+    }
+
+    private void trazaExcepcion(Exception e) {
+        //e.printStackTrace();
     }
 
     private String pruebaSerializado(String file) {
@@ -96,7 +100,7 @@ public class FicheroSorpresa {
             return o.toString();
         }
         catch( Exception e ){
-            e.printStackTrace();
+            trazaExcepcion(e);
             return null;
         }
     }
