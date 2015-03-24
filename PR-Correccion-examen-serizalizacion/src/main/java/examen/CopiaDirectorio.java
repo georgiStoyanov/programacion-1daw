@@ -13,6 +13,7 @@ public class CopiaDirectorio {
      * Si el directorio origen no existe, el programa indicará "origen no existe o no es un directorio", y no hará nada.
      * Si el directorio destino ya existe, el programa indicará "destino ya existe", y no hará nada.
      * Si el directorio destino no puede crearse, el programa indicará "error creando destino", y no hará nada.
+     * En linux, el comando tree -s te dará información de si has copiado bien o mal el directorio
      * @param args
      * @throws IOException 
      */
@@ -54,7 +55,6 @@ public class CopiaDirectorio {
             }
             if( f.isDirectory() ){
                 File d = new File( destino, file );
-                d.mkdirs();
                 copiaDirectorio( f, d );
             }
         }
