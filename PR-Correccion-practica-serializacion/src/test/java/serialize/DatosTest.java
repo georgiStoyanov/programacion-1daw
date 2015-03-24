@@ -250,7 +250,7 @@ public class DatosTest {
         cd.addDatoTexto("1", "1");
         cd.addDatoTexto("2", "2");
             
-        CarpetaDatos mcd = MiFabricaDeDatos.creaCarpetaDatos("a");
+        CarpetaDatos mcd = FabricaDeDatos.creaCarpetaDatos("a");
         mcd.addDatoTexto("1", "1");
         mcd.addDatoTexto("2", "2");
         
