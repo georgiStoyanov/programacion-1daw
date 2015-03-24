@@ -8,43 +8,43 @@ import java.io.IOException;
 
 public class CopiaDirectorio {
 
+    public static final int OK = 0;
+    public static final int ORIGEN_NO_EXISTE_O_NO_ES_DIRECTORIO = -1;
+    public static final int DESTINO_YA_EXISTE = -2;
+    public static final int ERROR_CREANDO_DESTINO = -3;
+    
+    
     /**
      * Copia un directorio recursivamente en otro directorio. 
-     * Si el directorio origen no existe, el programa indicará "origen no existe o no es un directorio", y no hará nada.
-     * Si el directorio destino ya existe, el programa indicará "destino ya existe", y no hará nada.
-     * Si el directorio destino no puede crearse, el programa indicará "error creando destino", y no hará nada.
+     * Si no sucede ningún error devolverá OK (0)
+     * Si el directorio origen no existe,  devolverá ORIGEN_NO_EXISTE_O_NO_ES_DIRECTORIO (-1), y no hará nada.
+     * Si el directorio destino ya existe, devolverá DESTINO_YA_EXISTE (-2), y no hará nada.
+     * Si el directorio destino no puede crearse, devolverá ERROR_CREANDO_DESTINO (-3), y no hará nada.
      * En linux, el comando tree -s te dará información de si has copiado bien o mal el directorio
      * @param args
      * @throws IOException 
      */
-    public static void main(String[] args) throws IOException{
-        if( args.length != 2 ){
-            System.out.println( "Uso: <directorio origen> <directorio destino>" );
-            return;
-        }
+    public int copia( String directorioOrigen, String directorioDestino ) throws IOException{
         
-        File origen = new File(args[0]);
-        File destino = new File(args[1]);
+        File origen = new File(directorioOrigen);
+        File destino = new File(directorioDestino);
         
-        copiaDirectorio(origen, destino);
+        return copiaDirectorio(origen, destino);
 
     }
 
-    private static void copiaDirectorio(File origen, File destino) throws IOException {
+    private int copiaDirectorio(File origen, File destino) throws IOException {
         
         if( !origen.isDirectory() ){
-            System.out.println( "origen no existe o no es un directorio" );
-            System.exit(0);
+            return ORIGEN_NO_EXISTE_O_NO_ES_DIRECTORIO;
         }
 
         if( destino.exists() ){
-            System.out.println( "destino ya existe" );
-            System.exit(0);
+            return DESTINO_YA_EXISTE;
         }
         
         if( !destino.mkdirs() ){
-            System.out.println( "error creando destino" );
-            System.exit(0);
+            return ERROR_CREANDO_DESTINO;
         }
         
         String[] files = origen.list();
@@ -58,6 +58,8 @@ public class CopiaDirectorio {
                 copiaDirectorio( f, d );
             }
         }
+        
+        return OK;
     }
 
     private static void copiaFichero(File origen, File destino, String file) throws IOException {

@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Random;
 
+import org.junit.Test;
+
 public class CopiaDirectorioTest {
 
     static class ComparadorDirectorios{
@@ -134,12 +136,12 @@ public class CopiaDirectorioTest {
     
         private void borrar(File f) throws IOException {
             if (f.isDirectory()) {
-              for (File c : f.listFiles())
-                borrar(c);
+                for (File c : f.listFiles())
+                    borrar(c);
             }
             if (!f.delete())
-              throw new FileNotFoundException("Failed to delete file: " + f);
-          }
+                throw new FileNotFoundException("Failed to delete file: " + f);
+        }
     
         private File hazFicheroConLongitud( File parent, long longitud ) throws IOException{
             File file = File.createTempFile("prefix", "sufix", parent );
@@ -159,5 +161,42 @@ public class CopiaDirectorioTest {
         }
     }
 
+
+    private void borrar(File f) throws IOException {
+        if (f.isDirectory()) {
+            for (File c : f.listFiles())
+                borrar(c);
+        }
+        f.delete();
+    }
+
+    
+    private void prueba(int nivel) throws IOException{
+        CreadorDeDirectoriosAlAzar cdd = new CreadorDeDirectoriosAlAzar(nivel);
+        File destino = new File( "" + System.currentTimeMillis() + "-" + System.identityHashCode(cdd) );
+        try{
+            CopiaDirectorio copia = new CopiaDirectorio();
+            copia.copia( cdd.dir().getPath(), destino.getPath() );
+        }
+        finally{
+            cdd.borrar();
+            borrar(destino);
+        }
+    }
+    
+    @Test
+    public void unNivel() throws IOException{
+        prueba(1);
+    }
+
+    @Test
+    public void dosNiveles() throws IOException{
+        prueba(2);
+    }
+
+    @Test
+    public void tresNiveles() throws IOException{
+        prueba(3);
+    }
 
 }
