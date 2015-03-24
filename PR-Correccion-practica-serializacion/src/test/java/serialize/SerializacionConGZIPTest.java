@@ -51,7 +51,13 @@ public class SerializacionConGZIPTest {
             catch( ZipException e ){
                 return;
             }
-            fail("No parece que se utilice correctaente el flag de gzip al serializar");
+            catch( IOException e ){
+                if( e.getMessage().contains("Not in GZIP format") ){
+                    return;
+                }
+                fail("No parece que se utilice correctamente el flag de gzip al serializar:" + e );
+            }
+            fail("No parece que se utilice correctamente el flag de gzip al serializar");
         }
     }
 
