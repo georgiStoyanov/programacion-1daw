@@ -42,6 +42,12 @@ public class SerializacionTest {
             fail( "Parece que no se ha escrito correctamente el fichero serizalizado");
         }
     }
+    
+    @Test
+    public void serializaUnDato() throws IOException{
+        CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("a");
+        testDeComparacion(cd.addDatoTexto("unnombre", "unvalor" ));
+    }
 
     @Test
     public void serializaUnaCarpeta() throws IOException{

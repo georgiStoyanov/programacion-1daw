@@ -86,7 +86,16 @@ public class SerializacionConGZIPTest {
         }
     }
 
-    
+
+    @Test
+    public void serializaUnDato() throws IOException{
+        DatoTexto dt = FabricaDeDatos.creaCarpetaDatos("a").addDatoTexto("unnombre", "unvalor");
+        testDeComparacionCorrecto(dt,true);
+        testDeComparacionCorrecto(dt,false);
+        testDeGZIPCambiado(dt,true);
+        testDeGZIPCambiado(dt,false);
+    }
+
     @Test
     public void serializaUnaCarpeta() throws IOException{
         CarpetaDatos cd = FabricaDeDatos.creaCarpetaDatos("a");
