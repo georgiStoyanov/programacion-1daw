@@ -179,7 +179,8 @@ public class CopiaDirectorioTest {
         }
         try {
             CopiaDirectorio copia = new CopiaDirectorio();
-            copia.copia(cdd.dir().getPath(), destino.getPath());
+            int resCopia = copia.copia(cdd.dir().getPath(), destino.getPath());
+            assertTrue( "La copia debería ser correcta, pero devuelve:" + resCopia, resCopia == 0 );
             String res = new ComparadorDirectorios().compararDirectorios(cdd.dir(), destino);
             assertTrue(res, res == null);
         }
