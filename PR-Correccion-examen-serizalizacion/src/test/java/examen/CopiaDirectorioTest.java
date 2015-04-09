@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class CopiaDirectorioTest {
@@ -173,7 +174,8 @@ public class CopiaDirectorioTest {
 
     private void prueba(int nivel, int padresDeDestino ) throws IOException {
         CreadorDeDirectoriosAlAzar cdd = new CreadorDeDirectoriosAlAzar(nivel);
-        File destino = new File("destino-" + System.currentTimeMillis() + "-" + System.identityHashCode(cdd));
+        File destino = new File("destino-p" + nivel + "-"  + padresDeDestino + "-" + System.currentTimeMillis() + "-" + System.identityHashCode(cdd));
+        File raizDestino = destino;
         for( int i = 0 ; i < padresDeDestino; i++ ){
             destino = new File(destino,"padre-" + i );
         }
@@ -186,7 +188,7 @@ public class CopiaDirectorioTest {
         }
         finally {
             cdd.borrar();
-            borrar(destino);
+            borrar(raizDestino);
         }
     }
 
@@ -235,11 +237,13 @@ public class CopiaDirectorioTest {
     public void directorioOrigenNoExiste() throws IOException {
         CopiaDirectorio copia = new CopiaDirectorio();
         String directorioQueNoExiste = "" + System.currentTimeMillis() + "-" + System.identityHashCode(copia);
-        String destino = "destino-" + System.identityHashCode(copia);
+        String destino = "destino3-" + System.identityHashCode(copia);
         new File(directorioQueNoExiste).delete();
         try {
             int ret = copia.copia(directorioQueNoExiste, destino);
             assertTrue("El directorio origen no existe y devuelve:" + ret, ret == -1);
+            String[] list = new File(destino).list();
+            assertTrue("El directorio origen no existe, y crea algo en destino", list == null );
         }
         finally {
             new File(destino).delete();
@@ -251,10 +255,11 @@ public class CopiaDirectorioTest {
         CopiaDirectorio copia = new CopiaDirectorio();
         File directorioQueEsUnFichero = new File("" + System.currentTimeMillis() + "-" + System.identityHashCode(copia));
         directorioQueEsUnFichero.createNewFile();
-        String destino = "destino-" + System.identityHashCode(copia);
+        String destino = "destino2-" + System.identityHashCode(copia);
         try {
             int ret = copia.copia(directorioQueEsUnFichero.getPath(), destino);
             assertTrue("El directorio origen es un fichero y devuelve:" + ret, ret == -1);
+            assertTrue("El directorio origen era un fichero, pero se crea el directorio destino", !new File(destino).exists() );
         }
         finally {
             new File(destino).delete();
@@ -266,11 +271,13 @@ public class CopiaDirectorioTest {
     public void destinoYaExiste() throws IOException {
         CopiaDirectorio copia = new CopiaDirectorio();
         CreadorDeDirectoriosAlAzar cdd = new CreadorDeDirectoriosAlAzar(0);
-        File destino = new File("destino-" + System.identityHashCode(copia));
+        File destino = new File("destino1-" + System.identityHashCode(copia));
         destino.mkdirs();
         try {
             int ret = copia.copia(cdd.dir().getPath(), destino.getPath());
             assertTrue("El directorio destino ya existe y devuelve:" + ret, ret == -2);
+            String[] list = destino.list();
+            assertTrue("El directorio destino ya existe, y copia algo:" + Arrays.asList(list), list.length == 0 );
         }
         finally {
             destino.delete();
