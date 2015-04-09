@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.Color;
 
 
 public class Absolute extends JFrame {
@@ -74,10 +75,12 @@ public class Absolute extends JFrame {
 		txtEmail.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBackground(Color.GREEN);
 		btnAceptar.setBounds(212, 130, 117, 25);
 		contentPane.add(btnAceptar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBackground(Color.RED);
 		btnCancelar.setBounds(331, 130, 117, 25);
 		contentPane.add(btnCancelar);
 	}
