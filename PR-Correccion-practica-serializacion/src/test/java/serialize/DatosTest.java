@@ -48,6 +48,7 @@ public class DatosTest {
         CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
         cd2.addDatoTexto("1","1");
         assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd2 + " -- " + cd1, !cd2.equals(cd1) );
     }
 
     @Test
@@ -56,10 +57,27 @@ public class DatosTest {
         CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
         cd1.addDatoTexto("1", "1");
         cd1.addDatoTexto("2", "2");
+        cd1.addDatoTexto("3", "3");
         CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
         cd2.addDatoTexto("2","2");
         cd2.addDatoTexto("1","1");
+        cd2.addDatoTexto("3","3");
         assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd2 + " -- " + cd1, cd2.equals(cd1) );
+    }
+
+    @Test
+    public void carpetasAnidadasConDosYTresTextosNoSonEquals(){
+        CarpetaDatos r = FabricaDeDatos.creaCarpetaDatos("r");
+        CarpetaDatos cd1 = r.addCarpetaDatos("nombre");
+        cd1.addDatoTexto("2", "2");
+        cd1.addDatoTexto("3", "3");
+        CarpetaDatos cd2 = r.addCarpetaDatos("nombre");
+        cd2.addDatoTexto("2","2");
+        cd2.addDatoTexto("1","1");
+        cd2.addDatoTexto("3","3");
+        assertTrue( "Dos carpetas no deberían ser iguales:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+        assertTrue( "Dos carpetas no deberían ser iguales:" + cd2 + " -- " + cd1, !cd2.equals(cd1) );
     }
 
     @Test
@@ -91,6 +109,7 @@ public class DatosTest {
         CarpetaDatos cd21 = cd2.addCarpetaDatos("a");
         cd21.addDatoTexto("a1","1");
         assertTrue( "Dos carpetas deberían ser iguales:" + cd1 + " -- " + cd2, cd1.equals(cd2) );
+        assertTrue( "Dos carpetas deberían ser iguales:" + cd2 + " -- " + cd1, cd2.equals(cd1) );
     }
 
     @Test
@@ -161,6 +180,7 @@ public class DatosTest {
         cd2.addDatoTexto("2","2");
         cd2.addDatoTexto("1","1");
         assertTrue( "Dos carpetas deberían ser distintas:" + cd1 + " -- " + cd2, !cd1.equals(cd2) );
+        assertTrue( "Dos carpetas deberían ser distintas:" + cd2 + " -- " + cd1, !cd2.equals(cd1) );
     }
 
     @Test
@@ -274,6 +294,7 @@ public class DatosTest {
         datosNoSonEqualsPorNombre();
         datosNoSonEqualsPorValor();
         datosSonEquals();
+        carpetasAnidadasConDosYTresTextosNoSonEquals();
     }
 
 }
