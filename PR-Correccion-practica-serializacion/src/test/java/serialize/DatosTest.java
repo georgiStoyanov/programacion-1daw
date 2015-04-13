@@ -225,6 +225,7 @@ public class DatosTest {
         Dato[] datos = cd.getDatos();
         assertTrue( "Si se añade un dato, debe tener un dato", datos.length == 1 );
         Dato d = datos[0];
+        assertTrue( "El dato añadido era de texto, pero devuelve null", d != null );
         assertTrue( "El dato añadido era de texto, pero es de tipo:" + d.getClass(), d instanceof DatoTexto );
         assertTrue( "El dato de texto creado no tiene el nombre indicado", d.getNombre().equals("1") );
         DatoTexto dt = (DatoTexto) d;
