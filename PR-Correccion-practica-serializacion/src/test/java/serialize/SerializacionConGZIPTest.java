@@ -82,7 +82,9 @@ public class SerializacionConGZIPTest {
             ois.readObject();
         }
         catch(Exception e ){
-            ois.close();
+        	if( ois != null ){
+        		ois.close();
+        	}
             fail( "Parece que no se ha escrito correctamente el fichero serizalizado (y posiblemente comprimido)");
         }
     }
