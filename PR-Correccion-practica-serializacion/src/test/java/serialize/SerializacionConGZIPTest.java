@@ -76,8 +76,9 @@ public class SerializacionConGZIPTest {
         if( gzip ){
             in = new GZIPInputStream(in);
         }
-        ObjectInputStream ois = new ObjectInputStream( in );
+        ObjectInputStream ois = null;
         try{
+        	ois = new ObjectInputStream( in );
             ois.readObject();
         }
         catch(Exception e ){
