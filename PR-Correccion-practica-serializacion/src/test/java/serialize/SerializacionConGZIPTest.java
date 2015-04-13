@@ -40,7 +40,7 @@ public class SerializacionConGZIPTest {
             catch( StreamCorruptedException e ){
                 return;
             }
-            fail("No parece que se utilice correctamente el flag de gzip al serializar");
+            fail("No parece que se utilice correctamente el flag de gzip al serializar (" + gzip +")");
         }
         else{
             try{

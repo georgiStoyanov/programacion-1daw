@@ -105,7 +105,8 @@ public class MiFabricaDeDatos {
             if (!getNombre().equals(cd.getNombre())) {
                 return false;
             }
-            boolean ret = _datos.size() == cd.getDatos().length && _datos.containsAll(Arrays.asList(cd.getDatos()));
+            boolean ret = _datos.size() == cd.getDatos().length &&
+            		      _datos.containsAll(Arrays.asList(cd.getDatos()));
             log("  " + ret);
             return ret;
         }
