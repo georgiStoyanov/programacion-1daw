@@ -19,7 +19,7 @@ public class Main {
      */
 	
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ejemplo");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ejemplo-oracle");
         EntityManager em = emf.createEntityManager();
         crearClientes(em);
         listarClientes(em);
