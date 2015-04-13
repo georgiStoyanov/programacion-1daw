@@ -249,6 +249,7 @@ public class DatosTest {
         Dato[] datos = cd.getDatos();
         assertTrue( "Si se añade una carpeta, debe tener un dato", datos.length == 1 );
         Dato d = datos[0];
+        assertTrue( "El dato añadido era de texto, pero devuelve null", d != null );
         assertTrue( "El dato añadido era una carpeta, pero es de tipo:" + d.getClass(), d instanceof CarpetaDatos );
         assertTrue( "La carpeta creada no tiene los valores pasados", d.getNombre().equals("1") );
     }
