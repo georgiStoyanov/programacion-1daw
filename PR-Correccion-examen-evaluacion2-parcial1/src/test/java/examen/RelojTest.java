@@ -58,7 +58,7 @@ public class RelojTest {
         boolean exception = false;
         try {
             new Reloj(-1, 0, 0);
-        }
+        } 
         catch (Exception e) {
             exception = true;
         }
