@@ -4,7 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JSlider;
+import javax.swing.ListModel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -14,6 +16,13 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import javax.swing.JList;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 public class AreaRectanguloFrame extends JFrame {
@@ -24,6 +33,8 @@ public class AreaRectanguloFrame extends JFrame {
 	private JTextField areaText;
 	private JSlider anchoSlider;
 	private JSlider altoSlider;
+	private JList list;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -46,7 +57,7 @@ public class AreaRectanguloFrame extends JFrame {
 	 */
 	public AreaRectanguloFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 561, 231);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -115,7 +126,7 @@ public class AreaRectanguloFrame extends JFrame {
 			}
 
 		});
-		anchoText.setBounds(287, 19, 114, 19);
+		anchoText.setBounds(287, 19, 46, 19);
 		contentPane.add(anchoText);
 		anchoText.setColumns(10);
 		
@@ -135,7 +146,7 @@ public class AreaRectanguloFrame extends JFrame {
 				}
 			}
 		});
-		altoText.setBounds(287, 69, 114, 19);
+		altoText.setBounds(287, 69, 46, 19);
 		contentPane.add(altoText);
 		altoText.setColumns(10);
 		
@@ -159,8 +170,69 @@ public class AreaRectanguloFrame extends JFrame {
 		
 		anchoSlider.setValue(5);
 		altoSlider.setValue(5);
+		
+		JButton aLaListaButton = new JButton(">>");
+		aLaListaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListModel model = list.getModel();
+				DefaultListModel m = (DefaultListModel) model;
+				int ancho = anchoSlider.getValue();
+				int alto = altoSlider.getValue();
+				m.addElement( ancho + "x" + alto );
+			}
+		});
+		aLaListaButton.setBounds(344, 113, 57, 25);
+		contentPane.add(aLaListaButton);
+		
+		final JButton deLaListaButton = new JButton("<<");
+		deLaListaButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Object selectedValue = list.getSelectedValue();
+				if( selectedValue == null ){
+					return;
+				}
+				String s = selectedValue.toString();
+				String[] tokens = s.split("x");
+				String anchoS = tokens[0];
+				String altoS = tokens[1];
+				
+				anchoSlider.setValue( Integer.valueOf(anchoS) );
+				altoSlider.setValue( Integer.valueOf(altoS) );
+			}
+		});
+		deLaListaButton.setBounds(344, 150, 57, 25);
+		contentPane.add(deLaListaButton);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(413, 19, 126, 156);
+		contentPane.add(scrollPane);
+		
+		list = new JList();
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if( e.getClickCount() > 1 ){
+					deLaListaButton.doClick();
+				}
+			}
+		});
+		scrollPane.setViewportView(list);
+		
+
+		inicializarLista();
 	}
 	
+	private void inicializarLista() {
+		DefaultListModel model = new DefaultListModel();
+		
+		model.addElement("50x50");
+		model.addElement("10x50");
+		model.addElement("50x10");
+		
+		list.setModel(model);
+		
+	}
+
 	private boolean esEntero(String s) {
 		try{
 			Integer.parseInt(s);
@@ -170,5 +242,4 @@ public class AreaRectanguloFrame extends JFrame {
 			return false;
 		}
 	}
-
 }
