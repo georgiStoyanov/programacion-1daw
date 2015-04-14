@@ -1,12 +1,15 @@
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Arrays;
 
+import javax.sound.sampled.AudioSystem;
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class MySimpleGUI extends JFrame {
 	
@@ -31,6 +34,10 @@ public class MySimpleGUI extends JFrame {
 			
 			errorLabel.setText("");
 			System.out.println("Login correcto");
+			
+			MySimpleGUI.this.setVisible(false);
+			new AreaRectanguloFrame().setVisible(true);
+			new AreaRectanguloFrame().setVisible(true);
 		}
 		
 	}
@@ -68,7 +75,14 @@ public class MySimpleGUI extends JFrame {
 		btnOk.setBounds(142, 124, 114, 25);
 		getContentPane().add(btnOk);
 		
+		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MySimpleGUI.this.setVisible(false);
+				System.exit(0);
+			}
+		});
 		btnCancelar.setBounds(273, 124, 117, 25);
 		getContentPane().add(btnCancelar);
 		
@@ -84,5 +98,13 @@ public class MySimpleGUI extends JFrame {
 	
 	public static void main(String[] args) {
 		MySimpleGUI gui = new MySimpleGUI();
+	}
+	private class SwingAction extends AbstractAction {
+		public SwingAction() {
+			putValue(NAME, "SwingAction");
+			putValue(SHORT_DESCRIPTION, "Some short description");
+		}
+		public void actionPerformed(ActionEvent e) {
+		}
 	}
 }
