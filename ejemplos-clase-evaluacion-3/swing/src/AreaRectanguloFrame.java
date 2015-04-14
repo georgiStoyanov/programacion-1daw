@@ -119,7 +119,7 @@ public class AreaRectanguloFrame extends JFrame {
 		contentPane.add(anchoText);
 		anchoText.setColumns(10);
 		
-		altoText = new JTextField();
+		altoText = new MiTexto();
 		altoText.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -156,6 +156,9 @@ public class AreaRectanguloFrame extends JFrame {
 		areaText.setBounds(75, 116, 114, 19);
 		contentPane.add(areaText);
 		areaText.setColumns(10);
+		
+		anchoSlider.setValue(5);
+		altoSlider.setValue(5);
 	}
 	
 	private boolean esEntero(String s) {
