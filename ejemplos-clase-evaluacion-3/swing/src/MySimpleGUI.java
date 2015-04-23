@@ -37,7 +37,6 @@ public class MySimpleGUI extends JFrame {
 			
 			MySimpleGUI.this.setVisible(false);
 			new AreaRectanguloFrame().setVisible(true);
-			new AreaRectanguloFrame().setVisible(true);
 		}
 		
 	}
