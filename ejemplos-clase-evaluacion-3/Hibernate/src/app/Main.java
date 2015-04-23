@@ -19,7 +19,7 @@ public class Main {
      */
 	
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ejemplo-derby");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ejemplo-mysql");
         EntityManager em = emf.createEntityManager();
         crearClientes(em);
         listarClientes(em);
@@ -32,6 +32,7 @@ public class Main {
         tx.begin();
         
         Cliente c = new Cliente("Álvaro", "González Sotillo");
+        c.setImagen( "holaquetal".getBytes() );
         Direccion d1 = new Direccion("una calle", "28999", "Un municipio", "Madrid");
         Direccion d2 = new Direccion("otra calle", "28999", "Otro municipio", "Madrid");
         

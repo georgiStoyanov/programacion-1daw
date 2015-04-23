@@ -55,6 +55,14 @@ public class Cliente {
 	@Column
 	private byte[] imagen;
 	
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+
 	@OneToMany(mappedBy="cliente")
 	private List<Direccion> direcciones;
 	
@@ -75,8 +83,12 @@ public class Cliente {
 	}
 	@Override
 	public String toString() {
+		String i = null;
+		if( getImagen() != null ){
+			i = new String(getImagen());
+		}
 		return "Cliente [idcliente=" + idcliente + ", nombre=" + nombre
-				+ ", apellidos=" + apellidos + ", direcciones=" + direcciones
+				+ ", apellidos=" + apellidos + ", direcciones=" + direcciones + ", imagen=" + i
 				+ "]";
 	}
 
