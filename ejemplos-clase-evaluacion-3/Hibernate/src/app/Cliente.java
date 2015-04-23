@@ -52,6 +52,9 @@ public class Cliente {
 	@Column
 	private String apellidos;
 	
+	@Column
+	private byte[] imagen;
+	
 	@OneToMany(mappedBy="cliente")
 	private List<Direccion> direcciones;
 	
