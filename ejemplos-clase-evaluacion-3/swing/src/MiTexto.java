@@ -13,16 +13,16 @@ public class MiTexto extends JTextField{
 	public MiTexto() {
 		super();
 		// TODO Auto-generated constructor stub
-		init();
+		enganchaListeners();
 	}
 
 	public MiTexto(String text) {
 		super(text);
 		// TODO Auto-generated constructor stub
-		init();
+		enganchaListeners();
 	}
 
-	private void init() {
+	private void enganchaListeners() {
 		disimula();
 		addFocusListener( new FocusListener() {
 			

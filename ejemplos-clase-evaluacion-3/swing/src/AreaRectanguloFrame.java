@@ -23,6 +23,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 
 public class AreaRectanguloFrame extends JFrame {
@@ -110,6 +112,14 @@ public class AreaRectanguloFrame extends JFrame {
 		contentPane.add(altoSlider);
 		
 		anchoText = new MiTexto();
+		anchoText.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if( e.getKeyCode() == KeyEvent.VK_ENTER ){
+					altoText.requestFocus();
+				}
+			}
+		});
 		anchoText.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -131,6 +141,15 @@ public class AreaRectanguloFrame extends JFrame {
 		anchoText.setColumns(10);
 		
 		altoText = new MiTexto();
+		altoText.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if( e.getKeyCode() == KeyEvent.VK_ENTER ){
+					anchoText.requestFocus();
+				}
+			}
+		});
+
 		altoText.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
