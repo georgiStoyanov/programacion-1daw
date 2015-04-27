@@ -1,3 +1,4 @@
+package ejemploSwing;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,20 +8,6 @@ import javax.swing.table.TableModel;
 
 public class MiTableModel implements TableModel {
 
-	public class Alumno {
-		String nombre;
-		String apellidos;
-		String edad;
-		String nota;
-
-		public Alumno(String nombre, String apellidos, String edad, String nota) {
-			super();
-			this.nombre = nombre;
-			this.apellidos = apellidos;
-			this.edad = edad;
-			this.nota = nota;
-		}
-	}
 
 	private List<Alumno> _listaAlumnos = new ArrayList<Alumno>();
 
@@ -119,6 +106,11 @@ public class MiTableModel implements TableModel {
 	
 	public Alumno getAlumno(int i){
 		return _listaAlumnos.get(i);
+	}
+	
+	public void borraAlumno(int i){
+		_listaAlumnos.remove(i);
+		laTablaHaCambiado();
 	}
 
 }

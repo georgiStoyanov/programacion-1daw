@@ -1,3 +1,4 @@
+package ejemploSwing;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.Vector;
@@ -16,6 +17,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 
 public class TablaDeAlumnos extends JFrame {
@@ -28,6 +32,8 @@ public class TablaDeAlumnos extends JFrame {
 	private JPanel panel;
 	private JButton btnNewButton;
 	private JLabel numeroAlumnosLabel;
+	private JPanel panel_1;
+	private JButton borrarAlumnoButton;
 
 	/**
 	 * Launch the application.
@@ -86,16 +92,45 @@ public class TablaDeAlumnos extends JFrame {
 		scrollPaneAlumnos.setViewportView(tablaAlumnos);
 		tablaAlumnos.setModel( model );
 		
+		numeroAlumnosLabel = new JLabel("Media de notas: -");
+		panel.add(numeroAlumnosLabel, BorderLayout.NORTH);
+		
+		panel_1 = new JPanel();
+		panel.add(panel_1, BorderLayout.SOUTH);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{148, 136, 0};
+		gbl_panel_1.rowHeights = new int[]{25, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
+		
 		btnNewButton = new JButton("Añadir alumno");
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.weightx = 1.0;
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.anchor = GridBagConstraints.EAST;
+		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridy = 0;
+		panel_1.add(btnNewButton, gbc_btnNewButton);
+		
+		borrarAlumnoButton = new JButton("Borrar alumno");
+		borrarAlumnoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				borrarAlumnoSeleccionado();
+			}
+
+		});
+		GridBagConstraints gbc_borrarAlumnoButton = new GridBagConstraints();
+		gbc_borrarAlumnoButton.anchor = GridBagConstraints.WEST;
+		gbc_borrarAlumnoButton.weightx = 1.0;
+		gbc_borrarAlumnoButton.gridx = 1;
+		gbc_borrarAlumnoButton.gridy = 0;
+		panel_1.add(borrarAlumnoButton, gbc_borrarAlumnoButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.nuevoAlumnoVacio();
 			}
 		});
-		panel.add(btnNewButton, BorderLayout.SOUTH);
-		
-		numeroAlumnosLabel = new JLabel("Media de notas: -");
-		panel.add(numeroAlumnosLabel, BorderLayout.NORTH);
 		
 		model.addTableModelListener( new TableModelListener() {
 			
@@ -120,5 +155,15 @@ public class TablaDeAlumnos extends JFrame {
 			}
 		});
 	}
+	
 
+	private void borrarAlumnoSeleccionado() {
+		int selected = tablaAlumnos.getSelectedRow();
+		if( selected == -1 ){
+			return;
+		}
+		((MiTableModel)tablaAlumnos.getModel()).borraAlumno(selected);
+		
+		
+	}
 }
