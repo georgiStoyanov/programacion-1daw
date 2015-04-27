@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -52,7 +53,7 @@ public class Cliente {
 	@Column
 	private String apellidos;
 	
-	@Column
+	@Lob @Column
 	private byte[] imagen;
 	
 	public byte[] getImagen() {
