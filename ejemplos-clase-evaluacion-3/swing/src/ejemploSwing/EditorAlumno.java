@@ -4,6 +4,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.InputVerifier;
+import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -11,10 +13,14 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Dimension;
+
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.border.MatteBorder;
 import javax.swing.ImageIcon;
 
@@ -68,6 +74,28 @@ public class EditorAlumno extends JFrame {
 	 * Create the frame.
 	 */
 	public EditorAlumno() {
+		initComponents();
+		apellidosText.setInputVerifier( new InputVerifier() {
+			
+			@Override
+			public boolean verify(JComponent input) {
+				JTextField t = (JTextField) input;
+				return t.getText().length() < 10;
+			}
+			
+			@Override
+			public boolean shouldYieldFocus(JComponent input) {
+				JTextField t = (JTextField) input;
+				int size = Math.min(10, t.getText().length() );
+				String s = t.getText().substring(0, size); 
+				t.setText(s);
+				return true;
+			}
+		});
+	}
+	
+	private void initComponents(){
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -150,6 +178,7 @@ public class EditorAlumno extends JFrame {
 		contentPane.add(lblNota, gbc_lblNota);
 		
 		nombreText = new JTextField();
+		nombreText.setToolTipText("10 caracteres máximo");
 		GridBagConstraints gbc_nombreText = new GridBagConstraints();
 		gbc_nombreText.insets = new Insets(0, 0, 5, 0);
 		gbc_nombreText.weightx = 1.0;
