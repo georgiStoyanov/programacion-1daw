@@ -139,7 +139,7 @@ public class TablaDeAlumnos extends JFrame {
 				int filas = model.getRowCount();
 				double media = 0;
 				for( int i = 0 ; i < filas ; i++ ){
-					double nota = intentaPasarADouble( model.getAlumno(i).nota );
+					double nota = intentaPasarADouble( model.getAlumno(i).getNota() );
 					media += nota;
 				}
 				numeroAlumnosLabel.setText( "Media de notas:" + media/filas );

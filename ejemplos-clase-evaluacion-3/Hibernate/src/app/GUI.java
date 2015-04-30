@@ -1,11 +1,16 @@
 package app;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.ByteArrayOutputStream;
@@ -26,9 +31,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -36,8 +43,10 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.TableModel;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class GUI extends JFrame {
 
@@ -55,15 +64,22 @@ public class GUI extends JFrame {
         private Cliente _cliente;
         private List<Direccion> _direcciones;
         private String[] COLUMNAS = { "Dirección", "C. Postal", "Municipio", "Provincia" };
+        private boolean _vacio;
 
         public DireccionesTableModel(Cliente c) {
             _cliente = c;
             _direcciones = _cliente.getDirecciones();
         }
 
+        public DireccionesTableModel() {
+            _vacio = true;
+        }
+
         @Override
         public int getRowCount() {
-            return _direcciones.size();
+            if (_vacio)
+                return 0;
+            return _direcciones.size() + 1;
         }
 
         @Override
@@ -83,11 +99,14 @@ public class GUI extends JFrame {
 
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return true;
+            return !_vacio;
         }
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
+            if (rowIndex == getRowCount() - 1) {
+                return "Añadir...";
+            }
             Direccion d = _direcciones.get(rowIndex);
             switch (columnIndex) {
             case 0:
@@ -105,6 +124,10 @@ public class GUI extends JFrame {
 
         @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+            if (rowIndex == getRowCount() - 1) {
+                Direccion d = new Direccion();
+                addDireccion(d);
+            }
             String v = aValue.toString();
             Direccion d = _direcciones.get(rowIndex);
             switch (columnIndex) {
@@ -124,7 +147,13 @@ public class GUI extends JFrame {
                 throw new IllegalArgumentException();
             }
             salvarDireccion(d);
-            fireTableChanged( new TableModelEvent(this) );
+            fireTableChanged(new TableModelEvent(this));
+        }
+
+        private void addDireccion(Direccion d) {
+            d.setCliente(_cliente);
+            salvarCliente(_cliente);
+            salvarDireccion(d);
         }
 
         private List<TableModelListener> _listeners = new ArrayList<TableModelListener>();
@@ -164,11 +193,6 @@ public class GUI extends JFrame {
                 Query query = getEntityManager().createQuery("FROM Cliente");
                 @SuppressWarnings("unchecked")
                 List<Cliente> ret = query.getResultList();
-                {
-                    for (Cliente c : ret) {
-                        System.out.println(c);
-                    }
-                }
                 return ret;
             }
             finally {
@@ -179,7 +203,7 @@ public class GUI extends JFrame {
 
         @Override
         public int getRowCount() {
-            return _clientes.size();
+            return _clientes.size() + 1;
         }
 
         @Override
@@ -204,6 +228,9 @@ public class GUI extends JFrame {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
+            if (rowIndex == getRowCount() - 1) {
+                return "Añadir...";
+            }
             Cliente c = _clientes.get(rowIndex);
             String column = getColumnName(columnIndex);
             if (column.equals("ID"))
@@ -217,6 +244,10 @@ public class GUI extends JFrame {
 
         @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+            if (rowIndex == getRowCount() - 1) {
+                Cliente c = new Cliente();
+                _clientes.add(c);
+            }
             String value = aValue.toString();
             Cliente c = _clientes.get(rowIndex);
             String column = getColumnName(columnIndex);
@@ -226,6 +257,10 @@ public class GUI extends JFrame {
                 c.setApellidos(value);
 
             salvarCliente(c);
+            fireTableChanged(rowIndex);
+        }
+
+        public void fireTableChanged(int rowIndex) {
             TableModelEvent e = new TableModelEvent(this, rowIndex);
             fireTableChanged(e);
         }
@@ -247,6 +282,9 @@ public class GUI extends JFrame {
         }
 
         public Cliente getCliente(int row) {
+            if (row > _clientes.size() - 1) {
+                return null;
+            }
             return _clientes.get(row);
         }
 
@@ -335,6 +373,12 @@ public class GUI extends JFrame {
         datosTextoCliente.add(lblNewLabel, gbc_lblNewLabel);
 
         nombreText = new JTextField();
+        nombreText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                textosCambiados();
+            }
+        });
         GridBagConstraints gbc_nombreText = new GridBagConstraints();
         gbc_nombreText.weightx = 1.0;
         gbc_nombreText.insets = new Insets(0, 0, 5, 0);
@@ -353,6 +397,12 @@ public class GUI extends JFrame {
         datosTextoCliente.add(lblApellidos, gbc_lblApellidos);
 
         apellidosText = new JTextField();
+        apellidosText.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                textosCambiados();
+            }
+        });
         GridBagConstraints gbc_apellidosText = new GridBagConstraints();
         gbc_apellidosText.insets = new Insets(0, 0, 5, 0);
         gbc_apellidosText.fill = GridBagConstraints.HORIZONTAL;
@@ -389,31 +439,99 @@ public class GUI extends JFrame {
         datosCliente.add(panelConImagen, gbc_panelConImagen);
         GridBagLayout gbl_panelConImagen = new GridBagLayout();
         gbl_panelConImagen.columnWeights = new double[] { 0.0 };
-        gbl_panelConImagen.rowWeights = new double[] { 0.0, 0.0 };
+        gbl_panelConImagen.rowWeights = new double[] { 0.0 };
         panelConImagen.setLayout(gbl_panelConImagen);
 
-        imagenIcon = new JButton("New button");
+        imagenIcon = new JButton("");
         GridBagConstraints gbc_imagenIcon = new GridBagConstraints();
         gbc_imagenIcon.anchor = GridBagConstraints.NORTH;
         gbc_imagenIcon.insets = new Insets(0, 0, 5, 5);
         gbc_imagenIcon.gridx = 0;
         gbc_imagenIcon.gridy = 0;
         panelConImagen.add(imagenIcon, gbc_imagenIcon);
-        imagenIcon.setPreferredSize(new Dimension(64, 64));
-        imagenIcon.setMinimumSize(new Dimension(64, 64));
-        imagenIcon.setMaximumSize(new Dimension(64, 64));
-
-        JButton cambiarImagenButton = new JButton("Cambiar...");
-        GridBagConstraints gbc_cambiarImagenButton = new GridBagConstraints();
-        gbc_cambiarImagenButton.insets = new Insets(0, 0, 0, 5);
-        gbc_cambiarImagenButton.gridx = 0;
-        gbc_cambiarImagenButton.gridy = 1;
-        panelConImagen.add(cambiarImagenButton, gbc_cambiarImagenButton);
-        cambiarImagenButton.addActionListener(new ActionListener() {
+        imagenIcon.setPreferredSize(new Dimension(256, 256));
+        imagenIcon.setMinimumSize(new Dimension(256, 256));
+        imagenIcon.setMaximumSize(new Dimension(256, 256));
+        imagenIcon.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 cambiarImagen();
             }
         });
+
+    }
+
+    protected void textosCambiados() {
+        System.out.println("textosCambiados");
+        Cliente c = getClienteSeleccionado();
+        if (c != null) {
+            System.out.println("  id:" + c.getIdCliente());
+        }
+        if (c == null) {
+            return;
+        }
+        c.setApellidos(apellidosText.getText());
+        c.setNombre(nombreText.getText());
+        salvarCliente(c);
+        actualizarTablaCliente();
+    }
+
+    private void actualizarTablaCliente() {
+        int selectedRow = clientesTable.getSelectedRow();
+        _clientesTableModel.fireTableChanged(selectedRow);
+    }
+
+    private class IconoAjustadoAComponente implements Icon {
+
+        private Image _image;
+        private int _w;
+        private int _h;
+
+        public IconoAjustadoAComponente(int w, int h, byte[] imageData) {
+            _w = w;
+            _h = h;
+            _image = Toolkit.getDefaultToolkit().createImage(imageData);
+            loadImage(_image);
+        }
+
+        protected void loadImage(Image image) {
+            MediaTracker mTracker = getTracker();
+            synchronized (mTracker) {
+                int id = (int) (Math.random() * 10000);
+
+                mTracker.addImage(image, id);
+                try {
+                    mTracker.waitForID(id, 0);
+                }
+                catch (InterruptedException e) {
+                    System.out.println("INTERRUPTED while loading Image");
+                }
+                mTracker.removeImage(image, id);
+
+            }
+        }
+
+        private MediaTracker getTracker() {
+            Component comp = GUI.this;
+            return new MediaTracker(comp);
+        }
+
+        @Override
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            int w = c.getWidth() - _w;
+            int h = c.getHeight() - _h;
+            g.drawImage(_image, 0, 0, w, h, null);
+
+        }
+
+        @Override
+        public int getIconWidth() {
+            return _w;
+        }
+
+        @Override
+        public int getIconHeight() {
+            return _h;
+        }
 
     }
 
@@ -423,14 +541,8 @@ public class GUI extends JFrame {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 Cliente c = getClienteSeleccionado();
-                if (c == null || c.getImagen() == null) {
-                    imagenIcon.setIcon(null);
-                    return;
-                }
-                Icon icon = new ImageIcon(c.getImagen());
-                imagenIcon.setIcon(icon);
-                
-                direccionesTable.setModel( new DireccionesTableModel(c) );
+
+                cambioClienteSeleccionado(c);
             }
         });
     }
@@ -464,6 +576,8 @@ public class GUI extends JFrame {
             in.close();
             baos.close();
             c.setImagen(baos.toByteArray());
+            Icon icon = new IconoAjustadoAComponente(4, 4, c.getImagen());
+            imagenIcon.setIcon(icon);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -498,8 +612,8 @@ public class GUI extends JFrame {
     private void salvarCliente(Cliente c) {
         salvarObjeto(c);
     }
-    
-    private void salvarObjeto(Object o){
+
+    private void salvarObjeto(Object o) {
         EntityTransaction tx = getEntityManager().getTransaction();
         try {
             tx.begin();
@@ -509,9 +623,42 @@ public class GUI extends JFrame {
             tx.commit();
         }
     }
-    
+
     private void salvarDireccion(Direccion d) {
         salvarObjeto(d);
+    }
+
+    private void cambioClienteSeleccionado(Cliente c) {
+        System.out.println("cambioClienteSeleccionado:");
+        if (c != null) {
+            System.out.println("  id:" + c.getIdCliente());
+        }
+        if (c == null || c.getImagen() == null) {
+            imagenIcon.setIcon(null);
+        }
+        else {
+            Icon icon = new IconoAjustadoAComponente(4, 4, c.getImagen());
+            imagenIcon.setIcon(icon);
+        }
+
+        if (c == null) {
+            direccionesTable.setModel(new DireccionesTableModel());
+        }
+        else {
+            direccionesTable.setModel(new DireccionesTableModel(c));
+        }
+
+        if (c == null) {
+            nombreText.setText("");
+            apellidosText.setText("");
+        }
+        else {
+            nombreText.setText(c.getNombre());
+            apellidosText.setText(c.getApellidos());
+        }
+        nombreText.setEnabled(c != null);
+        apellidosText.setEnabled(c != null);
+
     }
 
 }
