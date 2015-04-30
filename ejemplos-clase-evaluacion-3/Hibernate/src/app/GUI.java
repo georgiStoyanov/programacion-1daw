@@ -71,14 +71,14 @@ public class GUI extends JFrame {
             _direcciones = _cliente.getDirecciones();
         }
 
-        
         public DireccionesTableModel() {
             _vacio = true;
         }
 
         @Override
         public int getRowCount() {
-            if( _vacio ) return 0;
+            if (_vacio)
+                return 0;
             return _direcciones.size() + 1;
         }
 
@@ -104,7 +104,7 @@ public class GUI extends JFrame {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if( rowIndex == getRowCount()-1 ){
+            if (rowIndex == getRowCount() - 1) {
                 return "Añadir...";
             }
             Direccion d = _direcciones.get(rowIndex);
@@ -124,7 +124,7 @@ public class GUI extends JFrame {
 
         @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-            if( rowIndex == getRowCount()-1 ){
+            if (rowIndex == getRowCount() - 1) {
                 Direccion d = new Direccion();
                 addDireccion(d);
             }
@@ -147,7 +147,7 @@ public class GUI extends JFrame {
                 throw new IllegalArgumentException();
             }
             salvarDireccion(d);
-            fireTableChanged( new TableModelEvent(this) );
+            fireTableChanged(new TableModelEvent(this));
         }
 
         private void addDireccion(Direccion d) {
@@ -203,7 +203,7 @@ public class GUI extends JFrame {
 
         @Override
         public int getRowCount() {
-            return _clientes.size() +1 ;
+            return _clientes.size() + 1;
         }
 
         @Override
@@ -228,7 +228,7 @@ public class GUI extends JFrame {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            if( rowIndex == getRowCount()-1 ){
+            if (rowIndex == getRowCount() - 1) {
                 return "Añadir...";
             }
             Cliente c = _clientes.get(rowIndex);
@@ -244,7 +244,7 @@ public class GUI extends JFrame {
 
         @Override
         public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-            if( rowIndex == getRowCount()-1 ){
+            if (rowIndex == getRowCount() - 1) {
                 Cliente c = new Cliente();
                 _clientes.add(c);
             }
@@ -282,7 +282,7 @@ public class GUI extends JFrame {
         }
 
         public Cliente getCliente(int row) {
-            if( row > _clientes.size()-1 ){
+            if (row > _clientes.size() - 1) {
                 return null;
             }
             return _clientes.get(row);
@@ -463,45 +463,46 @@ public class GUI extends JFrame {
     protected void textosCambiados() {
         System.out.println("textosCambiados");
         Cliente c = getClienteSeleccionado();
-        if( c != null ){
-            System.out.println( "  id:" + c.getIdCliente() );
+        if (c != null) {
+            System.out.println("  id:" + c.getIdCliente());
         }
-        if( c == null ){
+        if (c == null) {
             return;
         }
-        c.setApellidos( apellidosText.getText() );
-        c.setNombre( nombreText.getText() );
+        c.setApellidos(apellidosText.getText());
+        c.setNombre(nombreText.getText());
         salvarCliente(c);
         actualizarTablaCliente();
     }
 
-    private void actualizarTablaCliente(){
+    private void actualizarTablaCliente() {
         int selectedRow = clientesTable.getSelectedRow();
         _clientesTableModel.fireTableChanged(selectedRow);
     }
 
-    private class IconoAjustadoAComponente implements Icon{
+    private class IconoAjustadoAComponente implements Icon {
 
         private Image _image;
         private int _w;
         private int _h;
 
-        public  IconoAjustadoAComponente(int w, int h, byte[] imageData ) {
+        public IconoAjustadoAComponente(int w, int h, byte[] imageData) {
             _w = w;
             _h = h;
             _image = Toolkit.getDefaultToolkit().createImage(imageData);
             loadImage(_image);
         }
-        
+
         protected void loadImage(Image image) {
             MediaTracker mTracker = getTracker();
-            synchronized(mTracker) {
-                int id = (int)(Math.random()*10000);
+            synchronized (mTracker) {
+                int id = (int) (Math.random() * 10000);
 
                 mTracker.addImage(image, id);
                 try {
                     mTracker.waitForID(id, 0);
-                } catch (InterruptedException e) {
+                }
+                catch (InterruptedException e) {
                     System.out.println("INTERRUPTED while loading Image");
                 }
                 mTracker.removeImage(image, id);
@@ -509,18 +510,17 @@ public class GUI extends JFrame {
             }
         }
 
-        
         private MediaTracker getTracker() {
             Component comp = GUI.this;
-            return new MediaTracker(comp);        
+            return new MediaTracker(comp);
         }
 
         @Override
         public void paintIcon(Component c, Graphics g, int x, int y) {
             int w = c.getWidth() - _w;
             int h = c.getHeight() - _h;
-            g.drawImage(_image, 0, 0, w, h,null);
-            
+            g.drawImage(_image, 0, 0, w, h, null);
+
         }
 
         @Override
@@ -532,16 +532,16 @@ public class GUI extends JFrame {
         public int getIconHeight() {
             return _h;
         }
-        
+
     }
-    
+
     private void initListeners() {
         clientesTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 Cliente c = getClienteSeleccionado();
-                
+
                 cambioClienteSeleccionado(c);
             }
         });
@@ -576,7 +576,7 @@ public class GUI extends JFrame {
             in.close();
             baos.close();
             c.setImagen(baos.toByteArray());
-            Icon icon = new IconoAjustadoAComponente(4,4,c.getImagen());
+            Icon icon = new IconoAjustadoAComponente(4, 4, c.getImagen());
             imagenIcon.setIcon(icon);
         }
         catch (IOException e) {
@@ -612,8 +612,8 @@ public class GUI extends JFrame {
     private void salvarCliente(Cliente c) {
         salvarObjeto(c);
     }
-    
-    private void salvarObjeto(Object o){
+
+    private void salvarObjeto(Object o) {
         EntityTransaction tx = getEntityManager().getTransaction();
         try {
             tx.begin();
@@ -623,42 +623,42 @@ public class GUI extends JFrame {
             tx.commit();
         }
     }
-    
+
     private void salvarDireccion(Direccion d) {
         salvarObjeto(d);
     }
 
     private void cambioClienteSeleccionado(Cliente c) {
-        System.out.println("cambioClienteSeleccionado:" );
-        if( c != null ){
+        System.out.println("cambioClienteSeleccionado:");
+        if (c != null) {
             System.out.println("  id:" + c.getIdCliente());
         }
         if (c == null || c.getImagen() == null) {
             imagenIcon.setIcon(null);
         }
-        else{
-            Icon icon = new IconoAjustadoAComponente(4,4,c.getImagen());
+        else {
+            Icon icon = new IconoAjustadoAComponente(4, 4, c.getImagen());
             imagenIcon.setIcon(icon);
         }
-        
-        if( c == null ){
-            direccionesTable.setModel( new DireccionesTableModel() );
+
+        if (c == null) {
+            direccionesTable.setModel(new DireccionesTableModel());
         }
-        else{
-            direccionesTable.setModel( new DireccionesTableModel(c) );
+        else {
+            direccionesTable.setModel(new DireccionesTableModel(c));
         }
-        
-        if( c == null ){
+
+        if (c == null) {
             nombreText.setText("");
             apellidosText.setText("");
         }
-        else{
-        nombreText.setText( c.getNombre() );
-        apellidosText.setText( c.getApellidos() );
+        else {
+            nombreText.setText(c.getNombre());
+            apellidosText.setText(c.getApellidos());
         }
-        nombreText.setEnabled(c!=null);
-        apellidosText.setEnabled(c!=null);
-        
+        nombreText.setEnabled(c != null);
+        apellidosText.setEnabled(c != null);
+
     }
 
 }
