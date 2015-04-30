@@ -1,4 +1,4 @@
-package ejemploSwing;
+package ejemploDAO;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -114,7 +114,7 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         setLayout(gbl_contentPane);
 
         JLabel lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(EditorAlumno.class.getResource("/ejemploSwing/alumno-small.png")));
+        lblNewLabel_1.setIcon(new ImageIcon(EditorAlumno.class.getResource("alumno-small.png")));
         GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
         gbc_lblNewLabel_1.anchor = GridBagConstraints.NORTH;
         gbc_lblNewLabel_1.gridheight = 7;
