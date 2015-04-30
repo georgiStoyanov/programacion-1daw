@@ -255,4 +255,9 @@ public class AlumnoSQLDAO implements AlumnoDAO {
 		}// end try
 	}
 
+	@Override
+	public void commit() throws SQLException {
+		getConnection().commit();
+	}
+
 }

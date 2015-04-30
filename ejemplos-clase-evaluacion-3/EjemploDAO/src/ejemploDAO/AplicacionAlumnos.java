@@ -13,8 +13,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AplicacionAlumnos extends JFrame{
 	
@@ -96,6 +101,34 @@ public class AplicacionAlumnos extends JFrame{
 		panel_1.add(btnNewButton_1);
 		
 		JButton btnBorrarAlumno = new JButton("Borrar alumno");
+		btnBorrarAlumno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				borraAlumnoSeleccionado();
+			}
+		});
 		panel_1.add(btnBorrarAlumno);
+	}
+
+	protected void borraAlumnoSeleccionado() {
+		Alumno a = alumnosList.getSelectedValue();
+		if( a == null ){
+			return;
+		}
+		
+		int o = JOptionPane.showConfirmDialog(this, "¿Quieres borrar el alumno" + a + "?");
+		if( o != JOptionPane.OK_OPTION ){
+			return;
+		}
+		
+		try{
+			dao.delete(a);
+			DefaultListModel<Alumno> model = (DefaultListModel<Alumno>) alumnosList.getModel();
+			model.removeElement(a);
+			dao.commit();
+		}
+		catch( Exception e ){
+			e.printStackTrace();
+			return;
+		}
 	}
 }

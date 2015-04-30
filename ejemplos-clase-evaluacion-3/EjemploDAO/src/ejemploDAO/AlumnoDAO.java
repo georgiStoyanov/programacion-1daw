@@ -25,6 +25,7 @@ public interface AlumnoDAO {
 	public List<Alumno> findByBirthDay( Date min, Date max ) throws Exception;
 
 	public List<Alumno> findAll() throws Exception;
+	public void commit() throws Exception;
 	
 
 }
