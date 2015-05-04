@@ -44,7 +44,7 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
                     f.setVisible(true);
                     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-                    final Alumno alumno = new Alumno("Álvaro", "Gonzalez", new Date(), 6,
+                    final Alumno alumno = new Alumno(1,"Álvaro", "Gonzalez", new Date(), 6,
                             "Hola que tal\nyobien gracias\n hasta luego");
                     
                     System.out.println("alumno inicial:" + alumno);
@@ -85,7 +85,9 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         nombreText.setText(_alumno.getNombre());
         apellidosText.setText(_alumno.getApellidos());
 
-        nacimientoSpinner.setValue(_alumno.getFechaNacimiento());
+        if( _alumno.getFechaNacimiento() != null ){
+        	nacimientoSpinner.setValue(_alumno.getFechaNacimiento());
+        }
         calificacionSpinner.setValue(_alumno.getCalificacion());
         notaEditor.setText(_alumno.getNota());
         _dirty = false;

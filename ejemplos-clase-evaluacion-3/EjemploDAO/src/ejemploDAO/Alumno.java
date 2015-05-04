@@ -3,6 +3,16 @@ package ejemploDAO;
 import java.util.Date;
 
 public class Alumno {
+	private int idAlumno;
+	
+	public int getIdAlumno() {
+		return idAlumno;
+	}
+
+	public void setIdAlumno(int idAlumno) {
+		this.idAlumno = idAlumno;
+	}
+
 	private String nombre;
 	private String apellidos;
 	private Date fechaNacimiento;
@@ -50,7 +60,8 @@ public class Alumno {
         this.nota = nota;
     }
     
-    public Alumno(String nombre, String apellidos, Date fechaNacimiento, double calificacion, String nota) {
+    public Alumno(int idAlumno, String nombre, String apellidos, Date fechaNacimiento, double calificacion, String nota) {
+    	this.setIdAlumno(idAlumno);
 		this.setNombre(nombre);
 		this.setApellidos(apellidos);
 		this.setFechaNacimiento(fechaNacimiento);
@@ -58,13 +69,13 @@ public class Alumno {
 		this.setNota(nota);
 	}
 
-    public Alumno(String nombre, String apellidos) {
-    	this(nombre,apellidos,null,0,null);
+    public Alumno(int idAlumno) {
+    	this(idAlumno,"","",new Date(),0,"");
 	}
 
 	@Override
     public String toString() {
-        return "Alumno [nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento
+        return "Alumno [idAlumno=" + idAlumno + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento=" + fechaNacimiento
                 + ", calificacion=" + calificacion + ", nota=" + nota + "]";
     }
 }

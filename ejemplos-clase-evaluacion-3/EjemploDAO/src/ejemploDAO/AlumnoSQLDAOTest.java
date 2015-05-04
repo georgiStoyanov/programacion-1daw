@@ -18,7 +18,7 @@ public class AlumnoSQLDAOTest {
 		List<Alumno> alumnos = dao.findByBirthDay( fecha(1970,Calendar.JANUARY,1), fecha(1980,Calendar.JANUARY,1) );
 		System.out.println(alumnos);
 
-		Alumno a = dao.findByPrimaryKey( new Alumno("Álvaro", "González") );
+		Alumno a = dao.findByPrimaryKey( new Alumno(1) );
 		a.setCalificacion(40);
 		dao.update(a);
 		

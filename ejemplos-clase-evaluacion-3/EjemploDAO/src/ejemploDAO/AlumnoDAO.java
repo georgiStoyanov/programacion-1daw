@@ -26,8 +26,8 @@ public interface AlumnoDAO {
 
 	public List<Alumno> findAll() throws Exception;
 	public void commit() throws Exception;
+	public int siguienteIdAlumno() throws Exception;
 	
-
 }
 
 
