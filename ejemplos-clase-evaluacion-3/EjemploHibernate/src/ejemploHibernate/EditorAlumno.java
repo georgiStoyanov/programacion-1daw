@@ -5,16 +5,25 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
@@ -24,6 +33,10 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EditorAlumno extends JPanelConImagenDeFondo {
 
@@ -45,7 +58,7 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
                     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
                     final Alumno alumno = new Alumno(1,"Álvaro", "Gonzalez", new Date(), 6,
-                            "Hola que tal\nyobien gracias\n hasta luego");
+                            "Hola que tal\nyobien gracias\n hasta luego",null);
                     
                     System.out.println("alumno inicial:" + alumno);
 
@@ -75,6 +88,7 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
     private JEditorPane notaEditor;
     private boolean _dirty;
     private JSpinner calificacionSpinner;
+    private JButton imagenLabel;
 
     public Alumno getAlumno() {
         return _alumno;
@@ -90,6 +104,13 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         }
         calificacionSpinner.setValue(_alumno.getCalificacion());
         notaEditor.setText(_alumno.getNota());
+        Image imagen ;
+		try {
+			imagen = ImageIO.read( new ByteArrayInputStream(_alumno.getImagen()) );
+	        imagenLabel.setIcon( new ImageIcon(imagen));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
         _dirty = false;
     }
 
@@ -99,6 +120,17 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         _alumno.setFechaNacimiento((Date) nacimientoSpinner.getValue());
         _alumno.setCalificacion(((Double) calificacionSpinner.getValue()).doubleValue());
         _alumno.setNota(notaEditor.getText());
+        try {
+            ImageIcon icon = (ImageIcon) imagenLabel.getIcon();
+            BufferedImage image = (BufferedImage) icon.getImage();
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+			ImageIO.write(image,"png",out);
+	        byte[] bytes = out.toByteArray();
+			_alumno.setImagen( bytes );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         _dirty = false;
     }
 
@@ -115,15 +147,23 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 };
         setLayout(gbl_contentPane);
 
-        JLabel lblNewLabel_1 = new JLabel("");
-        lblNewLabel_1.setIcon(new ImageIcon(EditorAlumno.class.getResource("alumno-small.png")));
-        GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-        gbc_lblNewLabel_1.anchor = GridBagConstraints.NORTH;
-        gbc_lblNewLabel_1.gridheight = 7;
-        gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
-        gbc_lblNewLabel_1.gridx = 0;
-        gbc_lblNewLabel_1.gridy = 0;
-        add(lblNewLabel_1, gbc_lblNewLabel_1);
+        imagenLabel = new JButton("");
+        imagenLabel.setMaximumSize(new Dimension(128, 128));
+        imagenLabel.setMinimumSize(new Dimension(128, 128));
+        imagenLabel.setPreferredSize(new Dimension(128, 128));
+        imagenLabel.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		cambiaImagen();
+        	}
+        });
+        imagenLabel.setIcon(new ImageIcon(EditorAlumno.class.getResource("alumno-small.png")));
+        GridBagConstraints gbc_imagenLabel = new GridBagConstraints();
+        gbc_imagenLabel.anchor = GridBagConstraints.NORTH;
+        gbc_imagenLabel.gridheight = 7;
+        gbc_imagenLabel.insets = new Insets(0, 0, 0, 5);
+        gbc_imagenLabel.gridx = 0;
+        gbc_imagenLabel.gridy = 0;
+        add(imagenLabel, gbc_imagenLabel);
 
         JLabel lblNewLabel = new JLabel("Nombre");
         GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -250,7 +290,27 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         add(notaEditor, gbc_notaEditor);
     }
 
-    protected void setDirty() {
+    protected void cambiaImagen() {
+    	JFileChooser chooser = new JFileChooser();
+    	chooser.setFileFilter( new FileNameExtensionFilter("Imagenes", "jpg", "png", "gif") );
+    	int result = chooser.showOpenDialog(this);
+    	if( result != JFileChooser.APPROVE_OPTION ){
+    		return;
+    	}
+    	
+    	File file = chooser.getSelectedFile();
+    	
+    	try {
+			BufferedImage image = ImageIO.read(file);
+			imagenLabel.setIcon( new ImageIcon(image) );
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    	
+    	
+	}
+
+	protected void setDirty() {
         System.out.println("algo ha cambiado");
         _dirty = true;
     }

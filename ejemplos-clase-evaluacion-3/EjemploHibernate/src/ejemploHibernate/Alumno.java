@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Alumno {
@@ -19,7 +20,16 @@ public class Alumno {
 	@Column private Date fechaNacimiento;
 	@Column private double calificacion;
 	@Column private String nota;
+	@Column @Lob private byte[] imagen;
 	
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+
 	public int getIdAlumno() {
 		return idAlumno;
 	}
@@ -70,17 +80,18 @@ public class Alumno {
         this.nota = nota;
     }
     
-    public Alumno(int idAlumno, String nombre, String apellidos, Date fechaNacimiento, double calificacion, String nota) {
+    public Alumno(int idAlumno, String nombre, String apellidos, Date fechaNacimiento, double calificacion, String nota, byte[] imagen) {
     	this.setIdAlumno(idAlumno);
 		this.setNombre(nombre);
 		this.setApellidos(apellidos);
 		this.setFechaNacimiento(fechaNacimiento);
 		this.setCalificacion(calificacion);
 		this.setNota(nota);
+		this.setImagen(imagen);
 	}
 
     public Alumno() {
-    	this(-1,"","",new Date(),0,"");
+    	this(-1,"","",new Date(),0,"", "Hola".getBytes());
 	}
 
 	@Override
