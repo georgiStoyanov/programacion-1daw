@@ -1,6 +1,8 @@
 package ejemploHibernate;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Alumno {
@@ -22,6 +25,36 @@ public class Alumno {
 	@Column private String nota;
 	@Column @Lob private byte[] imagen;
 	
+	@OneToMany(mappedBy="alumno")
+	private List<Matriculacion> matriculaciones;
+	
+	public List<Matriculacion> getMatriculaciones() {
+		if (matriculaciones == null) {
+			matriculaciones = new ArrayList<Matriculacion>();
+			
+		}
+
+		return matriculaciones;
+	}
+	
+	public void addMatriculacion( Matriculacion m ){
+		if( !getMatriculaciones().contains(m) ){
+			getMatriculaciones().add(m);
+		}
+		if( m.getAlumno() != this ){
+			m.setAlumno(this);
+		}
+	}
+	
+	public void removeMatriculacion( Matriculacion m ){
+		getMatriculaciones().remove(m);
+		m.setAlumno(null);
+	}
+
+	public void setMatriculaciones(List<Matriculacion> matriculaciones) {
+		this.matriculaciones = matriculaciones;
+	}
+
 	public byte[] getImagen() {
 		return imagen;
 	}

@@ -16,10 +16,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
+import javax.persistence.EntityManager;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
@@ -38,9 +41,27 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import javax.swing.JScrollPane;
+import javax.swing.JList;
+import javax.swing.JPanel;
+
+import java.awt.GridLayout;
+
 public class EditorAlumno extends JPanelConImagenDeFondo {
 
-    /**
+	
+	private EntityManager _entityManager;
+	
+	
+    public EntityManager getEntityManager() {
+		return _entityManager;
+	}
+
+	public void setEntityManager(EntityManager _entityManager) {
+		this._entityManager = _entityManager;
+	}
+
+	/**
      * Launch the application.
      */
     public static void main(String[] args) {
@@ -89,6 +110,13 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
     private boolean _dirty;
     private JSpinner calificacionSpinner;
     private JButton imagenLabel;
+    private JLabel lblMatriculaciones;
+    private JScrollPane scrollPane;
+    private JList matriculacionesList;
+    private JScrollPane scrollPane_1;
+    private JPanel panel;
+    private JButton btnNewButton;
+    private JButton btnNewButton_1;
 
     public Alumno getAlumno() {
         return _alumno;
@@ -111,6 +139,13 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		DefaultListModel model = new DefaultListModel();
+		for( Matriculacion m : _alumno.getMatriculaciones() ){
+			model.addElement(m);
+		}
+		matriculacionesList.setModel(model);
+		
         _dirty = false;
     }
 
@@ -131,6 +166,15 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        
+        DefaultListModel model = (DefaultListModel) matriculacionesList.getModel();
+        ArrayList<Matriculacion> matriculaciones = new ArrayList<Matriculacion>();
+        for( int i = 0 ; i < model.getSize() ; i+=1 ){
+        	Matriculacion m = (Matriculacion) model.getElementAt(i);
+        	matriculaciones.add(m);
+        }
+        _alumno.setMatriculaciones(matriculaciones);
+        
         _dirty = false;
     }
 
@@ -143,8 +187,8 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
      */
     public EditorAlumno() {
         GridBagLayout gbl_contentPane = new GridBagLayout();
-        gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 0.0 };
-        gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0 };
+        gbl_contentPane.columnWeights = new double[] { 0.0, 0.0, 1.0 };
+        gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0 };
         setLayout(gbl_contentPane);
 
         imagenLabel = new JButton("");
@@ -159,7 +203,7 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         imagenLabel.setIcon(new ImageIcon(EditorAlumno.class.getResource("alumno-small.png")));
         GridBagConstraints gbc_imagenLabel = new GridBagConstraints();
         gbc_imagenLabel.anchor = GridBagConstraints.NORTH;
-        gbc_imagenLabel.gridheight = 7;
+        gbc_imagenLabel.gridheight = 8;
         gbc_imagenLabel.insets = new Insets(0, 0, 0, 5);
         gbc_imagenLabel.gridx = 0;
         gbc_imagenLabel.gridy = 0;
@@ -274,23 +318,111 @@ public class EditorAlumno extends JPanelConImagenDeFondo {
         gbc_nombreText.gridy = 0;
         add(nombreText, gbc_nombreText);
         nombreText.setColumns(10);
-
-        notaEditor = new JEditorPane();
-        notaEditor.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                setDirty();
-            }
+        
+        scrollPane = new JScrollPane();
+        GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+        gbc_scrollPane.fill = GridBagConstraints.BOTH;
+        gbc_scrollPane.insets = new Insets(0, 0, 5, 0);
+        gbc_scrollPane.gridx = 2;
+        gbc_scrollPane.gridy = 5;
+        add(scrollPane, gbc_scrollPane);
+        
+                notaEditor = new JEditorPane();
+                scrollPane.setViewportView(notaEditor);
+                notaEditor.addKeyListener(new KeyAdapter() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        setDirty();
+                    }
+                });
+        
+        lblMatriculaciones = new JLabel("Matriculaciones");
+        GridBagConstraints gbc_lblMatriculaciones = new GridBagConstraints();
+        gbc_lblMatriculaciones.anchor = GridBagConstraints.NORTHEAST;
+        gbc_lblMatriculaciones.insets = new Insets(0, 0, 5, 5);
+        gbc_lblMatriculaciones.gridx = 1;
+        gbc_lblMatriculaciones.gridy = 6;
+        add(lblMatriculaciones, gbc_lblMatriculaciones);
+        
+        panel = new JPanel();
+        GridBagConstraints gbc_panel = new GridBagConstraints();
+        gbc_panel.insets = new Insets(0, 0, 5, 0);
+        gbc_panel.fill = GridBagConstraints.BOTH;
+        gbc_panel.gridx = 2;
+        gbc_panel.gridy = 6;
+        add(panel, gbc_panel);
+        GridBagLayout gbl_panel = new GridBagLayout();
+        panel.setLayout(gbl_panel);
+        matriculacionesList = new JList();
+        
+         scrollPane_1 = new JScrollPane(matriculacionesList);
+         GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
+         gbc_scrollPane_1.weighty = 1.0;
+         gbc_scrollPane_1.weightx = 1.0;
+         gbc_scrollPane_1.gridheight = 3;
+         gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
+         gbc_scrollPane_1.insets = new Insets(0, 0, 0, 5);
+         gbc_scrollPane_1.gridx = 0;
+         gbc_scrollPane_1.gridy = 0;
+         panel.add(scrollPane_1, gbc_scrollPane_1);
+        
+        btnNewButton = new JButton("Añadir matriculación");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		addMatriculacion();
+        	}
         });
-        GridBagConstraints gbc_notaEditor = new GridBagConstraints();
-        gbc_notaEditor.insets = new Insets(0, 0, 5, 0);
-        gbc_notaEditor.fill = GridBagConstraints.BOTH;
-        gbc_notaEditor.gridx = 2;
-        gbc_notaEditor.gridy = 5;
-        add(notaEditor, gbc_notaEditor);
+        GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+        gbc_btnNewButton.fill = GridBagConstraints.BOTH;
+        gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+        gbc_btnNewButton.gridx = 1;
+        gbc_btnNewButton.gridy = 0;
+        panel.add(btnNewButton, gbc_btnNewButton);
+        
+        btnNewButton_1 = new JButton("Borrar matriculación");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		removeMatriculacion();
+        	}
+
+        });
+        GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+        gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+        gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
+        gbc_btnNewButton_1.gridx = 1;
+        gbc_btnNewButton_1.gridy = 1;
+        panel.add(btnNewButton_1, gbc_btnNewButton_1);
+        
+        
     }
 
-    protected void cambiaImagen() {
+    protected void addMatriculacion() {
+    	Matriculacion m = new Matriculacion();
+    	m.setNombreAsignatura("Una asignatura de " + _alumno.getNombre() );
+    	m.setAlumno(_alumno);
+    	if( getEntityManager() != null ){
+    		System.out.println("Persistiendo:" + m );
+    		getEntityManager().persist(m);
+    	}
+    	DefaultListModel model = (DefaultListModel) matriculacionesList.getModel();
+    	model.addElement(m);
+	}
+
+	private void removeMatriculacion() {
+		Matriculacion m = (Matriculacion)matriculacionesList.getSelectedValue();
+		if( m == null ){
+			return;
+		}
+    	DefaultListModel model = (DefaultListModel) matriculacionesList.getModel();
+    	model.removeElement(m);
+    	if( getEntityManager() != null ){
+    		System.out.println("borrando:" + m );
+    		getEntityManager().remove(m);
+    	}
+    	
+	}
+
+	protected void cambiaImagen() {
     	JFileChooser chooser = new JFileChooser();
     	chooser.setFileFilter( new FileNameExtensionFilter("Imagenes", "jpg", "png", "gif") );
     	int result = chooser.showOpenDialog(this);

@@ -4,10 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Window;
 
+import javax.persistence.EntityManager;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -30,6 +32,14 @@ public class EditorAlumnoDialog extends JDialog {
 	}
 
 	private EditorAlumno _editor;
+	public EntityManager getEntityManager() {
+		return _editor.getEntityManager();
+	}
+
+	public void setEntityManager(EntityManager _entityManager) {
+		_editor.setEntityManager(_entityManager);
+	}
+
 	private final JPanel panel = new JPanel();
 	private final JButton btnNewButton_1 = new JButton("Cancelar");
 	private boolean _aceptado;

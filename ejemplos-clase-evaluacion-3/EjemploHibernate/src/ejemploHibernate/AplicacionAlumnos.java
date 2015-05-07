@@ -126,14 +126,15 @@ public class AplicacionAlumnos extends JFrame {
 	protected void creaNuevoAlumno() {
 		Alumno alumno = new Alumno();
 		EditorAlumnoDialog dialog = new EditorAlumnoDialog(this);
+		dialog.setEntityManager(_em);
 		dialog.setAlumno(alumno);
 		dialog.pack();
 		dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+		EntityTransaction tx = _em.getTransaction();
 		dialog.setVisible(true);
 		if (!dialog.isAceptado()) {
 			return;
 		}
-		EntityTransaction tx = _em.getTransaction();
 		tx.begin();
 		dao.insert(alumno);
 		tx.commit();
@@ -147,6 +148,7 @@ public class AplicacionAlumnos extends JFrame {
 		}
 
 		EditorAlumnoDialog dialog = new EditorAlumnoDialog(this);
+		dialog.setEntityManager(_em);
 		dialog.setAlumno(alumno);
 		dialog.pack();
 		dialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
