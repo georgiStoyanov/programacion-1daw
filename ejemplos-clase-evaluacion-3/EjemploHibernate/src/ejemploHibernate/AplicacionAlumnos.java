@@ -56,7 +56,7 @@ public class AplicacionAlumnos extends JFrame {
 
 	public static void main(String[] args) throws Exception {
 		EntityManagerFactory emf = Persistence
-				.createEntityManagerFactory("ejemplo-oracle");
+				.createEntityManagerFactory("ejemplo-derby");
 		EntityManager em = emf.createEntityManager();
 		AplicacionAlumnos f = new AplicacionAlumnos();
 		f.setEntityManager(em);
